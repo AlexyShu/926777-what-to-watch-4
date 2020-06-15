@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
-
 const App = (props) => {
   const {movieCard, films} = props;
   return <div>
