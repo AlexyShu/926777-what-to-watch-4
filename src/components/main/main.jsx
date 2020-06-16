@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
 
+const filmTitleHandler = () => {};
+
 const Main = (props) => {
   const {movieCard, films} = props;
   return <React.Fragment>
@@ -99,6 +101,7 @@ const Main = (props) => {
         <div className="catalog__movies-list">
           <FilmCard
             films = {films}
+            onFilmTitleClick = {filmTitleHandler}
           />
         </div>
 
