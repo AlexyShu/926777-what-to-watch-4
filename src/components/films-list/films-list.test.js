@@ -1,12 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
-
-const MockMovieCard = {
-  name: `The Grand Budapest`,
-  genre: `Drama`,
-  year: 2014,
-};
+import FilmsList from "./films-list.jsx";
 
 const mockFilms = [
   {
@@ -52,11 +46,10 @@ const mockFilms = [
 ];
 
 
-describe(`Render correct Main`, () => {
-  it(`Render Main`, () => {
+describe(`Render correct FilmsList`, () => {
+  it(`Render FilmsList`, () => {
     const tree = renderer
-    .create(<Main
-      movieCard = {MockMovieCard}
+    .create(<FilmsList
       films = {mockFilms}
     />)
     .toJSON();
