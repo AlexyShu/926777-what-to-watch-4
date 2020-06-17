@@ -7,10 +7,13 @@ const filmTitleHandler = () => {};
 const FilmsList = (props) => {
   const {films} = props;
   return <div className="catalog__movies-list">
-    <FilmCard
-      films = {films}
-      onFilmTitleClick = {filmTitleHandler}
-    />
+    {films.map((film, i) =>
+      <FilmCard
+        key = {Math.random + i}
+        film = {film}
+        onFilmTitleClick = {filmTitleHandler}
+      />
+    )};
   </div>;
 };
 
@@ -19,7 +22,6 @@ FilmsList.propTypes = {
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         pictureSrc: PropTypes.string.isRequired,
-        key: PropTypes.number.isRequired
       })
   ).isRequired,
 };

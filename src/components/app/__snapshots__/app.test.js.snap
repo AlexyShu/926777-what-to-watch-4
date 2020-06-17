@@ -463,6 +463,7 @@ exports[`Render correct App Render App 1`] = `
             </a>
           </h3>
         </article>
+        ;
       </div>
       <div
         className="catalog__more"

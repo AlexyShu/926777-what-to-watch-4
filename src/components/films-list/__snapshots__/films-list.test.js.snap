@@ -204,5 +204,6 @@ exports[`Render correct FilmsList Render FilmsList 1`] = `
       </a>
     </h3>
   </article>
+  ;
 </div>
 `;

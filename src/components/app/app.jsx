@@ -22,7 +22,6 @@ App.propTypes = {
       PropTypes.shape({
         name: PropTypes.string.isRequired,
         pictureSrc: PropTypes.string.isRequired,
-        key: PropTypes.number.isRequired
       })
   ).isRequired,
 };
