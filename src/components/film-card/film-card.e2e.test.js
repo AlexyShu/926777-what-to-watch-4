@@ -1,41 +1,24 @@
 import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import FilmCard from "./film-card";
+import FilmCard from "./film-card.jsx";
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const mokcsFilms = [
-  `Fantastic Beasts`,
-  `Bohemian Rhapsody`,
-  `Macbeth`,
-  `Aviator`,
-  `We need to talk about Kevin`,
-  `What We Do in the Shadows`,
-  `Revenant`, `Johnny English`,
-  `Shutter Island`,
-  `Pulp Fiction`,
-  `No Country for Old Men`,
-  `Snatch`,
-  `Moonrise Kingdom`,
-  `Seven Years in Tibet`,
-  `Midnight Special`,
-  `War of the Worlds`,
-  `Dardjeeling Limited`,
-  `Orlando`,
-  `Mindhunter`,
-  `Midnight Special`
-];
+const mockfilm =
+{
+  name: `Fantastic Beasts`,
+  pictureSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+};
 
 describe(`Title click`, () => {
   it(`Should film title be pressed`, () => {
     const onFilmTitleClick = jest.fn();
-
     const filmCard = shallow(
         <FilmCard
-          films = {mokcsFilms}
+          film = {mockfilm}
           onFilmTitleClick = {onFilmTitleClick}
         />
     );

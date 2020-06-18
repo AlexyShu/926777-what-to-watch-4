@@ -1,14 +1,4 @@
-import React from "react";
-import renderer from "react-test-renderer";
-import Main from "./main.jsx";
-
-const MockMovieCard = {
-  name: `The Grand Budapest`,
-  genre: `Drama`,
-  year: 2014,
-};
-
-const mockFilms = [
+const films = [
   {
     name: `Fantastic Beasts`,
     pictureSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -43,16 +33,4 @@ const mockFilms = [
   }
 ];
 
-
-describe(`Render correct Main`, () => {
-  it(`Render Main`, () => {
-    const tree = renderer
-    .create(<Main
-      movieCard = {MockMovieCard}
-      films = {mockFilms}
-    />)
-    .toJSON();
-
-    expect(tree).toMatchSnapshot();
-  });
-});
+export default films;
