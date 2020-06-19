@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import FilmsList from "../films-list/films-list.jsx";
 
 const Main = (props) => {
-  const {movieCard, films} = props;
+  const {filmCard, films} = props;
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -31,13 +31,13 @@ const Main = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={filmCard.posterSrc} alt="The Grand Budapest Hotel poster" width="218" height="327" />
           </div>
           <div className="movie-card__desc">
-            <h2 className="movie-card__title"> {movieCard.name} </h2>
+            <h2 className="movie-card__title"> {filmCard.name} </h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre"> {movieCard.genre} </span>
-              <span className="movie-card__year"> {movieCard.year} </span>
+              <span className="movie-card__genre"> {filmCard.genre} </span>
+              <span className="movie-card__year"> {filmCard.year} </span>
             </p>
 
             <div className="movie-card__buttons">
@@ -124,10 +124,18 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  movieCard: PropTypes.shape({
+  filmCard: PropTypes.shape({
     name: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired
+    posterSrc: PropTypes.string.isRequired,
+    year: PropTypes.number.isRequired,
+    ratingScore: PropTypes.string.isRequired,
+    ratingLevel: PropTypes.string.isRequired,
+    ratingCount: PropTypes.string.isRequired,
+    descriptionPartOne: PropTypes.string.isRequired,
+    descriptionPartTwo: PropTypes.string.isRequired,
+    filmDirector: PropTypes.string.isRequired,
+    filmStarring: PropTypes.string.isRequired,
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
