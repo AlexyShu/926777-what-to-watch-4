@@ -9,36 +9,34 @@ class App extends PureComponent {
     super(props);
 
     this.state = {
-      step: -1,
+      page: `main`,
     };
   }
 
   _renderMainPage() {
     const {filmCard, films} = this.props;
-    const {step} = this.state;
+    const {page} = this.state;
 
-    if (step === -1) {
-      return (
-        <Main
-          filmCard = {filmCard}
-          films = {films}
-          onFilmTitleClick={() => {
-            this.setState({
-              step: 0,
-            });
-          }}
-        />
-      );
+    switch (page) {
+      case `main`:
+        return (
+          <Main
+            filmCard = {filmCard}
+            films = {films}
+            onFilmTitleClick={() => {
+              this.setState({
+                page: `film-page`,
+              });
+            }}
+          />
+        );
+      case `film-page`:
+        return (
+          <FilmPage
+            filmCard = {filmCard}
+          />
+        );
     }
-    console.log(step)
-    if (step === 0) {
-      return (
-        <FilmPage
-          filmCard = {filmCard}
-        />
-      );
-    }
-
     return null;
   }
 
