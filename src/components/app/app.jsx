@@ -30,7 +30,7 @@ class App extends PureComponent {
         />
       );
     }
-console.log(step)
+    console.log(step)
     if (step === 0) {
       return (
         <FilmPage
@@ -39,11 +39,11 @@ console.log(step)
       );
     }
 
-    // return null;
+    return null;
   }
 
   render() {
-    const {filmCard, films} = this.props;
+    const {filmCard} = this.props;
     return (
       <BrowserRouter>
         <Switch>
