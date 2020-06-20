@@ -22,34 +22,41 @@ const mockFilms = [
   {
     name: `Fantastic Beasts`,
     pictureSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    genre: `Fantastic`,
+    year: 2014,
+    ratingScore: `8,9`,
+    ratingLevel: `Very good`,
+    ratingCount: `240 ratings`,
+    descriptionPartOne: ``,
+    descriptionPartTwo: ``,
+    filmDirector: `Director: `,
+    filmStarring: ``
   },
   {
     name: `Bohemian Rhapsody`,
     pictureSrc: `img/bohemian-rhapsody.jpg`,
+    genre: `Biography`,
+    year: 2014,
+    ratingScore: `8,9`,
+    ratingLevel: `Very good`,
+    ratingCount: `240 ratings`,
+    descriptionPartOne: ``,
+    descriptionPartTwo: ``,
+    filmDirector: `Director: `,
+    filmStarring: ``
   },
   {
     name: `Macbeth`,
     pictureSrc: `img/macbeth.jpg`,
-  },
-  {
-    name: `Aviator`,
-    pictureSrc: `img/aviator.jpg`,
-  },
-  {
-    name: `We need to talk about Kevin`,
-    pictureSrc: `img/we-need-to-talk-about-kevin.jpg`,
-  },
-  {
-    name: `What We Do in the Shadows`,
-    pictureSrc: `img/what-we-do-in-the-shadows.jpg`,
-  },
-  {
-    name: `Revenant`,
-    pictureSrc: `img/revenant.jpg`,
-  },
-  {
-    name: `Johnny English`,
-    pictureSrc: `img/johnny-english.jpg`,
+    genre: `Drama`,
+    year: 2014,
+    ratingScore: `8,9`,
+    ratingLevel: `Very good`,
+    ratingCount: `240 ratings`,
+    descriptionPartOne: ``,
+    descriptionPartTwo: ``,
+    filmDirector: `Director: `,
+    filmStarring: ``
   }
 ];
 
