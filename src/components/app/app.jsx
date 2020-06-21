@@ -13,7 +13,7 @@ class App extends PureComponent {
     };
   }
 
-  _renderMainPage() {
+  _renderPage() {
     const {filmCard, films} = this.props;
     const {page} = this.state;
 
@@ -36,8 +36,10 @@ class App extends PureComponent {
             filmCard = {filmCard}
           />
         );
+      default:
+        return null;
     }
-    return null;
+
   }
 
   render() {
@@ -46,7 +48,7 @@ class App extends PureComponent {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this._renderMainPage()}
+            {this._renderPage()}
           </Route>
           <Route exact path="/film-page">
             <FilmPage

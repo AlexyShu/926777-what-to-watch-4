@@ -153,6 +153,7 @@ Main.propTypes = {
         filmStarring: PropTypes.string.isRequired,
       })
   ).isRequired,
+  onFilmTitleClick: PropTypes.func.isRequired,
 };
 
 export default Main;

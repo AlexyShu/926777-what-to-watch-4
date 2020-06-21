@@ -60,7 +60,6 @@ const mockFilms = [
   }
 ];
 
-
 describe(`Render correct App`, () => {
   it(`Render App`, () => {
     const tree = renderer
