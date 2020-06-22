@@ -15,21 +15,21 @@ const mockfilm =
 
 describe(`Title click`, () => {
   it(`Should film title be pressed`, () => {
-    const onFilmTitleClick = jest.fn();
+    const onFilmCardClick = jest.fn();
     const filmCard = shallow(
         <FilmCard
           film = {mockfilm}
-          onFilmTitleClick = {onFilmTitleClick}
+          onFilmCardClick = {onFilmCardClick}
         />
     );
 
-    const filmTitles = filmCard.find(`h3.small-movie-card__title`);
-    const filmTitlesCount = filmTitles.length;
+    const filmCards = filmCard.find(`article.small-movie-card`);
+    const filmCardsCount = filmCards.length;
 
-    filmTitles.forEach((filmTitle) => {
-      filmTitle.props().onClick();
+    filmCards.forEach((film) => {
+      film.props().onClick();
     });
 
-    expect(onFilmTitleClick).toHaveBeenCalledTimes(filmTitlesCount);
+    expect(onFilmCardClick).toHaveBeenCalledTimes(filmCardsCount);
   });
 });
