@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
 
 const FilmsList = (props) => {
-  const {films, onFilmTitleClick} = props;
+  const {films, onFilmCardClick} = props;
   return <div className="catalog__movies-list">
     {films.map((film, i) =>
       <FilmCard
         key = {Math.random + i}
         film = {film}
-        onFilmTitleClick = {onFilmTitleClick}
+        onFilmCardClick = {onFilmCardClick}
       />
     )};
   </div>;
@@ -31,7 +31,7 @@ FilmsList.propTypes = {
         filmStarring: PropTypes.string.isRequired,
       })
   ).isRequired,
-  onFilmTitleClick: PropTypes.func.isRequired,
+  onFilmCardClick: PropTypes.func.isRequired,
 };
 
 export default FilmsList;

@@ -60,7 +60,7 @@ const mockFilms = [
   }
 ];
 
-const mokcFilmTitleHandler = () => {};
+const mokcFilmCardHandler = () => {};
 
 describe(`Render correct Main`, () => {
   it(`Render Main`, () => {
@@ -68,7 +68,7 @@ describe(`Render correct Main`, () => {
     .create(<Main
       filmCard = {MockFilmCard}
       films = {mockFilms}
-      onFilmTitleClick = {mokcFilmTitleHandler}
+      onFilmCardClick = {mokcFilmCardHandler}
     />)
     .toJSON();
 

@@ -44,14 +44,14 @@ const mockFilms = [
   }
 ];
 
-const mokcFilmTitleHandler = () => {};
+const mokcFilmCardHandler = () => {};
 
 describe(`Render correct FilmsList`, () => {
   it(`Render FilmsList`, () => {
     const tree = renderer
     .create(<FilmsList
       films = {mockFilms}
-      onFilmTitleClick = {mokcFilmTitleHandler}
+      onFilmCardClick = {mokcFilmCardHandler}
     />)
     .toJSON();
 

@@ -23,7 +23,8 @@ class App extends PureComponent {
           <Main
             filmCard = {filmCard}
             films = {films}
-            onFilmTitleClick={() => {
+            onFilmCardClick={(e) => {
+              e.preventDefault();
               this.setState({
                 page: `film-page`,
               });
