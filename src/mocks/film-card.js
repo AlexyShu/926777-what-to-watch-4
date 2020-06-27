@@ -14,7 +14,8 @@ const FilmCard = {
   When one of Gustave's lovers dies mysteriously,
   Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
   filmDirector: `Director: Wes Andreson`,
-  filmStarring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`
+  filmStarring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
+  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
 };
 
 export default FilmCard;

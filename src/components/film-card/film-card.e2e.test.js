@@ -10,7 +10,7 @@ Enzyme.configure({
 const mockfilm =
 {
   name: `Fantastic Beasts`,
-  pictureSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  posterSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
 };
 
 describe(`Title click`, () => {

@@ -10,6 +10,7 @@ const FilmsList = (props) => {
         key = {Math.random + i}
         film = {film}
         onFilmCardClick = {onFilmCardClick}
+        isPlaying = {false}
       />
     )};
   </div>;
@@ -19,7 +20,7 @@ FilmsList.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        pictureSrc: PropTypes.string.isRequired,
+        posterSrc: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
         ratingScore: PropTypes.string.isRequired,

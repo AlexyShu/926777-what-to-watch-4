@@ -4,6 +4,7 @@ import App from "./app.jsx";
 
 const MockFilmCard = {
   name: `The Grand Budapest`,
+  video: ``,
   genre: `Drama`,
   posterSrc: `img/the-grand-budapest-hotel-poster.jpg`,
   year: 2014,
@@ -21,7 +22,7 @@ const MockFilmCard = {
 const mockFilms = [
   {
     name: `Fantastic Beasts`,
-    pictureSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    posterSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Fantastic`,
     year: 2014,
     ratingScore: `8,9`,
@@ -34,7 +35,7 @@ const mockFilms = [
   },
   {
     name: `Bohemian Rhapsody`,
-    pictureSrc: `img/bohemian-rhapsody.jpg`,
+    posterSrc: `img/bohemian-rhapsody.jpg`,
     genre: `Biography`,
     year: 2014,
     ratingScore: `8,9`,
@@ -47,7 +48,7 @@ const mockFilms = [
   },
   {
     name: `Macbeth`,
-    pictureSrc: `img/macbeth.jpg`,
+    posterSrc: `img/macbeth.jpg`,
     genre: `Drama`,
     year: 2014,
     ratingScore: `8,9`,

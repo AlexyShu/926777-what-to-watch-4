@@ -66,6 +66,7 @@ class App extends PureComponent {
 App.propTypes = {
   filmCard: PropTypes.shape({
     name: PropTypes.string.isRequired,
+    video: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     posterSrc: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
@@ -80,7 +81,7 @@ App.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string.isRequired,
-        pictureSrc: PropTypes.string.isRequired,
+        posterSrc: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
         ratingScore: PropTypes.string.isRequired,
