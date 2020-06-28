@@ -266,6 +266,8 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -282,7 +284,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
               Fantastic Beasts
             </a>
@@ -291,6 +293,8 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -307,7 +311,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
               Bohemian Rhapsody
             </a>
@@ -316,6 +320,8 @@ Array [
         <article
           className="small-movie-card catalog__movies-card"
           onClick={[Function]}
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
         >
           <div
             className="small-movie-card__image"
@@ -332,7 +338,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
               Macbeth
             </a>

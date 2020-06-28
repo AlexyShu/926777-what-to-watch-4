@@ -7,6 +7,8 @@ exports[`Render correct FilmsList Render FilmsList 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
@@ -23,7 +25,7 @@ exports[`Render correct FilmsList Render FilmsList 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="#"
       >
         Fantastic Beasts
       </a>
@@ -32,6 +34,8 @@ exports[`Render correct FilmsList Render FilmsList 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
@@ -48,7 +52,7 @@ exports[`Render correct FilmsList Render FilmsList 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="#"
       >
         Bohemian Rhapsody
       </a>
@@ -57,6 +61,8 @@ exports[`Render correct FilmsList Render FilmsList 1`] = `
   <article
     className="small-movie-card catalog__movies-card"
     onClick={[Function]}
+    onMouseOut={[Function]}
+    onMouseOver={[Function]}
   >
     <div
       className="small-movie-card__image"
@@ -73,7 +79,7 @@ exports[`Render correct FilmsList Render FilmsList 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="movie-page.html"
+        href="#"
       >
         Macbeth
       </a>

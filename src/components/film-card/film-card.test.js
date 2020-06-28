@@ -8,23 +8,24 @@ const mockfilm =
   posterSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
 };
 
-const mockMuted = false;
+const mockIsPlaying = false;
+const mockonFunc = () => {};
 
-const mockAutoPlay = false;
-
-const mokcFilmCardHandler = () => {};
 
 describe(`Render correct FilmCard`, () => {
   it(`Render FilmCard`, () => {
     const tree = renderer
     .create(<FilmCard
       film = {mockfilm}
-      onFilmCardClick = {mokcFilmCardHandler}
-      muted = {mockMuted}
-      autoPlay = {mockAutoPlay}
+      onFilmCardClick = {mockonFunc}
+      isPlaying = {mockIsPlaying}
+      onMovieCardMouseOver = {mockonFunc}
+      onMovieCardMouseOut = {mockonFunc}
     />)
     .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 });
+
+

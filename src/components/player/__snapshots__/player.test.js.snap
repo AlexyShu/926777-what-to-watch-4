@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render correct Player Render Player 1`] = `
+<video
+  autoPlay={false}
+  controls={true}
+  muted={false}
+  onClick={[Function]}
+  poster=""
+  width="100%"
+>
+  <source
+    src=""
+  />
+</video>
+`;

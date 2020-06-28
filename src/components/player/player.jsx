@@ -16,10 +16,10 @@ class Player extends PureComponent {
 
   handleVideoPlay() {
     const video = this._videoRef.current;
-    if (video.onMouseOver) {
-      setTimeout(video.play(), 1000);
+    if (video.paused) {
+      video.play();
       this.setState({isPlaying: true});
-    } else if (video.onMouseUp) {
+    } else {
       video.pause();
       this.setState({isPlaying: false});
     }
@@ -31,15 +31,15 @@ class Player extends PureComponent {
 
   render() {
     const {film, muted, autoPlay} = this.props;
-
     return (
-      <video className="player__video"
-        poster={film.posterSrc}
-        muted={muted}
-        autoPlay={autoPlay}
-        onClick={this.handleVideoPlay()}
+      <video
         ref={this._videoRef}
+        muted={muted}
+        poster={film.posterSrc}
         controls
+        width="100%"
+        autoPlay={autoPlay}
+        onClick={this.handleVideoPlay}
       >
         <source src={film.video} />
       </video>
@@ -63,8 +63,8 @@ Player.propTypes = {
     filmDirector: PropTypes.string.isRequired,
     filmStarring: PropTypes.string.isRequired,
   }).isRequired,
-  muted: PropTypes.bool,
-  autoPlay: PropTypes.bool,
+  muted: PropTypes.bool.isRequired,
+  autoPlay: PropTypes.bool.isRequired,
   onClick: PropTypes.func.isRequired,
 };
 
