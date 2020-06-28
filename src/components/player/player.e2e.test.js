@@ -31,7 +31,6 @@ it(`Should play video on click`, () => {
   const moviePlayer = mount(
       <Player
         film = {mockfilm}
-        muted = {true}
         autoPlay = {false} />
   );
 

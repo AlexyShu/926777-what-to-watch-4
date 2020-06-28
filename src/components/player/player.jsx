@@ -30,11 +30,11 @@ class Player extends PureComponent {
   }
 
   render() {
-    const {film, muted, autoPlay} = this.props;
+    const {film, autoPlay} = this.props;
     return (
       <video
+        muted
         ref={this._videoRef}
-        muted={muted}
         poster={film.posterSrc}
         controls
         width="100%"
@@ -63,7 +63,6 @@ Player.propTypes = {
     filmDirector: PropTypes.string.isRequired,
     filmStarring: PropTypes.string.isRequired,
   }).isRequired,
-  muted: PropTypes.bool.isRequired,
   autoPlay: PropTypes.bool.isRequired,
   onClick: PropTypes.func,
 };

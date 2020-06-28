@@ -28,7 +28,6 @@ describe(`Render correct Player`, () => {
     .create(<Player
       film = {mockfilm}
       onClick = {mokcFilmCardHandler}
-      muted = {mockBool}
       autoPlay = {mockBool}
     />)
     .toJSON();
