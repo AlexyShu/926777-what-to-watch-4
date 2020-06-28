@@ -65,7 +65,7 @@ Player.propTypes = {
   }).isRequired,
   muted: PropTypes.bool.isRequired,
   autoPlay: PropTypes.bool.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 
