@@ -20,15 +20,13 @@ const mockfilm =
 
 const mockBool = false;
 
-const mokcFilmCardHandler = () => {};
-
 describe(`Render correct Player`, () => {
   it(`Render Player`, () => {
     const tree = renderer
     .create(<Player
       film = {mockfilm}
-      onClick = {mokcFilmCardHandler}
       autoPlay = {mockBool}
+      muted = {mockBool}
     />)
     .toJSON();
 

@@ -10,43 +10,32 @@ class Player extends PureComponent {
     this.state = {
       isPlaying: false
     };
-
-    this.handleVideoPlay = this.handleVideoPlay.bind(this);
-  }
-
-  handleVideoPlay() {
-    const video = this._videoRef.current;
-    if (video.paused) {
-      video.play();
-      this.setState({isPlaying: true});
-    } else {
-      video.pause();
-      this.setState({isPlaying: false});
-    }
   }
 
   componentDidMount() {
     this.setState({isPlaying: this.props.autoPlay});
+
+    const video = this._videoRef.current;
+    if (video) {
+      video.muted = this.props.muted;
+      video.play();
+    }
   }
 
   render() {
-    const {film, autoPlay} = this.props;
+    const {film} = this.props;
     return (
       <video
-        muted
         ref={this._videoRef}
         poster={film.posterSrc}
         controls
         width="100%"
-        autoPlay={autoPlay}
-        onClick={this.handleVideoPlay}
       >
         <source src={film.video} />
       </video>
     );
   }
 }
-
 
 Player.propTypes = {
   film: PropTypes.shape({
@@ -64,7 +53,7 @@ Player.propTypes = {
     filmStarring: PropTypes.string.isRequired,
   }).isRequired,
   autoPlay: PropTypes.bool.isRequired,
-  onClick: PropTypes.func,
+  muted: PropTypes.bool.isRequired,
 };
 
 

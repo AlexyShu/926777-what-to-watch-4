@@ -23,7 +23,8 @@ const FilmCard = (props) => {
         {isPlaying && (
           <Player
             film = {film}
-            autoPlay={true}
+            muted = {true}
+            autoPlay = {true}
           />
         )}
       </div>

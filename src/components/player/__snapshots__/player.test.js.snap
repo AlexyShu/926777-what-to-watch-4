@@ -2,10 +2,7 @@
 
 exports[`Render correct Player Render Player 1`] = `
 <video
-  autoPlay={false}
   controls={true}
-  muted={true}
-  onClick={[Function]}
   poster=""
   width="100%"
 >
