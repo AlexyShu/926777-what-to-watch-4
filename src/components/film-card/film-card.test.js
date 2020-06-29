@@ -5,21 +5,27 @@ import FilmCard from "./film-card.jsx";
 const mockfilm =
 {
   name: `Fantastic Beasts`,
-  pictureSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  posterSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
 };
 
+const mockIsPlaying = false;
+const mockonFunc = () => {};
 
-const mokcFilmCardHandler = () => {};
 
 describe(`Render correct FilmCard`, () => {
   it(`Render FilmCard`, () => {
     const tree = renderer
     .create(<FilmCard
       film = {mockfilm}
-      onFilmCardClick = {mokcFilmCardHandler}
+      onFilmCardClick = {mockonFunc}
+      isPlaying = {mockIsPlaying}
+      onMovieCardMouseOver = {mockonFunc}
+      onMovieCardMouseOut = {mockonFunc}
     />)
     .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 });
+
+

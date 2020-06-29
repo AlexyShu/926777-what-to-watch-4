@@ -13,13 +13,20 @@ const mockfilm =
   pictureSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
 };
 
-describe(`Title click`, () => {
+const mockIsPlaying = false;
+
+describe(`Title click and film card mouse over, mouse out`, () => {
   it(`Should film title be pressed`, () => {
     const onFilmCardClick = jest.fn();
+    const onMovieCardMouseOver = jest.fn();
+    const onMovieCardMouseOut = jest.fn();
     const filmCard = shallow(
         <FilmCard
           film = {mockfilm}
           onFilmCardClick = {onFilmCardClick}
+          isPlaying = {mockIsPlaying}
+          onMovieCardMouseOver = {onMovieCardMouseOver}
+          onMovieCardMouseOut = {onMovieCardMouseOut}
         />
     );
 
@@ -29,7 +36,12 @@ describe(`Title click`, () => {
     filmCards.forEach((film) => {
       film.props().onClick();
     });
+    filmCards.simulate(`mouseover`);
+    filmCards.simulate(`mouseout`);
 
     expect(onFilmCardClick).toHaveBeenCalledTimes(filmCardsCount);
+    expect(onMovieCardMouseOver.mock.calls.length).toBe(1);
+    expect(onMovieCardMouseOver.mock.calls[0][0]).toMatchObject(mockfilm);
+    expect(onMovieCardMouseOut.mock.calls.length).toBe(1);
   });
 });

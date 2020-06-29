@@ -1,7 +1,7 @@
 const films = [
   {
     name: `Fantastic Beasts`,
-    pictureSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    posterSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     genre: `Fantastic`,
     year: 2014,
     ratingScore: `8,9`,
@@ -10,11 +10,12 @@ const films = [
     descriptionPartOne: ``,
     descriptionPartTwo: ``,
     filmDirector: `Director: `,
-    filmStarring: ``
+    filmStarring: ``,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     name: `Bohemian Rhapsody`,
-    pictureSrc: `img/bohemian-rhapsody.jpg`,
+    posterSrc: `img/bohemian-rhapsody.jpg`,
     genre: `Biography`,
     year: 2014,
     ratingScore: `8,9`,
@@ -23,11 +24,12 @@ const films = [
     descriptionPartOne: ``,
     descriptionPartTwo: ``,
     filmDirector: `Director: `,
-    filmStarring: ``
+    filmStarring: ``,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
   },
   {
     name: `Macbeth`,
-    pictureSrc: `img/macbeth.jpg`,
+    posterSrc: `img/macbeth.jpg`,
     genre: `Drama`,
     year: 2014,
     ratingScore: `8,9`,
@@ -36,11 +38,12 @@ const films = [
     descriptionPartOne: ``,
     descriptionPartTwo: ``,
     filmDirector: `Director: `,
-    filmStarring: ``
+    filmStarring: ``,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     name: `Aviator`,
-    pictureSrc: `img/aviator.jpg`,
+    posterSrc: `img/aviator.jpg`,
     genre: `Drama`,
     year: 2014,
     ratingScore: `8,9`,
@@ -49,11 +52,12 @@ const films = [
     descriptionPartOne: ``,
     descriptionPartTwo: ``,
     filmDirector: `Director: `,
-    filmStarring: ``
+    filmStarring: ``,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
   },
   {
     name: `We need to talk about Kevin`,
-    pictureSrc: `img/we-need-to-talk-about-kevin.jpg`,
+    posterSrc: `img/we-need-to-talk-about-kevin.jpg`,
     genre: `Drama`,
     year: 2014,
     ratingScore: `8,9`,
@@ -62,11 +66,12 @@ const films = [
     descriptionPartOne: ``,
     descriptionPartTwo: ``,
     filmDirector: `Director: `,
-    filmStarring: ``
+    filmStarring: ``,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     name: `What We Do in the Shadows`,
-    pictureSrc: `img/what-we-do-in-the-shadows.jpg`,
+    posterSrc: `img/what-we-do-in-the-shadows.jpg`,
     genre: `Comedy`,
     year: 2014,
     ratingScore: `8,9`,
@@ -75,11 +80,12 @@ const films = [
     descriptionPartOne: ``,
     descriptionPartTwo: ``,
     filmDirector: `Director: `,
-    filmStarring: ``
+    filmStarring: ``,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
   },
   {
     name: `Revenant`,
-    pictureSrc: `img/revenant.jpg`,
+    posterSrc: `img/revenant.jpg`,
     genre: `Drama`,
     year: 2014,
     ratingScore: `8,9`,
@@ -88,11 +94,12 @@ const films = [
     descriptionPartOne: ``,
     descriptionPartTwo: ``,
     filmDirector: `Director: `,
-    filmStarring: ``
+    filmStarring: ``,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
   },
   {
     name: `Johnny English`,
-    pictureSrc: `img/johnny-english.jpg`,
+    posterSrc: `img/johnny-english.jpg`,
     genre: `Action`,
     year: 2014,
     ratingScore: `8,9`,
@@ -101,7 +108,8 @@ const films = [
     descriptionPartOne: ``,
     descriptionPartTwo: ``,
     filmDirector: `Director: `,
-    filmStarring: ``
+    filmStarring: ``,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
   }
 ];
 
