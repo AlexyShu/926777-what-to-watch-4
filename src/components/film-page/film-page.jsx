@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Tabs from "../tabs/tabs.jsx";
 
 const FilmPage = (props) => {
-  const {filmCard} = props;
+  const {filmCard, films} = props;
   return <React.Fragment>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
@@ -62,37 +63,9 @@ const FilmPage = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <nav className="movie-nav movie-card__nav">
-              <ul className="movie-nav__list">
-                <li className="movie-nav__item movie-nav__item--active">
-                  <a href="#" className="movie-nav__link">Overview</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Details</a>
-                </li>
-                <li className="movie-nav__item">
-                  <a href="#" className="movie-nav__link">Reviews</a>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="movie-rating">
-              <div className="movie-rating__score">{filmCard.ratingScore}</div>
-              <p className="movie-rating__meta">
-                <span className="movie-rating__level">{filmCard.ratingLevel}</span>
-                <span className="movie-rating__count">{filmCard.ratingCount}</span>
-              </p>
-            </div>
-
-            <div className="movie-card__text">
-              <p>{filmCard.descriptionPartOne}</p>
-
-              <p>{filmCard.descriptionPartTwo}</p>
-
-              <p className="movie-card__director"><strong>{filmCard.filmDirector}</strong></p>
-
-              <p className="movie-card__starring"><strong>{filmCard.filmStarring}</strong></p>
-            </div>
+            <Tabs
+              filmCard={filmCard}
+            />
           </div>
         </div>
       </div>
@@ -103,41 +76,17 @@ const FilmPage = (props) => {
         <h2 className="catalog__title">More like this</h2>
 
         <div className="catalog__movies-list">
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-            </h3>
-          </article>
-
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-            </h3>
-          </article>
-
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-            </h3>
-          </article>
-
-          <article className="small-movie-card catalog__movies-card">
-            <div className="small-movie-card__image">
-              <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-            </div>
-            <h3 className="small-movie-card__title">
-              <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-            </h3>
-          </article>
+          {films.filter((film) => film.genre === filmCard.genre)
+          .map((film, i) => (
+            <article key={film.name + i} className="small-movie-card catalog__movies-card">
+              <div className="small-movie-card__image">
+                <img src={film.posterSrc} alt={film.name} width="280" height="175" />
+              </div>
+              <h3 className="small-movie-card__title">
+                <a className="small-movie-card__link" href="#">{film.name}</a>
+              </h3>
+            </article>)
+          )}
         </div>
       </section>
 
@@ -162,6 +111,7 @@ const FilmPage = (props) => {
 FilmPage.propTypes = {
   filmCard: PropTypes.shape({
     name: PropTypes.string.isRequired,
+    video: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,
     posterSrc: PropTypes.string.isRequired,
     year: PropTypes.number.isRequired,
@@ -172,7 +122,31 @@ FilmPage.propTypes = {
     descriptionPartTwo: PropTypes.string.isRequired,
     filmDirector: PropTypes.string.isRequired,
     filmStarring: PropTypes.string.isRequired,
-  }).isRequired
+    time: PropTypes.string.isRequired,
+    reviews: PropTypes.arrayOf(
+        PropTypes.shape({
+          rating: PropTypes.number.isRequired,
+          date: PropTypes.string.isRequired,
+          author: PropTypes.string.isRequired,
+          text: PropTypes.string.isRequired
+        })
+    ).isRequired
+  }).isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        posterSrc: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        year: PropTypes.number.isRequired,
+        ratingScore: PropTypes.string.isRequired,
+        ratingLevel: PropTypes.string.isRequired,
+        ratingCount: PropTypes.string.isRequired,
+        descriptionPartOne: PropTypes.string.isRequired,
+        descriptionPartTwo: PropTypes.string.isRequired,
+        filmDirector: PropTypes.string.isRequired,
+        filmStarring: PropTypes.string.isRequired,
+      })
+  ).isRequired,
 };
 
 export default FilmPage;

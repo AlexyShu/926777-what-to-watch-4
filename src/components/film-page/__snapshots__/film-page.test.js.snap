@@ -156,92 +156,99 @@ Array [
         <div
           className="movie-card__desc"
         >
-          <nav
-            className="movie-nav movie-card__nav"
-          >
-            <ul
-              className="movie-nav__list"
-            >
-              <li
-                className="movie-nav__item movie-nav__item--active"
-              >
-                <a
-                  className="movie-nav__link"
-                  href="#"
-                >
-                  Overview
-                </a>
-              </li>
-              <li
-                className="movie-nav__item"
-              >
-                <a
-                  className="movie-nav__link"
-                  href="#"
-                >
-                  Details
-                </a>
-              </li>
-              <li
-                className="movie-nav__item"
-              >
-                <a
-                  className="movie-nav__link"
-                  href="#"
-                >
-                  Reviews
-                </a>
-              </li>
-            </ul>
-          </nav>
           <div
-            className="movie-rating"
+            className="movie-card__desc"
           >
+            <nav
+              className="movie-nav movie-card__nav"
+            >
+              <ul
+                className="movie-nav__list"
+              >
+                <li
+                  className="movie-nav__item movie-nav__item--active"
+                >
+                  <a
+                    className="movie-nav__link"
+                    onClick={[Function]}
+                  >
+                    Overview
+                  </a>
+                </li>
+                <li
+                  className="movie-nav__item "
+                >
+                  <a
+                    className="movie-nav__link"
+                    onClick={[Function]}
+                  >
+                    Details
+                  </a>
+                </li>
+                <li
+                  className="movie-nav__item "
+                >
+                  <a
+                    className="movie-nav__link"
+                    onClick={[Function]}
+                  >
+                    Reviews
+                  </a>
+                </li>
+              </ul>
+            </nav>
             <div
-              className="movie-rating__score"
+              className="movie-rating"
             >
-              8,9
+              <div
+                className="movie-rating__score"
+              >
+                8,9
+              </div>
+              <p
+                className="movie-rating__meta"
+              >
+                <span
+                  className="movie-rating__level"
+                >
+                  Very good
+                </span>
+                <span
+                  className="movie-rating__count"
+                >
+                  240 ratings
+                </span>
+              </p>
             </div>
-            <p
-              className="movie-rating__meta"
+            <div
+              className="movie-card__text"
             >
-              <span
-                className="movie-rating__level"
-              >
-                Very good
-              </span>
-              <span
-                className="movie-rating__count"
-              >
-                240 ratings
-              </span>
-            </p>
-          </div>
-          <div
-            className="movie-card__text"
-          >
-            <p>
-              In the 1930s, the Grand Budapest Hotel is a popular European ski resort,
+              <p>
+                In the 1930s, the Grand Budapest Hotel is a popular European ski resort,
   presided over by concierge Gustave H. (Ralph Fiennes).
-            </p>
-            <p>
-              Gustave prides himself on providing first-class service to the hotel's guests,
+  Zero, a junior lobby boy, becomes Gustave's friend and protege.
+              </p>
+              <p>
+                Gustave prides himself on providing first-class service to the hotel's guests,
   including satisfying the sexual needs of the many elderly women who stay there.
-            </p>
-            <p
-              className="movie-card__director"
-            >
-              <strong>
-                Director: Wes Andreson
-              </strong>
-            </p>
-            <p
-              className="movie-card__starring"
-            >
-              <strong>
-                Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other
-              </strong>
-            </p>
+  When one of Gustave's lovers dies mysteriously,
+  Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.
+              </p>
+              <p
+                className="movie-card__director"
+              >
+                <strong>
+                  Director: Wes Andreson
+                </strong>
+              </p>
+              <p
+                className="movie-card__starring"
+              >
+                <strong>
+                  Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other
+                </strong>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -268,54 +275,6 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
-              height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Fantastic Beasts: The Crimes of Grindelwald
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Bohemian Rhapsody"
-              height="175"
-              src="img/bohemian-rhapsody.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Bohemian Rhapsody
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
               alt="Macbeth"
               height="175"
               src="img/macbeth.jpg"
@@ -327,33 +286,9 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="#"
             >
               Macbeth
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Aviator"
-              height="175"
-              src="img/aviator.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Aviator
             </a>
           </h3>
         </article>
