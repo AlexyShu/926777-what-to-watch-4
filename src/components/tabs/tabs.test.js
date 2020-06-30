@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import FilmPage from "./film-page.jsx";
+import Tabs from "./tabs.jsx";
 
 const mockFilmCard = {
   name: `The Grand Budapest`,
@@ -43,58 +43,12 @@ const mockFilmCard = {
   ]
 };
 
-const mockFilms = [
-  {
-    name: `Fantastic Beasts`,
-    posterSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    genre: `Fantastic`,
-    year: 2014,
-    ratingScore: `8,9`,
-    ratingLevel: `Very good`,
-    ratingCount: `240 ratings`,
-    descriptionPartOne: ``,
-    descriptionPartTwo: ``,
-    filmDirector: `Director: `,
-    filmStarring: ``,
-    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
-  },
-  {
-    name: `Bohemian Rhapsody`,
-    posterSrc: `img/bohemian-rhapsody.jpg`,
-    genre: `Biography`,
-    year: 2014,
-    ratingScore: `8,9`,
-    ratingLevel: `Very good`,
-    ratingCount: `240 ratings`,
-    descriptionPartOne: ``,
-    descriptionPartTwo: ``,
-    filmDirector: `Director: `,
-    filmStarring: ``,
-    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
-  },
-  {
-    name: `Macbeth`,
-    posterSrc: `img/macbeth.jpg`,
-    genre: `Drama`,
-    year: 2014,
-    ratingScore: `8,9`,
-    ratingLevel: `Very good`,
-    ratingCount: `240 ratings`,
-    descriptionPartOne: ``,
-    descriptionPartTwo: ``,
-    filmDirector: `Director: `,
-    filmStarring: ``,
-    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`
-  }
-];
 
-
-describe(`Render correct FilmPage`, () => {
-  it(`Render FilmPage`, () => {
+describe(`Render correct Tabs`, () => {
+  it(`Render Tabs`, () => {
     const tree = renderer
-    .create(<FilmPage
+    .create(<Tabs
       filmCard = {mockFilmCard}
-      films = {mockFilms}
     />)
     .toJSON();
 

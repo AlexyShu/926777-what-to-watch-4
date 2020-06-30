@@ -15,7 +15,28 @@ const FilmCard = {
   Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.`,
   filmDirector: `Director: Wes Andreson`,
   filmStarring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  time: `1h 39m`,
+  reviews: [
+    {
+      rating: 2,
+      date: `June 29, 2020`,
+      author: `Alexy Shu`,
+      text: `This is an awesome movie! You should watch it!`
+    },
+    {
+      rating: 3,
+      date: `June 29, 2020`,
+      author: `Alexy Shu`,
+      text: `This is an awesome movie! You should watch it!`
+    },
+    {
+      rating: 9,
+      date: `June 29, 2020`,
+      author: `Alexy Shu`,
+      text: `This is an awesome movie! You should watch it!`
+    }
+  ]
 };
 
 export default FilmCard;

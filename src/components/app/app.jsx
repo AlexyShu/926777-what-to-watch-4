@@ -35,6 +35,7 @@ class App extends PureComponent {
         return (
           <FilmPage
             filmCard = {filmCard}
+            films = {films}
           />
         );
       default:
@@ -44,7 +45,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {filmCard} = this.props;
+    const {filmCard, films} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -54,6 +55,7 @@ class App extends PureComponent {
           <Route exact path="/film-page">
             <FilmPage
               filmCard = {filmCard}
+              films = {films}
             />
           </Route>
         </Switch>
@@ -77,6 +79,15 @@ App.propTypes = {
     descriptionPartTwo: PropTypes.string.isRequired,
     filmDirector: PropTypes.string.isRequired,
     filmStarring: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+    reviews: PropTypes.arrayOf(
+        PropTypes.shape({
+          rating: PropTypes.number.isRequired,
+          date: PropTypes.string.isRequired,
+          author: PropTypes.string.isRequired,
+          text: PropTypes.string.isRequired
+        })
+    ).isRequired
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
