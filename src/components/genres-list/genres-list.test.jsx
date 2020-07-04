@@ -1,7 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {FilmsList} from "./films-list.jsx";
-
+import {GenresList} from "./genres-list.jsx";
 
 const mockFilms = [
   {
@@ -47,18 +46,15 @@ const mockFilms = [
 
 const mokcFilmCardHandler = () => {};
 
-
-describe(`Render correct FilmsList`, () => {
-  it(`Render FilmsList`, () => {
+describe(`Render correct GenresList`, () => {
+  it(`Render GenresList`, () => {
     const tree = renderer
-    .create(
-        <FilmsList
-          films = {mockFilms}
-          onFilmCardClick = {mokcFilmCardHandler}
-        />)
+    .create(<GenresList
+      films = {mockFilms}
+      onFilterClick = {mokcFilmCardHandler}
+    />)
     .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 });
-
