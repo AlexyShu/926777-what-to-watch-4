@@ -1,7 +1,7 @@
 import React from "react";
 import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
-import FilmsList from "./films-list.jsx";
+import {FilmsList} from "./films-list.jsx";
 
 Enzyme.configure({
   adapter: new Adapter(),

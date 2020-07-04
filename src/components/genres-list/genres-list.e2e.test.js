@@ -1,7 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import {FilmsList} from "./films-list.jsx";
+import Enzyme, {mount} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import {GenresList} from "./genres-list.jsx";
 
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
 const mockFilms = [
   {
@@ -45,20 +49,24 @@ const mockFilms = [
   }
 ];
 
-const mokcFilmCardHandler = () => {};
+describe(`Filter click`, () => {
+  it(`Should filter be pressed`, () => {
+    const onFilterClick = jest.fn();
 
-
-describe(`Render correct FilmsList`, () => {
-  it(`Render FilmsList`, () => {
-    const tree = renderer
-    .create(
-        <FilmsList
+    const filtersList = mount(
+        <GenresList
           films = {mockFilms}
-          onFilmCardClick = {mokcFilmCardHandler}
-        />)
-    .toJSON();
+          onFilterClick = {onFilterClick}
+        />
+    );
 
-    expect(tree).toMatchSnapshot();
+    const filters = filtersList.find(`catalog__genres-item`);
+    const filtersCount = filters.length;
+
+    filters.forEach((filter) => {
+      filter.simulate(`click`);
+    });
+
+    expect(onFilterClick).toHaveBeenCalledTimes(filtersCount);
   });
 });
-

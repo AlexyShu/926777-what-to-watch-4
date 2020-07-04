@@ -1,6 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
 
 const MockFilmCard = {
   name: `The Grand Budapest`,
@@ -62,14 +64,22 @@ const mockFilms = [
 
 const mokcFilmCardHandler = () => {};
 
+const mockStore = configureStore([]);
+
 describe(`Render correct Main`, () => {
   it(`Render Main`, () => {
+    const store = mockStore({
+      films: mockFilms
+    });
     const tree = renderer
-    .create(<Main
-      filmCard = {MockFilmCard}
-      films = {mockFilms}
-      onFilmCardClick = {mokcFilmCardHandler}
-    />)
+    .create(
+        <Provider store={store}>
+          <Main
+            filmCard = {MockFilmCard}
+            films = {mockFilms}
+            onFilmCardClick = {mokcFilmCardHandler}
+          />
+        </Provider>)
     .toJSON();
 
     expect(tree).toMatchSnapshot();

@@ -1,4 +1,5 @@
 import React, {PureComponent} from "react";
+import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
 
@@ -63,6 +64,10 @@ class FilmsList extends PureComponent {
   }
 }
 
+const mapStateToProps = (state) => ({
+  films: state.films
+});
+
 FilmsList.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape({
@@ -82,4 +87,6 @@ FilmsList.propTypes = {
   onFilmCardClick: PropTypes.func.isRequired,
 };
 
-export default FilmsList;
+
+export {FilmsList};
+export default connect(mapStateToProps)(FilmsList);
