@@ -47,6 +47,7 @@ const mockFilms = [
 
 const mokcFilmCardHandler = () => {};
 
+const mockFilmsCount = 8;
 
 describe(`Render correct FilmsList`, () => {
   it(`Render FilmsList`, () => {
@@ -54,6 +55,7 @@ describe(`Render correct FilmsList`, () => {
     .create(
         <FilmsList
           films = {mockFilms}
+          filmsCount = {mockFilmsCount}
           onFilmCardClick = {mokcFilmCardHandler}
         />)
     .toJSON();

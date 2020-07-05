@@ -46,7 +46,7 @@ class FilmsList extends PureComponent {
   }
 
   render() {
-    const {films, onFilmCardClick} = this.props;
+    const {films, onFilmCardClick, filmsCount} = this.props;
     return <div className="catalog__movies-list">
       {films.map((film, i) =>
         <FilmCard
@@ -59,7 +59,7 @@ class FilmsList extends PureComponent {
             this.state.selectedFilmId === i && this.state.isPlaying
           }
         />
-      )};
+      ).slice(0, filmsCount)}
     </div>;
   }
 }
@@ -85,6 +85,7 @@ FilmsList.propTypes = {
       })
   ).isRequired,
   onFilmCardClick: PropTypes.func.isRequired,
+  filmsCount: PropTypes.number.isRequired,
 };
 
 

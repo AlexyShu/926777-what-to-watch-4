@@ -49,6 +49,8 @@ const mockFilms = [
   }
 ];
 
+const mockFilmsCount = 8;
+
 describe(`Title click`, () => {
   it(`Should film title be pressed`, () => {
     const onFilmCardClick = jest.fn();
@@ -57,6 +59,7 @@ describe(`Title click`, () => {
         <FilmsList
           films = {mockFilms}
           onFilmCardClick = {onFilmCardClick}
+          filmsCount = {mockFilmsCount}
         />
     );
 

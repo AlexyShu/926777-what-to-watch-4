@@ -1,8 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import Main from "./main.jsx";
 
 const MockFilmCard = {
   name: `The Grand Budapest`,
@@ -62,14 +62,17 @@ const mockFilms = [
   }
 ];
 
-const mokcFilmCardHandler = () => {};
+const mokcFunction = () => {};
+
+const mockFilmsCount = 8;
 
 const mockStore = configureStore([]);
 
 describe(`Render correct Main`, () => {
   it(`Render Main`, () => {
     const store = mockStore({
-      films: mockFilms
+      films: mockFilms,
+      filmsCount: mockFilmsCount
     });
     const tree = renderer
     .create(
@@ -77,7 +80,9 @@ describe(`Render correct Main`, () => {
           <Main
             filmCard = {MockFilmCard}
             films = {mockFilms}
-            onFilmCardClick = {mokcFilmCardHandler}
+            filmsCount = {mockFilmsCount}
+            onFilmCardClick = {mokcFunction}
+            showMoreFilms = {mokcFunction}
           />
         </Provider>)
     .toJSON();

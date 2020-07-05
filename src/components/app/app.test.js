@@ -89,10 +89,15 @@ const mockFilms = [
 
 const mockStore = configureStore([]);
 
+const mokcFunction = () => {};
+
+const mockFilmsCount = 8;
+
 describe(`Render correct App`, () => {
   it(`Render App`, () => {
     const store = mockStore({
-      films: mockFilms
+      films: mockFilms,
+      filmsCount: mockFilmsCount
     });
     const tree = renderer
     .create(
@@ -100,6 +105,7 @@ describe(`Render correct App`, () => {
           <App
             filmCard = {mockFilmCard}
             films = {mockFilms}
+            showMoreFilms = {mokcFunction}
           />
         </Provider>)
     .toJSON();

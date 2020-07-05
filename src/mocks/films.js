@@ -110,6 +110,20 @@ const films = [
     filmDirector: `Director: `,
     filmStarring: ``,
     video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
+  },
+  {
+    name: `The Grand Budapest`,
+    posterSrc: `img/the-grand-budapest-hotel-poster.jpg`,
+    genre: `Drama`,
+    year: 2014,
+    ratingScore: `8,9`,
+    ratingLevel: `Very good`,
+    ratingCount: `240 ratings`,
+    descriptionPartOne: ``,
+    descriptionPartTwo: ``,
+    filmDirector: `Director: `,
+    filmStarring: ``,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`
   }
 ];
 
