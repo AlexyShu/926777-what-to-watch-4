@@ -16,7 +16,7 @@ exports[`Render correct GenresList Render GenresList 1`] = `
     </a>
   </li>
   <li
-    className="catalog__genres-item catalog__genres-item--active"
+    className="catalog__genres-item "
     onClick={[Function]}
   >
     <a
@@ -27,7 +27,7 @@ exports[`Render correct GenresList Render GenresList 1`] = `
     </a>
   </li>
   <li
-    className="catalog__genres-item catalog__genres-item--active"
+    className="catalog__genres-item "
     onClick={[Function]}
   >
     <a
@@ -38,7 +38,7 @@ exports[`Render correct GenresList Render GenresList 1`] = `
     </a>
   </li>
   <li
-    className="catalog__genres-item catalog__genres-item--active"
+    className="catalog__genres-item "
     onClick={[Function]}
   >
     <a

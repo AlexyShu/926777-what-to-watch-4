@@ -160,7 +160,7 @@ Array [
         className="catalog__genres-list"
       >
         <li
-          className="catalog__genres-item catalog__genres-item--active"
+          className="catalog__genres-item "
           onClick={[Function]}
         >
           <a
@@ -171,7 +171,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item catalog__genres-item--active"
+          className="catalog__genres-item "
           onClick={[Function]}
         >
           <a
@@ -182,7 +182,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item catalog__genres-item--active"
+          className="catalog__genres-item "
           onClick={[Function]}
         >
           <a
@@ -193,7 +193,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item catalog__genres-item--active"
+          className="catalog__genres-item "
           onClick={[Function]}
         >
           <a
@@ -289,7 +289,6 @@ Array [
           </h3>
         </article>
       </div>
-      
     </section>
     <footer
       className="page-footer"

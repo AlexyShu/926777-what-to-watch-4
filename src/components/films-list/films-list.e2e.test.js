@@ -49,7 +49,7 @@ const mockFilms = [
   }
 ];
 
-const mockFilmsCount = 8;
+const MockFilmsCount = 8;
 
 describe(`Title click`, () => {
   it(`Should film title be pressed`, () => {
@@ -59,7 +59,7 @@ describe(`Title click`, () => {
         <FilmsList
           films = {mockFilms}
           onFilmCardClick = {onFilmCardClick}
-          filmsCount = {mockFilmsCount}
+          filmsCount = {MockFilmsCount}
         />
     );
 

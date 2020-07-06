@@ -1,10 +1,12 @@
 import {extend} from "./utils.js";
 import films from "./mocks/films.js";
+import {ALL_GENRES} from "./constants.js";
 
 // данные, объект начального состояния
 const initialState = {
   films,
-  filmsCount: 8
+  filmsCount: 8,
+  activeFilter: ALL_GENRES
 };
 
 // Action
@@ -31,7 +33,8 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
       return extend(state, {
-        films: films.filter((film) => film.genre === action.payload)
+        films: films.filter((film) => film.genre === action.payload),
+        activeFilter: action.payload
       });
     case ActionType.SHOW_MORE_FILMS:
       return extend(state, {

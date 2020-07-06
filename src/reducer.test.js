@@ -4,51 +4,62 @@ import films from "./mocks/films.js";
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     films,
-    filmsCount: 8
+    filmsCount: 8,
+    activeFilter: `All genres`
   });
 });
 
 describe(`Reducer return current value`, () => {
   it(`Reducer should change current film list by genre`, () => {
     expect(reducer({
-      films
+      films,
+      activeFilter: `Fantastic`
     }, {
       type: ActionType.CHANGE_GENRE,
       payload: `Fantastic`,
     })).toEqual({
-      films: films.filter((film) => film.genre === `Fantastic`)
+      films: films.filter((film) => film.genre === `Fantastic`),
+      activeFilter: `Fantastic`
     });
     expect(reducer({
-      films
+      films,
+      activeFilter: `Biography`
     }, {
       type: ActionType.CHANGE_GENRE,
       payload: `Biography`,
     })).toEqual({
-      films: films.filter((film) => film.genre === `Biography`)
+      films: films.filter((film) => film.genre === `Biography`),
+      activeFilter: `Biography`
     });
     expect(reducer({
-      films
+      films,
+      activeFilter: `Drama`
     }, {
       type: ActionType.CHANGE_GENRE,
       payload: `Drama`,
     })).toEqual({
-      films: films.filter((film) => film.genre === `Drama`)
+      films: films.filter((film) => film.genre === `Drama`),
+      activeFilter: `Drama`
     });
     expect(reducer({
-      films
+      films,
+      activeFilter: `Comedy`
     }, {
       type: ActionType.CHANGE_GENRE,
       payload: `Comedy`,
     })).toEqual({
-      films: films.filter((film) => film.genre === `Comedy`)
+      films: films.filter((film) => film.genre === `Comedy`),
+      activeFilter: `Comedy`
     });
     expect(reducer({
-      films
+      films,
+      activeFilter: `Action`
     }, {
       type: ActionType.CHANGE_GENRE,
       payload: `Action`,
     })).toEqual({
-      films: films.filter((film) => film.genre === `Action`)
+      films: films.filter((film) => film.genre === `Action`),
+      activeFilter: `Action`
     });
   });
 

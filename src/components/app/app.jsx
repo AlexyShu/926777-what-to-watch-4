@@ -68,6 +68,15 @@ class App extends PureComponent {
   }
 }
 
+const mapStateToProps = (state) => ({
+  filmsCount: state.filmsCount,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  showMoreFilms() {
+    dispatch(ActionCreator.showMoreFilms());
+  }
+});
 
 App.propTypes = {
   filmCard: PropTypes.shape({
@@ -111,16 +120,6 @@ App.propTypes = {
   filmsCount: PropTypes.number.isRequired,
   showMoreFilms: PropTypes.func.isRequired,
 };
-
-const mapStateToProps = (state) => ({
-  filmsCount: state.filmsCount
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  showMoreFilms() {
-    dispatch(ActionCreator.showMoreFilms());
-  }
-});
 
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);

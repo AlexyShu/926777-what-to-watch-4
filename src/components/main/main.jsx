@@ -75,7 +75,7 @@ const Main = (props) => {
           filmsCount = {filmsCount}
         />
 
-        {filmsCount >= films.length ? `` :
+        {filmsCount >= films.length ? null :
           <ShowMoreButton
             showMoreFilms = {showMoreFilms}
           />
