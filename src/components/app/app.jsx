@@ -1,5 +1,7 @@
 import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import FilmPage from "../film-page/film-page.jsx";
@@ -14,7 +16,7 @@ class App extends PureComponent {
   }
 
   _renderPage() {
-    const {filmCard, films} = this.props;
+    const {filmCard, films, filmsCount, showMoreFilms} = this.props;
     const {page} = this.state;
 
     switch (page) {
@@ -23,6 +25,8 @@ class App extends PureComponent {
           <Main
             filmCard = {filmCard}
             films = {films}
+            filmsCount = {filmsCount}
+            showMoreFilms = {showMoreFilms}
             onFilmCardClick={(e) => {
               e.preventDefault();
               this.setState({
@@ -64,6 +68,15 @@ class App extends PureComponent {
   }
 }
 
+const mapStateToProps = (state) => ({
+  filmsCount: state.filmsCount,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  showMoreFilms() {
+    dispatch(ActionCreator.showMoreFilms());
+  }
+});
 
 App.propTypes = {
   filmCard: PropTypes.shape({
@@ -104,7 +117,10 @@ App.propTypes = {
         filmStarring: PropTypes.string.isRequired,
       })
   ).isRequired,
+  filmsCount: PropTypes.number.isRequired,
+  showMoreFilms: PropTypes.func.isRequired,
 };
 
-export default App;
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 

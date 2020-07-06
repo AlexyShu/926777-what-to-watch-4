@@ -49,6 +49,8 @@ const mockFilms = [
   }
 ];
 
+const MOCK_ACTIVE_FILTER = `All genres`;
+
 describe(`Filter click`, () => {
   it(`Should filter be pressed`, () => {
     const onFilterClick = jest.fn();
@@ -57,6 +59,7 @@ describe(`Filter click`, () => {
         <GenresList
           films = {mockFilms}
           onFilterClick = {onFilterClick}
+          activeFilter = {MOCK_ACTIVE_FILTER}
         />
     );
 

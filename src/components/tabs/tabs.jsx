@@ -1,11 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-
-const TabName = {
-  OVERVIEW: `overview`,
-  DETAILS: `details`,
-  REVIEWS: `reviews`
-};
+import {TabName} from "../../constants.js";
 
 class Tabs extends PureComponent {
   constructor(props) {
