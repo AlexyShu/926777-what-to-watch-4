@@ -91,13 +91,13 @@ const mockStore = configureStore([]);
 
 const mokcFunction = () => {};
 
-const MockFilmsCount = 8;
+const MOCK_FILMS_COUNT = 8;
 
 describe(`Render correct App`, () => {
   it(`Render App`, () => {
     const store = mockStore({
       films: mockFilms,
-      filmsCount: MockFilmsCount
+      filmsCount: MOCK_FILMS_COUNT
     });
     const tree = renderer
     .create(

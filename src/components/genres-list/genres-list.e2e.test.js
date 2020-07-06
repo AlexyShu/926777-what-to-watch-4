@@ -49,7 +49,7 @@ const mockFilms = [
   }
 ];
 
-const MockActiveFilter = `All genres`;
+const MOCK_ACTIVE_FILTER = `All genres`;
 
 describe(`Filter click`, () => {
   it(`Should filter be pressed`, () => {
@@ -59,7 +59,7 @@ describe(`Filter click`, () => {
         <GenresList
           films = {mockFilms}
           onFilterClick = {onFilterClick}
-          activeFilter = {MockActiveFilter}
+          activeFilter = {MOCK_ACTIVE_FILTER}
         />
     );
 

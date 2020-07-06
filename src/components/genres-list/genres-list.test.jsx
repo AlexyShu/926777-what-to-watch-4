@@ -46,7 +46,7 @@ const mockFilms = [
 
 const mokcFilmCardHandler = () => {};
 
-const MockActiveFilter = `All genres`;
+const MOCK_ACTIVE_FILTER = `All genres`;
 
 describe(`Render correct GenresList`, () => {
   it(`Render GenresList`, () => {
@@ -54,7 +54,7 @@ describe(`Render correct GenresList`, () => {
     .create(<GenresList
       films = {mockFilms}
       onFilterClick = {mokcFilmCardHandler}
-      activeFilter = {MockActiveFilter}
+      activeFilter = {MOCK_ACTIVE_FILTER}
     />)
     .toJSON();
 

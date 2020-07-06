@@ -64,7 +64,7 @@ const mockFilms = [
 
 const mokcFunction = () => {};
 
-const MockFilmsCount = 8;
+const MOCK_FILMS_COUNT = 8;
 
 const mockStore = configureStore([]);
 
@@ -72,7 +72,7 @@ describe(`Render correct Main`, () => {
   it(`Render Main`, () => {
     const store = mockStore({
       films: mockFilms,
-      filmsCount: MockFilmsCount
+      filmsCount: MOCK_FILMS_COUNT
     });
     const tree = renderer
     .create(
@@ -80,7 +80,7 @@ describe(`Render correct Main`, () => {
           <Main
             filmCard = {MockFilmCard}
             films = {mockFilms}
-            filmsCount = {MockFilmsCount}
+            filmsCount = {MOCK_FILMS_COUNT}
             onFilmCardClick = {mokcFunction}
             showMoreFilms = {mokcFunction}
           />
