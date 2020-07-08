@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Player from "../player/player.jsx";
+import withPlayer from "../hocs/with-player/with-player.jsx";
+
+const VideoPlayer = withPlayer(Player);
 
 const FilmCard = (props) => {
   const {film, onFilmCardClick, onMovieCardMouseOver, onMovieCardMouseOut, isPlaying} = props;
@@ -21,7 +24,7 @@ const FilmCard = (props) => {
           />
         )}
         {isPlaying && (
-          <Player
+          <VideoPlayer
             film = {film}
             muted = {true}
             autoPlay = {true}
