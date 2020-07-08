@@ -1,8 +1,8 @@
 import React, {createRef, PureComponent} from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 const withPlayer = (Component) => {
-  return class WithPlayer extends PureComponent {
+  class WithPlayer extends PureComponent {
     constructor(props) {
       super(props);
       this._videoRef = createRef();
@@ -23,20 +23,18 @@ const withPlayer = (Component) => {
     render() {
       return <Component
         {...this.props}
-        ref={this._videoRef}
+        videoRef={this._videoRef}
       />;
     }
+  }
+
+  WithPlayer.propTypes = {
+    muted: PropTypes.bool.isRequired,
+    autoPlay: PropTypes.bool.isRequired,
   };
+
+  return WithPlayer;
 };
 
-
-//   WithAudio.propTypes = {
-//     isPlaying: PropTypes.bool.isRequired,
-//     onPlayButtonClick: PropTypes.func.isRequired,
-//     src: PropTypes.string.isRequired,
-//   };
-
-//   return WithAudio;
-// };
 
 export default withPlayer;
