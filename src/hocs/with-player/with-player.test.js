@@ -2,7 +2,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import withPlayer from "./with-player.jsx";
-import {mockBool} from "../../../mocks-for-tests.js";
+import {mockBool} from "../../mocks-for-tests.js";
 
 const MockComponent = () => <div></div>;
 const MockComponentWrapped = withPlayer(MockComponent);

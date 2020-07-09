@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Player from "../player/player.jsx";
-import withPlayer from "../hocs/with-player/with-player.jsx";
+import withPlayer from "../../hocs/with-player/with-player.jsx";
 
 const VideoPlayer = withPlayer(Player);
 
