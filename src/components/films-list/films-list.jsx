@@ -3,18 +3,17 @@ import {connect} from "react-redux";
 import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
 
-
 const FilmsList = (props) => {
-  const {films, onFilmCardClick, filmsCount, selectedFilmId, isPlaying, onMovieCardMouseOver, onMovieCardMouseOut} = props;
+  const {films, onFilmCardClick, filmsCount, isPlaying, activeItem, handleChange} = props;
   return <div className="catalog__movies-list">
     {films.map((film, i) =>
       <FilmCard
         key = {film.name + i}
         film = {film}
         onFilmCardClick = {onFilmCardClick}
-        onMovieCardMouseOver={() => onMovieCardMouseOver(i)}
-        onMovieCardMouseOut={onMovieCardMouseOut}
-        isPlaying={selectedFilmId === i && isPlaying}
+        onMovieCardMouseOver={() => handleChange(i)}
+        onMovieCardMouseOut={() => handleChange(null)}
+        isPlaying={activeItem === i && isPlaying}
       />
     ).slice(0, filmsCount)}
   </div>;
@@ -43,10 +42,9 @@ FilmsList.propTypes = {
   ).isRequired,
   onFilmCardClick: PropTypes.func.isRequired,
   filmsCount: PropTypes.number.isRequired,
-  selectedFilmId: PropTypes.number,
+  activeItem: PropTypes.number,
   isPlaying: PropTypes.bool.isRequired,
-  onMovieCardMouseOver: PropTypes.func.isRequired,
-  onMovieCardMouseOut: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export {FilmsList};

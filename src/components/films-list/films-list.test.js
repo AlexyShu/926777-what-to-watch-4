@@ -11,14 +11,14 @@ describe(`Render correct FilmsList`, () => {
           films = {mockFilms}
           filmsCount = {MOCK_FILMS_COUNT}
           onFilmCardClick = {mokcFunction}
-          selectedFilmId = {MOCK_FILMS_COUNT}
+          activeItem = {MOCK_FILMS_COUNT}
           isPlaying = {mockBool}
-          onMovieCardMouseOver = {mokcFunction}
-          onMovieCardMouseOut = {mokcFunction}
+          handleChange = {mokcFunction}
         />)
     .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 });
+
 

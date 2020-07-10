@@ -18,10 +18,9 @@ describe(`Title click`, () => {
           films = {mockFilms}
           onFilmCardClick = {onFilmCardClick}
           filmsCount = {MOCK_FILMS_COUNT}
-          selectedFilmId = {MOCK_FILMS_COUNT}
+          activeItem = {MOCK_FILMS_COUNT}
           isPlaying = {mockBool}
-          onMovieCardMouseOver = {() => {}}
-          onMovieCardMouseOut = {() => {}}
+          handleChange = {() => {}}
         />
     );
 
@@ -35,3 +34,4 @@ describe(`Title click`, () => {
     expect(onFilmCardClick).toHaveBeenCalledTimes(filmCardsCount);
   });
 });
+

@@ -21,11 +21,9 @@ it(`Should change selected movie ID on mouseover/mouseout`, () => {
         onFilmCardClick = {mokcFunction} />
   );
 
-  expect(wrapper.props().selectedFilmId).toEqual(null);
+  expect(wrapper.props().activeItem).toEqual(null);
 
-  wrapper.props().onMovieCardMouseOver(0);
-  expect(wrapper.props().selectedFilmId).toEqual(0);
+  wrapper.props().handleChange(0);
+  expect(wrapper.props().activeItem).toEqual(0);
 
-  wrapper.props().onMovieCardMouseOut();
-  expect(wrapper.props().selectedFilmId).toEqual(null);
 });

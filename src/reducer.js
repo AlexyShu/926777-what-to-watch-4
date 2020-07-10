@@ -27,6 +27,11 @@ const ActionCreator = {
   })
 };
 
+// const getGenre = (movies, payload) => {
+//   payload = ALL_GENRES ? films.slice() : films.filter((film) => film.genre === payload);
+// };
+//
+
 // Редьюсер. Функция-редьюсер принимает в качестве параметров текущий state и
 // действие (action). Результатом выполнение редьюсера станет новое состояние.
 const reducer = (state = initialState, action) => {

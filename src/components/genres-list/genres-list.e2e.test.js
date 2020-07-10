@@ -11,11 +11,13 @@ Enzyme.configure({
 describe(`Filter click`, () => {
   it(`Should filter be pressed`, () => {
     const onFilterClick = jest.fn();
+    const handleChange = jest.fn();
     const filtersList = mount(
         <GenresList
           films = {mockFilms}
           onFilterClick = {onFilterClick}
           activeFilter = {MOCK_ACTIVE_FILTER}
+          handleChange = {handleChange}
         />
     );
 
@@ -29,3 +31,4 @@ describe(`Filter click`, () => {
     expect(onFilterClick).toHaveBeenCalledTimes(filtersCount);
   });
 });
+

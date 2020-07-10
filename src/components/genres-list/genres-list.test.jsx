@@ -10,6 +10,7 @@ describe(`Render correct GenresList`, () => {
       films = {mockFilms}
       onFilterClick = {mokcFunction}
       activeFilter = {MOCK_ACTIVE_FILTER}
+      handleChange= {mokcFunction}
     />)
     .toJSON();
 

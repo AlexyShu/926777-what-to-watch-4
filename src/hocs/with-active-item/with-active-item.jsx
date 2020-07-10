@@ -8,17 +8,23 @@ const withActiveItem = (Component) => {
     constructor(props) {
       super(props);
       this.state = {
-        selectedFilmId: null,
+        activeItem: null,
         isPlaying: false
       };
-      this.onMovieCardMouseOverHandler = this.onMovieCardMouseOverHandler.bind(this);
-      this.onMovieCardMouseOutHandler = this.onMovieCardMouseOutHandler.bind(this);
+      this.setActiveItemHandler = this.setActiveItemHandler.bind(this);
       this.togglePlay = this.togglePlay.bind(this);
     }
 
-    togglePlay(selectedFilmId) {
+    setActiveItemHandler(item) {
+      this.setState(() => ({
+        activeItem: item
+      }),
+      () => this.togglePlay(item));
+    }
+
+    togglePlay(item) {
       setTimeout(() => {
-        if (this.state.selectedFilmId === selectedFilmId) {
+        if (this.state.activeItem === item) {
           this.setState((prevState) => ({
             isPlaying: !prevState.isPlaying
           }));
@@ -26,34 +32,18 @@ const withActiveItem = (Component) => {
       }, TIMEOUT);
     }
 
-    onMovieCardMouseOverHandler(selectedFilmId) {
-      this.setState(
-          () => ({
-            selectedFilmId
-          }),
-          () => this.togglePlay(selectedFilmId)
-      );
-    }
-
-    onMovieCardMouseOutHandler() {
-      this.setState(() => ({
-        selectedFilmId: null,
-        isPlaying: false
-      }));
-    }
-
     render() {
-      const {selectedFilmId, isPlaying} = this.state;
+      const {activeItem, isPlaying} = this.state;
       return <Component
         {...this.props}
-        selectedFilmId={selectedFilmId}
+        activeItem={activeItem}
+        handleChange={this.setActiveItemHandler}
         isPlaying={isPlaying}
-        onMovieCardMouseOver={this.onMovieCardMouseOverHandler}
-        onMovieCardMouseOut={this.onMovieCardMouseOutHandler}
       />;
 
     }
   }
+
   WithActiveItem.propTypes = {
     films: PropTypes.arrayOf(
         PropTypes.shape({
@@ -70,11 +60,12 @@ const withActiveItem = (Component) => {
           filmStarring: PropTypes.string.isRequired,
         })
     ).isRequired,
-    onFilmCardClick: PropTypes.func.isRequired,
-    filmsCount: PropTypes.number.isRequired,
+    onFilmCardClick: PropTypes.func,
+    filmsCount: PropTypes.number,
   };
 
   return WithActiveItem;
 };
 
 export default withActiveItem;
+
