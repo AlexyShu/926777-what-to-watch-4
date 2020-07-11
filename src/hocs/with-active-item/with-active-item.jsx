@@ -1,44 +1,31 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-const TIMEOUT = 1000;
+// const TIMEOUT = 1000;
 
 const withActiveItem = (Component) => {
   class WithActiveItem extends PureComponent {
     constructor(props) {
       super(props);
       this.state = {
-        activeItem: null,
-        isPlaying: false
+        activeItem: null
       };
       this.setActiveItemHandler = this.setActiveItemHandler.bind(this);
-      this.togglePlay = this.togglePlay.bind(this);
     }
 
     setActiveItemHandler(item) {
       this.setState(() => ({
         activeItem: item
-      }),
-      () => this.togglePlay(item));
+      }));
     }
 
-    togglePlay(item) {
-      setTimeout(() => {
-        if (this.state.activeItem === item) {
-          this.setState((prevState) => ({
-            isPlaying: !prevState.isPlaying
-          }));
-        }
-      }, TIMEOUT);
-    }
 
     render() {
-      const {activeItem, isPlaying} = this.state;
+      const {activeItem} = this.state;
       return <Component
         {...this.props}
         activeItem={activeItem}
         handleChange={this.setActiveItemHandler}
-        isPlaying={isPlaying}
       />;
 
     }

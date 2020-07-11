@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {FilmsList} from "./films-list.jsx";
-import {mockFilms, mokcFunction, MOCK_FILMS_COUNT, mockBool} from "../../mocks-for-tests.js";
+import {mockFilms, mokcFunction, MOCK_FILMS_COUNT} from "../../mocks-for-tests.js";
 
 describe(`Render correct FilmsList`, () => {
   it(`Render FilmsList`, () => {
@@ -12,7 +12,6 @@ describe(`Render correct FilmsList`, () => {
           filmsCount = {MOCK_FILMS_COUNT}
           onFilmCardClick = {mokcFunction}
           activeItem = {MOCK_FILMS_COUNT}
-          isPlaying = {mockBool}
           handleChange = {mokcFunction}
         />)
     .toJSON();
