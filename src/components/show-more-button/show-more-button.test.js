@@ -1,14 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import ShowMoreButton from "./show-more-button.jsx";
-
-const mockonFunc = () => {};
+import {mokcFunction} from "../../mocks-for-tests.js";
 
 describe(`Render correct ShowMoreButton`, () => {
   it(`Render ShowMoreButton`, () => {
     const tree = renderer
     .create(<ShowMoreButton
-      showMoreFilms = {mockonFunc}
+      showMoreFilms = {mokcFunction}
     />)
     .toJSON();
 

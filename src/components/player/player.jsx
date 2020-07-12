@@ -1,41 +1,19 @@
-import React, {PureComponent, createRef} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-class Player extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this._videoRef = createRef();
-
-    this.state = {
-      isPlaying: false
-    };
-  }
-
-  componentDidMount() {
-    this.setState({isPlaying: this.props.autoPlay});
-
-    const video = this._videoRef.current;
-    if (video) {
-      video.muted = this.props.muted;
-      video.play();
-    }
-  }
-
-  render() {
-    const {film} = this.props;
-    return (
-      <video
-        ref={this._videoRef}
-        poster={film.posterSrc}
-        controls
-        width="100%"
-      >
-        <source src={film.video} />
-      </video>
-    );
-  }
-}
+const Player = (props) => {
+  const {film, videoRef} = props;
+  return (
+    <video
+      ref={videoRef}
+      poster={film.posterSrc}
+      controls
+      width="100%"
+    >
+      <source src={film.video} />
+    </video>
+  );
+};
 
 Player.propTypes = {
   film: PropTypes.shape({
@@ -52,11 +30,11 @@ Player.propTypes = {
     filmDirector: PropTypes.string.isRequired,
     filmStarring: PropTypes.string.isRequired,
   }).isRequired,
-  autoPlay: PropTypes.bool.isRequired,
-  muted: PropTypes.bool.isRequired,
+  videoRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({current: PropTypes.instanceOf(Element)})
+  ])
 };
 
-
 export default Player;
-
 

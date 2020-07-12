@@ -3,11 +3,11 @@
 exports[`Render correct Player Render Player 1`] = `
 <video
   controls={true}
-  poster=""
+  poster="img/the-grand-budapest-hotel-poster.jpg"
   width="100%"
 >
   <source
-    src=""
+    src="https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4"
   />
 </video>
 `;

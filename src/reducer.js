@@ -27,13 +27,23 @@ const ActionCreator = {
   })
 };
 
+const getFilmsByGenre = (movies, payload) => {
+  if (payload === ALL_GENRES) {
+    movies = movies.slice();
+  } else {
+    movies = films.filter((film) => film.genre === payload);
+  }
+  return movies;
+};
+
+
 // Редьюсер. Функция-редьюсер принимает в качестве параметров текущий state и
 // действие (action). Результатом выполнение редьюсера станет новое состояние.
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
       return extend(state, {
-        films: films.filter((film) => film.genre === action.payload),
+        films: getFilmsByGenre(films, action.payload),
         activeFilter: action.payload
       });
     case ActionType.SHOW_MORE_FILMS:

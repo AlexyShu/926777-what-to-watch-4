@@ -5,13 +5,16 @@ import {ActionCreator} from "../../reducer.js";
 import {ALL_GENRES} from "../../constants.js";
 
 const GenresList = (props) => {
-  const {films, onFilterClick, activeFilter} = props;
+  const {films, onFilterClick, activeFilter, handleChange} = props;
   const filters = [ALL_GENRES, ...new Set(films.map((film) => film.genre))];
   return (
     <ul className="catalog__genres-list">
       {filters.map((filter, i) => (
         <li
-          onClick={() => onFilterClick(filter)}
+          onClick={()=> {
+            handleChange(filter);
+            onFilterClick(filter);
+          }}
           key={filter + i}
           className={
             `catalog__genres-item ${filter === activeFilter ? `catalog__genres-item--active` : ``}`}
@@ -53,7 +56,9 @@ GenresList.propTypes = {
   ).isRequired,
   onFilterClick: PropTypes.func.isRequired,
   activeFilter: PropTypes.string,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export {GenresList};
 export default connect(mapStateToProps, mapDispatchToProps)(GenresList);
+

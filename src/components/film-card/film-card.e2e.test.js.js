@@ -2,18 +2,11 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import FilmCard from "./film-card.jsx";
+import {mockFilmCard, mockBool} from "../../mocks-for-tests.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
-
-const mockfilm =
-{
-  name: `Fantastic Beasts`,
-  pictureSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-};
-
-const mockIsPlaying = false;
 
 describe(`Title click and film card mouse over, mouse out`, () => {
   it(`Should film title be pressed`, () => {
@@ -22,9 +15,9 @@ describe(`Title click and film card mouse over, mouse out`, () => {
     const onMovieCardMouseOut = jest.fn();
     const filmCard = shallow(
         <FilmCard
-          film = {mockfilm}
+          film = {mockFilmCard}
           onFilmCardClick = {onFilmCardClick}
-          isPlaying = {mockIsPlaying}
+          isPlaying = {mockBool}
           onMovieCardMouseOver = {onMovieCardMouseOver}
           onMovieCardMouseOut = {onMovieCardMouseOut}
         />
@@ -41,7 +34,7 @@ describe(`Title click and film card mouse over, mouse out`, () => {
 
     expect(onFilmCardClick).toHaveBeenCalledTimes(filmCardsCount);
     expect(onMovieCardMouseOver.mock.calls.length).toBe(1);
-    expect(onMovieCardMouseOver.mock.calls[0][0]).toMatchObject(mockfilm);
+    expect(onMovieCardMouseOver.mock.calls[0][0]).toMatchObject(mockFilmCard);
     expect(onMovieCardMouseOut.mock.calls.length).toBe(1);
   });
 });

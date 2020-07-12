@@ -1,60 +1,16 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import {GenresList} from "./genres-list.jsx";
-
-const mockFilms = [
-  {
-    name: `Fantastic Beasts`,
-    posterSrc: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
-    genre: `Fantastic`,
-    year: 2014,
-    ratingScore: `8,9`,
-    ratingLevel: `Very good`,
-    ratingCount: `240 ratings`,
-    descriptionPartOne: ``,
-    descriptionPartTwo: ``,
-    filmDirector: `Director: `,
-    filmStarring: ``
-  },
-  {
-    name: `Bohemian Rhapsody`,
-    posterSrc: `img/bohemian-rhapsody.jpg`,
-    genre: `Biography`,
-    year: 2014,
-    ratingScore: `8,9`,
-    ratingLevel: `Very good`,
-    ratingCount: `240 ratings`,
-    descriptionPartOne: ``,
-    descriptionPartTwo: ``,
-    filmDirector: `Director: `,
-    filmStarring: ``
-  },
-  {
-    name: `Macbeth`,
-    posterSrc: `img/macbeth.jpg`,
-    genre: `Drama`,
-    year: 2014,
-    ratingScore: `8,9`,
-    ratingLevel: `Very good`,
-    ratingCount: `240 ratings`,
-    descriptionPartOne: ``,
-    descriptionPartTwo: ``,
-    filmDirector: `Director: `,
-    filmStarring: ``
-  }
-];
-
-const mokcFilmCardHandler = () => {};
-
-const MOCK_ACTIVE_FILTER = `All genres`;
+import {mockFilms, mokcFunction, MOCK_ACTIVE_FILTER} from "../../mocks-for-tests.js";
 
 describe(`Render correct GenresList`, () => {
   it(`Render GenresList`, () => {
     const tree = renderer
     .create(<GenresList
       films = {mockFilms}
-      onFilterClick = {mokcFilmCardHandler}
+      onFilterClick = {mokcFunction}
       activeFilter = {MOCK_ACTIVE_FILTER}
+      handleChange= {mokcFunction}
     />)
     .toJSON();
 
