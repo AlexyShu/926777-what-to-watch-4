@@ -5,6 +5,10 @@ import {ActionCreator} from "../../reducer.js";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import FilmPage from "../film-page/film-page.jsx";
+import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
+import withPlayer from "../../hocs/with-player/with-player.jsx";
+
+const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
 
 class App extends PureComponent {
   constructor(props) {
@@ -13,6 +17,14 @@ class App extends PureComponent {
     this.state = {
       page: `main`,
     };
+    this.onPlayBtnClick = this.onPlayBtnClick.bind(this);
+  }
+
+  onPlayBtnClick(e) {
+    e.preventDefault();
+    this.setState({
+      page: `film-player`,
+    });
   }
 
   _renderPage() {
@@ -33,6 +45,7 @@ class App extends PureComponent {
                 page: `film-page`,
               });
             }}
+            onPlayBtnClick={this.onPlayBtnClick}
           />
         );
       case `film-page`:
@@ -40,6 +53,20 @@ class App extends PureComponent {
           <FilmPage
             filmCard = {filmCard}
             films = {films}
+            onPlayBtnClick={this.onPlayBtnClick}
+          />
+        );
+      case `film-player`:
+        return (
+          <FullScreenVideoPlayer
+            filmCard = {filmCard}
+            muted = {true}
+            autoPlay = {true}
+            onExitClick={() => {
+              this.setState({
+                page: `main`,
+              });
+            }}
           />
         );
       default:
@@ -119,6 +146,10 @@ App.propTypes = {
   ).isRequired,
   filmsCount: PropTypes.number.isRequired,
   showMoreFilms: PropTypes.func.isRequired,
+  onPlayBtnClick: PropTypes.func,
+  onExitClick: PropTypes.func,
+  muted: PropTypes.bool,
+  autoPlay: PropTypes.bool,
 };
 
 export {App};

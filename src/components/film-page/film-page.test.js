@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FilmPage from "./film-page.jsx";
-import {mockFilmCard, mockFilms} from "../../mocks-for-tests.js";
+import {mockFilmCard, mockFilms, mokcFunction} from "../../mocks-for-tests.js";
 
 describe(`Render correct FilmPage`, () => {
   it(`Render FilmPage`, () => {
@@ -9,6 +9,7 @@ describe(`Render correct FilmPage`, () => {
     .create(<FilmPage
       filmCard = {mockFilmCard}
       films = {mockFilms}
+      onPlayBtnClick = {mokcFunction}
     />)
     .toJSON();
 
