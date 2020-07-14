@@ -8,8 +8,9 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 const GenresWrapper = withActiveItem(GenresList);
 const FilmsWrapper = withActiveItem(FilmsList);
 
+
 const Main = (props) => {
-  const {filmCard, films, onFilmCardClick, filmsCount, showMoreFilms} = props;
+  const {filmCard, films, onFilmCardClick, onPlayBtnClick, filmsCount, showMoreFilms} = props;
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -47,7 +48,11 @@ const Main = (props) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
+              <button
+                onClick={onPlayBtnClick}
+                className="btn btn--play movie-card__button"
+                type="button"
+              >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
@@ -105,6 +110,7 @@ const Main = (props) => {
   </React.Fragment>;
 };
 
+
 Main.propTypes = {
   filmCard: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -137,6 +143,7 @@ Main.propTypes = {
   onFilmCardClick: PropTypes.func.isRequired,
   filmsCount: PropTypes.number.isRequired,
   showMoreFilms: PropTypes.func.isRequired,
+  onPlayBtnClick: PropTypes.func.isRequired,
 };
 
 export default Main;

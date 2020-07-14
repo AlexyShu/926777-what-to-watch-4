@@ -22,6 +22,7 @@ describe(`Render correct Main`, () => {
             filmsCount = {MOCK_FILMS_COUNT}
             onFilmCardClick = {mokcFunction}
             showMoreFilms = {mokcFunction}
+            onPlayBtnClick = {mokcFunction}
           />
         </Provider>)
     .toJSON();
