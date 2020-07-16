@@ -17,7 +17,7 @@ const FilmCard = (props) => {
     <div className="small-movie-card__image">
       {!isPlaying && (
         <img
-          src={film.posterSrc}
+          src={film.posterUrl}
           alt={film.name}
           width="280"
           height="175"
@@ -40,8 +40,8 @@ const FilmCard = (props) => {
 
 FilmCard.propTypes = {
   film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    posterUrl: PropTypes.string,
   }).isRequired,
   isPlaying: PropTypes.bool.isRequired,
   onFilmCardClick: PropTypes.func.isRequired,

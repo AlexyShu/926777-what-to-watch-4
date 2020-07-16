@@ -8,23 +8,22 @@ const TIMEOUT = 1000;
 const FilmsList = (props) => {
   const {films, onFilmCardClick, filmsCount, handleChange, activeItem} = props;
   return <div className="catalog__movies-list">
-    {films.map((film, i) =>
+    {films.map((film) =>
       <FilmCard
-        key = {film.name + i}
+        key = {film.id}
         film = {film}
         onFilmCardClick = {onFilmCardClick}
         onMovieCardMouseOver={() => {
           setTimeout(() => {
-            handleChange(i);
+            handleChange(film.id);
           }, TIMEOUT);
         }}
         onMovieCardMouseOut={() => handleChange(null)}
-        isPlaying={i === activeItem}
+        isPlaying={film.id === activeItem}
       />
     ).slice(0, filmsCount)}
   </div>;
 };
-
 
 const mapStateToProps = (state) => ({
   films: state.films
@@ -33,17 +32,23 @@ const mapStateToProps = (state) => ({
 FilmsList.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        posterSrc: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-        ratingScore: PropTypes.string.isRequired,
-        ratingLevel: PropTypes.string.isRequired,
-        ratingCount: PropTypes.string.isRequired,
-        descriptionPartOne: PropTypes.string.isRequired,
-        descriptionPartTwo: PropTypes.string.isRequired,
-        filmDirector: PropTypes.string.isRequired,
-        filmStarring: PropTypes.string.isRequired,
+        name: PropTypes.string,
+        posterUrl: PropTypes.string,
+        previewUrl: PropTypes.string,
+        bigPosterUrl: PropTypes.string,
+        backgroundColor: PropTypes.string,
+        description: PropTypes.string,
+        rating: PropTypes.number,
+        votes: PropTypes.number,
+        director: PropTypes.string,
+        starring: PropTypes.arrayOf(PropTypes.string),
+        runTime: PropTypes.number,
+        genre: PropTypes.string,
+        releaseYear: PropTypes.number,
+        id: PropTypes.number,
+        isFavorite: PropTypes.bool,
+        videoUrl: PropTypes.string,
+        trailerUrl: PropTypes.string
       })
   ).isRequired,
   onFilmCardClick: PropTypes.func.isRequired,

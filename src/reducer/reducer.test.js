@@ -1,9 +1,13 @@
-import {reducer, ActionType, ActionCreator} from "./reducer.js";
-import films from "./mocks/films.js";
+import {reducer, ActionType, ActionCreator, Operation} from "./reducer.js";
+import MockAdapter from "axios-mock-adapter";
+import {createAPI} from "../api.js";
+import {mockFilms} from "../mocks-for-tests.js";
+
+const api = createAPI(() => {});
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
-    films,
+    films: [],
     filmsCount: 8,
     activeFilter: `All genres`
   });
@@ -12,53 +16,33 @@ it(`Reducer without additional parameters should return initial state`, () => {
 describe(`Reducer return current value`, () => {
   it(`Reducer should change current film list by genre`, () => {
     expect(reducer({
-      films,
-      activeFilter: `Fantastic`
-    }, {
-      type: ActionType.CHANGE_GENRE,
-      payload: `Fantastic`,
-    })).toEqual({
-      films: films.filter((film) => film.genre === `Fantastic`),
-      activeFilter: `Fantastic`
-    });
-    expect(reducer({
-      films,
-      activeFilter: `Biography`
-    }, {
-      type: ActionType.CHANGE_GENRE,
-      payload: `Biography`,
-    })).toEqual({
-      films: films.filter((film) => film.genre === `Biography`),
-      activeFilter: `Biography`
-    });
-    expect(reducer({
-      films,
+      ilms: mockFilms,
       activeFilter: `Drama`
     }, {
       type: ActionType.CHANGE_GENRE,
       payload: `Drama`,
     })).toEqual({
-      films: films.filter((film) => film.genre === `Drama`),
+      films: mockFilms.filter((film) => film.genre === `Drama`),
       activeFilter: `Drama`
     });
     expect(reducer({
-      films,
+      ilms: mockFilms,
       activeFilter: `Comedy`
     }, {
       type: ActionType.CHANGE_GENRE,
       payload: `Comedy`,
     })).toEqual({
-      films: films.filter((film) => film.genre === `Comedy`),
+      films: mockFilms.filter((film) => film.genre === `Comedy`),
       activeFilter: `Comedy`
     });
     expect(reducer({
-      films,
+      films: mockFilms,
       activeFilter: `Action`
     }, {
       type: ActionType.CHANGE_GENRE,
       payload: `Action`,
     })).toEqual({
-      films: films.filter((film) => film.genre === `Action`),
+      films: mockFilms.filter((film) => film.genre === `Action`),
       activeFilter: `Action`
     });
   });
@@ -103,6 +87,27 @@ describe(`Action creators work correctly`, () => {
       type: ActionType.SHOW_MORE_FILMS,
       payload: null
     });
+  });
+});
+
+describe(`Operation work correctly`, () => {
+  it(`Should make a correct API call to /questions`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const filmsData = Operation.getFilms();
+
+    apiMock
+      .onGet(`/films`)
+      .reply(200, []);
+
+    return filmsData(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: ActionType.GET_FILMS,
+          payload: [],
+        });
+      });
   });
 });
 

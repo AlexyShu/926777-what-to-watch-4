@@ -23,18 +23,7 @@ exports[`Render correct GenresList Render GenresList 1`] = `
       className="catalog__genres-link"
       href="#"
     >
-      Fantastic
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-    onClick={[Function]}
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
-    >
-      Biography
+      Comedy
     </a>
   </li>
   <li
@@ -46,6 +35,17 @@ exports[`Render correct GenresList Render GenresList 1`] = `
       href="#"
     >
       Drama
+    </a>
+  </li>
+  <li
+    className="catalog__genres-item "
+    onClick={[Function]}
+  >
+    <a
+      className="catalog__genres-link"
+      href="#"
+    >
+      Action
     </a>
   </li>
 </ul>

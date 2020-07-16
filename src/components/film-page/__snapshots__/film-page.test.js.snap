@@ -276,9 +276,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="Macbeth"
+              alt="The Grand Budapest Hotel"
               height="175"
-              src="img/macbeth.jpg"
+              src="img/the-grand-budapest-hotel-poster.jpg"
               width="280"
             />
           </div>
@@ -289,7 +289,7 @@ Array [
               className="small-movie-card__link"
               href="#"
             >
-              Macbeth
+              The Grand Budapest Hotel
             </a>
           </h3>
         </article>

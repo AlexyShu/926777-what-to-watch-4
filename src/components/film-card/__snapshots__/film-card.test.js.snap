@@ -13,7 +13,6 @@ exports[`Render correct FilmCard Render FilmCard 1`] = `
     <img
       alt="The Grand Budapest"
       height="175"
-      src="img/the-grand-budapest-hotel-poster.jpg"
       width="280"
     />
   </div>

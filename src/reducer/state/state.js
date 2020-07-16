@@ -1,10 +1,8 @@
-import {extend} from "./utils.js";
-import films from "./mocks/films.js";
-import {ALL_GENRES} from "./constants.js";
+import {extend} from "../utils.js";
+import {ALL_GENRES} from "../constants.js";
 
 // данные, объект начального состояния
 const initialState = {
-  films,
   filmsCount: 8,
   activeFilter: ALL_GENRES
 };
@@ -15,35 +13,32 @@ const ActionType = {
   SHOW_MORE_FILMS: `SHOW_MORE_FILMS`
 };
 
-// функция возвращает фильм с нужным жанром
 const ActionCreator = {
-  changeGenre: (genre) => ({
-    type: ActionType.CHANGE_GENRE,
-    payload: genre,
-  }),
   showMoreFilms: () => ({
     type: ActionType.SHOW_MORE_FILMS,
     payload: null
-  })
+  }),
+  getFilms: (films) => ({
+    type: ActionType.GET_FILMS,
+    payload: films
+  }),
 };
 
 const getFilmsByGenre = (movies, payload) => {
   if (payload === ALL_GENRES) {
     movies = movies.slice();
   } else {
-    movies = films.filter((film) => film.genre === payload);
+    movies = movies.filter((movie) => movie.genre === payload);
   }
   return movies;
 };
 
 
-// Редьюсер. Функция-редьюсер принимает в качестве параметров текущий state и
-// действие (action). Результатом выполнение редьюсера станет новое состояние.
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.CHANGE_GENRE:
       return extend(state, {
-        films: getFilmsByGenre(films, action.payload),
+        films: getFilmsByGenre(state.films, action.payload),
         activeFilter: action.payload
       });
     case ActionType.SHOW_MORE_FILMS:

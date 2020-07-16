@@ -179,18 +179,7 @@ Array [
             className="catalog__genres-link"
             href="#"
           >
-            Fantastic
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item "
-          onClick={[Function]}
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-          >
-            Biography
+            Comedy
           </a>
         </li>
         <li
@@ -202,6 +191,17 @@ Array [
             href="#"
           >
             Drama
+          </a>
+        </li>
+        <li
+          className="catalog__genres-item "
+          onClick={[Function]}
+        >
+          <a
+            className="catalog__genres-link"
+            href="#"
+          >
+            Action
           </a>
         </li>
       </ul>
@@ -218,9 +218,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="Fantastic Beasts"
+              alt="The Grand Budapest Hotel"
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              src="img/the-grand-budapest-hotel-poster.jpg"
               width="280"
             />
           </div>
@@ -231,7 +231,7 @@ Array [
               className="small-movie-card__link"
               href="#"
             >
-              Fantastic Beasts
+              The Grand Budapest Hotel
             </a>
           </h3>
         </article>
@@ -245,9 +245,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="Bohemian Rhapsody"
+              alt="The Grand Budapest Hotel"
               height="175"
-              src="img/bohemian-rhapsody.jpg"
+              src="img/the-grand-budapest-hotel-poster.jpg"
               width="280"
             />
           </div>
@@ -258,7 +258,7 @@ Array [
               className="small-movie-card__link"
               href="#"
             >
-              Bohemian Rhapsody
+              The Grand Budapest Hotel
             </a>
           </h3>
         </article>
@@ -272,9 +272,9 @@ Array [
             className="small-movie-card__image"
           >
             <img
-              alt="Macbeth"
+              alt="The Grand Budapest Hotel"
               height="175"
-              src="img/macbeth.jpg"
+              src="img/the-grand-budapest-hotel-poster.jpg"
               width="280"
             />
           </div>
@@ -285,7 +285,7 @@ Array [
               className="small-movie-card__link"
               href="#"
             >
-              Macbeth
+              The Grand Budapest Hotel
             </a>
           </h3>
         </article>

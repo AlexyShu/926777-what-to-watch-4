@@ -6,29 +6,34 @@ const Player = (props) => {
   return (
     <video
       ref={videoRef}
-      poster={film.posterSrc}
+      poster={film.posterUrl}
       controls
       width="100%"
     >
-      <source src={film.video} />
+      <source src={film.trailerUrl} />
     </video>
   );
 };
 
 Player.propTypes = {
   film: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    video: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    ratingScore: PropTypes.string.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    ratingCount: PropTypes.string.isRequired,
-    descriptionPartOne: PropTypes.string.isRequired,
-    descriptionPartTwo: PropTypes.string.isRequired,
-    filmDirector: PropTypes.string.isRequired,
-    filmStarring: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    posterUrl: PropTypes.string,
+    previewUrl: PropTypes.string,
+    bigPosterUrl: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    description: PropTypes.string,
+    rating: PropTypes.number,
+    votes: PropTypes.number,
+    director: PropTypes.string,
+    starring: PropTypes.arrayOf(PropTypes.string),
+    runTime: PropTypes.number,
+    genre: PropTypes.string,
+    releaseYear: PropTypes.number,
+    id: PropTypes.number,
+    isFavorite: PropTypes.bool,
+    videoUrl: PropTypes.string,
+    trailerUrl: PropTypes.string
   }).isRequired,
   videoRef: PropTypes.oneOfType([
     PropTypes.func,
