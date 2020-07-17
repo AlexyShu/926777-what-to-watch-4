@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/reducer.js";
+import {ActionCreator} from "../../reducer/data/data.js";
+import {getActiveFilter} from "../../reducer/data/selectors.js";
 import {ALL_GENRES} from "../../constants.js";
 
 const GenresList = (props) => {
@@ -29,7 +30,7 @@ const GenresList = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  activeFilter: state.activeFilter
+  activeFilter: getActiveFilter(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -51,7 +52,7 @@ GenresList.propTypes = {
         votes: PropTypes.number,
         director: PropTypes.string,
         starring: PropTypes.arrayOf(PropTypes.string),
-        runTime: PropTypes.number,
+        runTime: PropTypes.string,
         genre: PropTypes.string,
         releaseYear: PropTypes.number,
         id: PropTypes.number,

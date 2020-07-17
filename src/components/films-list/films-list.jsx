@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import {getFilms} from "../../reducer/data/selectors.js";
 import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
 
@@ -26,7 +27,7 @@ const FilmsList = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-  films: state.films
+  films: getFilms(state)
 });
 
 FilmsList.propTypes = {
@@ -42,7 +43,7 @@ FilmsList.propTypes = {
         votes: PropTypes.number,
         director: PropTypes.string,
         starring: PropTypes.arrayOf(PropTypes.string),
-        runTime: PropTypes.number,
+        runTime: PropTypes.string,
         genre: PropTypes.string,
         releaseYear: PropTypes.number,
         id: PropTypes.number,

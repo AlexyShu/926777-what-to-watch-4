@@ -44,7 +44,7 @@ const withActiveItem = (Component) => {
           votes: PropTypes.number,
           director: PropTypes.string,
           starring: PropTypes.arrayOf(PropTypes.string),
-          runTime: PropTypes.number,
+          runTime: PropTypes.string,
           genre: PropTypes.string,
           releaseYear: PropTypes.number,
           id: PropTypes.number,

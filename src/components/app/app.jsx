@@ -1,7 +1,9 @@
 import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/reducer.js";
+import {ActionCreator} from "../../reducer/state/state.js";
+import {getShowMoreFilms} from "../../reducer/state/selectors.js";
+import {getFilms} from "../../reducer/data/selectors.js";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import FilmPage from "../film-page/film-page.jsx";
@@ -97,8 +99,8 @@ class App extends PureComponent {
 
 
 const mapStateToProps = (state) => ({
-  filmsCount: state.filmsCount,
-  films: state.films
+  filmsCount: getShowMoreFilms(state),
+  films: getFilms(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -143,7 +145,7 @@ App.propTypes = {
         votes: PropTypes.number,
         director: PropTypes.string,
         starring: PropTypes.arrayOf(PropTypes.string),
-        runTime: PropTypes.number,
+        runTime: PropTypes.string,
         genre: PropTypes.string,
         releaseYear: PropTypes.number,
         id: PropTypes.number,

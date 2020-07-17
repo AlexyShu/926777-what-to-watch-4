@@ -136,7 +136,7 @@ Main.propTypes = {
         votes: PropTypes.number,
         director: PropTypes.string,
         starring: PropTypes.arrayOf(PropTypes.string),
-        runTime: PropTypes.number,
+        runTime: PropTypes.string,
         genre: PropTypes.string,
         releaseYear: PropTypes.number,
         id: PropTypes.number,
