@@ -1,52 +1,139 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render correct GenresList Render GenresList 1`] = `
-<ul
-  className="catalog__genres-list"
->
-  <li
-    className="catalog__genres-item catalog__genres-item--active"
-    onClick={[Function]}
+Array [
+  <ul
+    className="catalog__genres-list"
   >
-    <a
-      className="catalog__genres-link"
-      href="#"
+    <li
+      className="catalog__genres-item catalog__genres-item--active"
+      onClick={[Function]}
     >
-      All genres
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-    onClick={[Function]}
+      <a
+        className="catalog__genres-link"
+        href="#"
+      >
+        All genres
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+      onClick={[Function]}
+    >
+      <a
+        className="catalog__genres-link"
+        href="#"
+      >
+        Comedy
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+      onClick={[Function]}
+    >
+      <a
+        className="catalog__genres-link"
+        href="#"
+      >
+        Drama
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+      onClick={[Function]}
+    >
+      <a
+        className="catalog__genres-link"
+        href="#"
+      >
+        Action
+      </a>
+    </li>
+  </ul>,
+  <div
+    className="catalog__movies-list"
   >
-    <a
-      className="catalog__genres-link"
-      href="#"
+    <article
+      className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
     >
-      Comedy
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-    onClick={[Function]}
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="The Grand Budapest Hotel"
+          height="175"
+          src="img/the-grand-budapest-hotel-poster.jpg"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="#"
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
     >
-      Drama
-    </a>
-  </li>
-  <li
-    className="catalog__genres-item "
-    onClick={[Function]}
-  >
-    <a
-      className="catalog__genres-link"
-      href="#"
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="The Grand Budapest Hotel"
+          height="175"
+          src="img/the-grand-budapest-hotel-poster.jpg"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="#"
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      onClick={[Function]}
+      onMouseOut={[Function]}
+      onMouseOver={[Function]}
     >
-      Action
-    </a>
-  </li>
-</ul>
+      <div
+        className="small-movie-card__image"
+      >
+        <img
+          alt="The Grand Budapest Hotel"
+          height="175"
+          src="img/the-grand-budapest-hotel-poster.jpg"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="#"
+        >
+          The Grand Budapest Hotel
+        </a>
+      </h3>
+    </article>
+  </div>,
+]
 `;

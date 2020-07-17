@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 
 const GenresWrapper = withActiveItem(GenresList);
-const FilmsWrapper = withActiveItem(FilmsList);
 
 
 const Main = (props) => {
@@ -76,14 +74,9 @@ const Main = (props) => {
 
         <GenresWrapper
           films = {films}
-        />
-
-        <FilmsWrapper
-          films = {films}
           onFilmCardClick = {onFilmCardClick}
           filmsCount = {filmsCount}
         />
-
         {filmsCount >= films.length ? null :
           <ShowMoreButton
             showMoreFilms = {showMoreFilms}

@@ -18,7 +18,9 @@ it(`Should change selected movie ID on mouseover/mouseout`, () => {
       <MockComponentWrapped
         films = {mockFilms}
         filmsCount = {MOCK_FILMS_COUNT}
-        onFilmCardClick = {mokcFunction} />
+        onFilmCardClick = {mokcFunction}
+        filteredFilms = {mockFilms}
+      />
   );
 
   expect(wrapper.props().activeItem).toEqual(null);

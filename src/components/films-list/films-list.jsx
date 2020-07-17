@@ -7,9 +7,9 @@ import FilmCard from "../film-card/film-card.jsx";
 const TIMEOUT = 1000;
 
 const FilmsList = (props) => {
-  const {films, onFilmCardClick, filmsCount, handleChange, activeItem} = props;
+  const {filteredFilms, onFilmCardClick, filmsCount, handleChange, activeItem} = props;
   return <div className="catalog__movies-list">
-    {films.map((film) =>
+    {filteredFilms.map((film) =>
       <FilmCard
         key = {film.id}
         film = {film}
@@ -31,7 +31,7 @@ const mapStateToProps = (state) => ({
 });
 
 FilmsList.propTypes = {
-  films: PropTypes.arrayOf(
+  filteredFilms: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
         posterUrl: PropTypes.string,
