@@ -12,7 +12,6 @@ describe(`Title click`, () => {
   it(`Should film title be pressed`, () => {
     const onFilmCardClick = jest.fn();
 
-
     const filmsList = shallow(
         <FilmsList
           films = {mockFilms}
@@ -20,6 +19,7 @@ describe(`Title click`, () => {
           filmsCount = {MOCK_FILMS_COUNT}
           activeItem = {MOCK_FILMS_COUNT}
           handleChange = {() => {}}
+          filteredFilms = {mockFilms}
         />
     );
 
@@ -33,4 +33,5 @@ describe(`Title click`, () => {
     expect(onFilmCardClick).toHaveBeenCalledTimes(filmCardsCount);
   });
 });
+
 

@@ -12,3 +12,35 @@ export const formatTime = (time) =>
     })
     .reverse()
     .join(`:`);
+
+export const formatMovieDuration = (duration) => {
+  const hours = Math.floor(duration / 60);
+  const minutes = duration % 60;
+
+  return `${hours}h ${(`0` + minutes).slice(-2)}m`;
+};
+
+export const adapterData = (films) =>
+  films.map((film) =>
+    Object.keys(film).length
+      ? {
+        id: film.id,
+        name: film.name,
+        posterUrl: film.poster_image,
+        previewUrl: film.preview_image,
+        bigPosterUrl: film.background_image,
+        backgroundColor: film.background_color,
+        videoUrl: film.video_link,
+        trailerUrl: film.preview_video_link,
+        description: film.description,
+        rating: film.rating,
+        votes: film.scores_count,
+        director: film.director,
+        starring: film.starring,
+        runTime: formatMovieDuration(film.run_time),
+        genre: film.genre,
+        releaseYear: film.released,
+        isFavorite: film.is_favorite
+      }
+      : {});
+

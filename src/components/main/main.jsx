@@ -1,12 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FilmsList from "../films-list/films-list.jsx";
 import GenresList from "../genres-list/genres-list.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 
 const GenresWrapper = withActiveItem(GenresList);
-const FilmsWrapper = withActiveItem(FilmsList);
 
 
 const Main = (props) => {
@@ -76,14 +74,9 @@ const Main = (props) => {
 
         <GenresWrapper
           films = {films}
-        />
-
-        <FilmsWrapper
-          films = {films}
           onFilmCardClick = {onFilmCardClick}
           filmsCount = {filmsCount}
         />
-
         {filmsCount >= films.length ? null :
           <ShowMoreButton
             showMoreFilms = {showMoreFilms}
@@ -110,7 +103,6 @@ const Main = (props) => {
   </React.Fragment>;
 };
 
-
 Main.propTypes = {
   filmCard: PropTypes.shape({
     name: PropTypes.string.isRequired,
@@ -127,17 +119,23 @@ Main.propTypes = {
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        posterSrc: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-        ratingScore: PropTypes.string.isRequired,
-        ratingLevel: PropTypes.string.isRequired,
-        ratingCount: PropTypes.string.isRequired,
-        descriptionPartOne: PropTypes.string.isRequired,
-        descriptionPartTwo: PropTypes.string.isRequired,
-        filmDirector: PropTypes.string.isRequired,
-        filmStarring: PropTypes.string.isRequired,
+        name: PropTypes.string,
+        posterUrl: PropTypes.string,
+        previewUrl: PropTypes.string,
+        bigPosterUrl: PropTypes.string,
+        backgroundColor: PropTypes.string,
+        description: PropTypes.string,
+        rating: PropTypes.number,
+        votes: PropTypes.number,
+        director: PropTypes.string,
+        starring: PropTypes.arrayOf(PropTypes.string),
+        runTime: PropTypes.string,
+        genre: PropTypes.string,
+        releaseYear: PropTypes.number,
+        id: PropTypes.number,
+        isFavorite: PropTypes.bool,
+        videoUrl: PropTypes.string,
+        trailerUrl: PropTypes.string
       })
   ).isRequired,
   onFilmCardClick: PropTypes.func.isRequired,
@@ -147,4 +145,5 @@ Main.propTypes = {
 };
 
 export default Main;
+
 

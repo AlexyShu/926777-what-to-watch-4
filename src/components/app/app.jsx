@@ -1,7 +1,9 @@
 import React, {PureComponent} from "react";
 import {Switch, Route, BrowserRouter} from "react-router-dom";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator} from "../../reducer/state/state.js";
+import {getShowMoreFilms} from "../../reducer/state/selectors.js";
+import {getFilms} from "../../reducer/data/selectors.js";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import FilmPage from "../film-page/film-page.jsx";
@@ -95,8 +97,10 @@ class App extends PureComponent {
   }
 }
 
+
 const mapStateToProps = (state) => ({
-  filmsCount: state.filmsCount,
+  filmsCount: getShowMoreFilms(state),
+  films: getFilms(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -131,17 +135,23 @@ App.propTypes = {
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        posterSrc: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-        ratingScore: PropTypes.string.isRequired,
-        ratingLevel: PropTypes.string.isRequired,
-        ratingCount: PropTypes.string.isRequired,
-        descriptionPartOne: PropTypes.string.isRequired,
-        descriptionPartTwo: PropTypes.string.isRequired,
-        filmDirector: PropTypes.string.isRequired,
-        filmStarring: PropTypes.string.isRequired,
+        name: PropTypes.string,
+        posterUrl: PropTypes.string,
+        previewUrl: PropTypes.string,
+        bigPosterUrl: PropTypes.string,
+        backgroundColor: PropTypes.string,
+        description: PropTypes.string,
+        rating: PropTypes.number,
+        votes: PropTypes.number,
+        director: PropTypes.string,
+        starring: PropTypes.arrayOf(PropTypes.string),
+        runTime: PropTypes.string,
+        genre: PropTypes.string,
+        releaseYear: PropTypes.number,
+        id: PropTypes.number,
+        isFavorite: PropTypes.bool,
+        videoUrl: PropTypes.string,
+        trailerUrl: PropTypes.string
       })
   ).isRequired,
   filmsCount: PropTypes.number.isRequired,

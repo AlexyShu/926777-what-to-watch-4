@@ -13,6 +13,7 @@ describe(`Render correct FilmsList`, () => {
           onFilmCardClick = {mokcFunction}
           activeItem = {MOCK_FILMS_COUNT}
           handleChange = {mokcFunction}
+          filteredFilms = {mockFilms}
         />)
     .toJSON();
 

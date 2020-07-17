@@ -80,10 +80,10 @@ const FilmPage = (props) => {
 
         <div className="catalog__movies-list">
           {films.filter((film) => film.genre === filmCard.genre)
-          .map((film, i) => (
-            <article key={film.name + i} className="small-movie-card catalog__movies-card">
+          .map((film) => (
+            <article key={film.id} className="small-movie-card catalog__movies-card">
               <div className="small-movie-card__image">
-                <img src={film.posterSrc} alt={film.name} width="280" height="175" />
+                <img src={film.posterUrl} alt={film.name} width="280" height="175" />
               </div>
               <h3 className="small-movie-card__title">
                 <a className="small-movie-card__link" href="#">{film.name}</a>
@@ -137,17 +137,23 @@ FilmPage.propTypes = {
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
-        name: PropTypes.string.isRequired,
-        posterSrc: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-        ratingScore: PropTypes.string.isRequired,
-        ratingLevel: PropTypes.string.isRequired,
-        ratingCount: PropTypes.string.isRequired,
-        descriptionPartOne: PropTypes.string.isRequired,
-        descriptionPartTwo: PropTypes.string.isRequired,
-        filmDirector: PropTypes.string.isRequired,
-        filmStarring: PropTypes.string.isRequired,
+        name: PropTypes.string,
+        posterUrl: PropTypes.string,
+        previewUrl: PropTypes.string,
+        bigPosterUrl: PropTypes.string,
+        backgroundColor: PropTypes.string,
+        description: PropTypes.string,
+        rating: PropTypes.number,
+        votes: PropTypes.number,
+        director: PropTypes.string,
+        starring: PropTypes.arrayOf(PropTypes.string),
+        runTime: PropTypes.string,
+        genre: PropTypes.string,
+        releaseYear: PropTypes.number,
+        id: PropTypes.number,
+        isFavorite: PropTypes.bool,
+        videoUrl: PropTypes.string,
+        trailerUrl: PropTypes.string
       })
   ).isRequired,
   onPlayBtnClick: PropTypes.func,

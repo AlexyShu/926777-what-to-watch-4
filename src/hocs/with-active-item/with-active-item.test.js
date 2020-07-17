@@ -13,6 +13,7 @@ it(`withActiveItem is rendered correctly`, () => {
           films = {mockFilms}
           filmsCount = {MOCK_FILMS_COUNT}
           onFilmCardClick = {mokcFunction}
+          filteredFilms = {mockFilms}
         />
     )
     .toJSON();
