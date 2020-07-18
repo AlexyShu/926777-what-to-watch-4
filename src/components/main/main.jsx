@@ -3,12 +3,13 @@ import PropTypes from "prop-types";
 import GenresList from "../genres-list/genres-list.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const GenresWrapper = withActiveItem(GenresList);
 
 
 const Main = (props) => {
-  const {filmCard, films, onFilmCardClick, onPlayBtnClick, filmsCount, showMoreFilms} = props;
+  const {filmCard, films, onFilmCardClick, onPlayBtnClick, filmsCount, showMoreFilms, authorizationStatus} = props;
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -27,10 +28,23 @@ const Main = (props) => {
         </div>
 
         <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
+          {authorizationStatus === AuthorizationStatus.AUTH ? (
+            <div className="user-block__avatar">
+              <img
+                src="img/avatar.jpg"
+                alt="User avatar"
+                width="63"
+                height="63"
+              />
+            </div>
+          ) : (
+            <a href="#" className="user-block__link">
+                Sign in
+            </a>
+          )}
         </div>
+
+
       </header>
 
       <div className="movie-card__wrap">
@@ -142,6 +156,7 @@ Main.propTypes = {
   filmsCount: PropTypes.number.isRequired,
   showMoreFilms: PropTypes.func.isRequired,
   onPlayBtnClick: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
 export default Main;

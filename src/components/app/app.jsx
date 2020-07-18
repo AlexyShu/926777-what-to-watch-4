@@ -7,8 +7,13 @@ import {getFilms} from "../../reducer/data/selectors.js";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import FilmPage from "../film-page/film-page.jsx";
+import SignIn from "../sign-in/sign-in.jsx";
 import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
+
 
 const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
 
@@ -78,12 +83,17 @@ class App extends PureComponent {
   }
 
   render() {
-    const {filmCard, films} = this.props;
+    const {filmCard, films, login, authorizationStatus} = this.props;
+    console.log(authorizationStatus)
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            {this._renderPage()}
+            {authorizationStatus === AuthorizationStatus.NO_AUTH ? (
+              <SignIn onSubmit={login} />
+            ) : (
+              this._renderPage()
+            )}
           </Route>
           <Route exact path="/film-page">
             <FilmPage
@@ -100,14 +110,19 @@ class App extends PureComponent {
 
 const mapStateToProps = (state) => ({
   filmsCount: getShowMoreFilms(state),
-  films: getFilms(state)
+  films: getFilms(state),
+  authorizationStatus: getAuthorizationStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   showMoreFilms() {
     dispatch(ActionCreator.showMoreFilms());
+  },
+  login(authData) {
+    dispatch(UserOperation.login(authData));
   }
 });
+
 
 App.propTypes = {
   filmCard: PropTypes.shape({
@@ -160,6 +175,8 @@ App.propTypes = {
   onExitClick: PropTypes.func,
   muted: PropTypes.bool,
   autoPlay: PropTypes.bool,
+  login: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
 export {App};
