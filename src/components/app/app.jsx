@@ -35,7 +35,7 @@ class App extends PureComponent {
   }
 
   _renderPage() {
-    const {filmCard, films, filmsCount, showMoreFilms} = this.props;
+    const {filmCard, films, filmsCount, showMoreFilms, authorizationStatus} = this.props;
     const {page} = this.state;
 
     switch (page) {
@@ -46,6 +46,7 @@ class App extends PureComponent {
             films = {films}
             filmsCount = {filmsCount}
             showMoreFilms = {showMoreFilms}
+            authorizationStatus = {authorizationStatus}
             onFilmCardClick={(e) => {
               e.preventDefault();
               this.setState({
@@ -84,7 +85,6 @@ class App extends PureComponent {
 
   render() {
     const {filmCard, films, login, authorizationStatus} = this.props;
-    console.log(authorizationStatus)
     return (
       <BrowserRouter>
         <Switch>
