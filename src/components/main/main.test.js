@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Main from "./main.jsx";
-import {mockFilmCard, mockFilms, mokcFunction, MOCK_FILMS_COUNT} from "../../mocks-for-tests.js";
+import {mockFilmCard, mockFilms, mokcFunction, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
 import Namespace from "../../reducer/namespace.js";
 
 const mockStore = configureStore([]);
@@ -16,6 +16,9 @@ describe(`Render correct Main`, () => {
       },
       [Namespace.STATE]: {
         filmsCount: MOCK_FILMS_COUNT
+      },
+      [Namespace.USER]: {
+        authorizationStatus: mockString
       }
     });
     const tree = renderer
@@ -28,6 +31,7 @@ describe(`Render correct Main`, () => {
             onFilmCardClick = {mokcFunction}
             showMoreFilms = {mokcFunction}
             onPlayBtnClick = {mokcFunction}
+            authorizationStatus = {mockString}
           />
         </Provider>)
     .toJSON();

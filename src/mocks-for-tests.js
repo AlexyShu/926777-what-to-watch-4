@@ -103,6 +103,8 @@ export const mokcFunction = () => {};
 
 export const MOCK_FILMS_COUNT = 8;
 
+export const mockString = `blablabla`;
+
 export const MOCK_ACTIVE_FILTER = `All genres`;
 
 export const mockBool = false;
