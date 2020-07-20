@@ -215,7 +215,6 @@ const mapDispatchToProps = (dispatch) => ({
 
 AddReview.propTypes = {
   filmCard: PropTypes.shape({
-    id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
     video: PropTypes.string.isRequired,
     genre: PropTypes.string.isRequired,

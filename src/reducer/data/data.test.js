@@ -7,6 +7,7 @@ const api = createAPI(() => {});
 it(`Reducer without additional parameters should return initial state for films and active filter`, () => {
   expect(reducer(void 0, {})).toEqual({
     films: [],
+    comments: []
   });
 });
 
