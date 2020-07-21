@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const FilmPage = (props) => {
-  const {filmCard, films, onPlayBtnClick} = props;
+  const {filmCard, films, onPlayBtnClick, authorizationStatus} = props;
   return <React.Fragment>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
@@ -53,7 +54,10 @@ const FilmPage = (props) => {
                 </svg>
                 <span>My list</span>
               </button>
-              <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              {authorizationStatus === AuthorizationStatus.AUTH ? (
+                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+              ) : (null)}
+
             </div>
           </div>
         </div>
@@ -157,6 +161,7 @@ FilmPage.propTypes = {
       })
   ).isRequired,
   onPlayBtnClick: PropTypes.func,
+  authorizationStatus: PropTypes.string.isRequired
 };
 
 export default FilmPage;

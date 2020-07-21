@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import FilmPage from "../film-page/film-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
+import AddReview from "../add-review/add-review.jsx";
 import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
@@ -62,6 +63,7 @@ class App extends PureComponent {
             filmCard = {filmCard}
             films = {films}
             onPlayBtnClick={this.onPlayBtnClick}
+            authorizationStatus = {authorizationStatus}
           />
         );
       case `film-player`:
@@ -95,10 +97,16 @@ class App extends PureComponent {
               this._renderPage()
             )}
           </Route>
+          <Route exact path="/dev-review">
+            <AddReview
+              filmCard = {filmCard}
+            />
+          </Route>
           <Route exact path="/film-page">
             <FilmPage
               filmCard = {filmCard}
               films = {films}
+              authorizationStatus = {authorizationStatus}
             />
           </Route>
         </Switch>

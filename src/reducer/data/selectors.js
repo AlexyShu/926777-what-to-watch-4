@@ -20,3 +20,7 @@ export const getFilmsByGenre = createSelector(
     filterFilmsByGenre
 );
 
+export const getComments = (state) => {
+  return state[Namespace.DATA].comments;
+};
+

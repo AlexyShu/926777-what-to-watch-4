@@ -1,4 +1,5 @@
 const FilmCard = {
+  id: 42,
   name: `The Grand Budapest`,
   genre: `Drama`,
   posterSrc: `img/the-grand-budapest-hotel-poster.jpg`,

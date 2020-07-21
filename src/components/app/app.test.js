@@ -7,6 +7,7 @@ import {mockFilmCard, mockFilms, mokcFunction, MOCK_FILMS_COUNT, mockBool, mockS
 import Namespace from "../../reducer/namespace.js";
 
 const mockStore = configureStore([]);
+
 describe(`Render correct App`, () => {
   it(`Render App`, () => {
     const store = mockStore({
