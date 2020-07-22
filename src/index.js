@@ -32,7 +32,7 @@ ReactDOM.render(
     <Provider store={store}>
       <App
         filmCard = {FilmCard}
-      />,
+      />
     </Provider>,
     document.querySelector(`#root`)
 );

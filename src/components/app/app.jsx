@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {Switch, Route, Router} from "react-router-dom";
+import {Switch, Route, Router, Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {getShowMoreFilms} from "../../reducer/state/selectors.js";
@@ -13,7 +13,7 @@ import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-// import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import MyList from "../my-list/my-list.jsx";
@@ -94,6 +94,11 @@ class App extends PureComponent {
     return (
       <Router history={history}>
         <Switch>
+          <Route exact path={AppRoute.LOGIN}
+            render = {() => authorizationStatus === AuthorizationStatus.NO_AUTH
+              ? <SignIn onSubmit={login} />
+              : <Redirect to={AppRoute.MAIN} /> }>
+          </Route>
           <Route exact path={AppRoute.MAIN}>
             {this._renderPage()}
           </Route>
@@ -104,17 +109,6 @@ class App extends PureComponent {
               return (
                 <MyList
                   films={films}
-                />
-              );
-            }}
-          />
-          <Route
-            exact
-            path={AppRoute.LOGIN}
-            render={() => {
-              return (
-                <SignIn
-                  onSubmit={login}
                 />
               );
             }}
@@ -131,13 +125,6 @@ class App extends PureComponent {
               authorizationStatus = {authorizationStatus}
             />
           </Route>
-          {/* <Route exact path="/">
-            {authorizationStatus === AuthorizationStatus.NO_AUTH ? (
-              <SignIn onSubmit={login} />
-            ) : (
-              this._renderPage()
-            )}  */}
-          {/* </Route> */}
         </Switch>
       </Router>
     );

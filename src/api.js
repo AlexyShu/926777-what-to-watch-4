@@ -4,8 +4,6 @@ const Error = {
   UNAUTHORIZED: 401
 };
 
-const LOGIN_URL = `https://htmlacademy-react-3.appspot.com/wtw/login`;
-
 // функция для получения сконфигурированного экземпляра из axios
 export const createAPI = (onUnauthorized) => {
   const api = axios.create({
