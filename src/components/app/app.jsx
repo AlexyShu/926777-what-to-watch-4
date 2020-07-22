@@ -104,12 +104,10 @@ class App extends PureComponent {
           </Route>
           <PrivateRoute
             exact
-            path={AppRoute.MY_LIST}
+            path={AppRoute.LOGIN}
             render={() => {
               return (
-                <MyList
-                  films={films}
-                />
+                <SignIn onSubmit={login} />
               );
             }}
           />
