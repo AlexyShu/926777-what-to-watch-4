@@ -111,6 +111,9 @@ class App extends PureComponent {
               );
             }}
           />
+          <Route exact path={AppRoute.MY_LIST}>
+            <MyList films={films} />
+          </Route>
           <Route exact path={AppRoute.ADD_REVIEW}>
             <AddReview
               filmCard = {filmCard}
