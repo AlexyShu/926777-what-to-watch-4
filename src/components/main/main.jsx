@@ -4,6 +4,8 @@ import GenresList from "../genres-list/genres-list.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../constants.js";
 
 const GenresWrapper = withActiveItem(GenresList);
 
@@ -29,18 +31,20 @@ const Main = (props) => {
 
         <div className="user-block">
           {authorizationStatus === AuthorizationStatus.AUTH ? (
-            <div className="user-block__avatar">
-              <img
-                src="img/avatar.jpg"
-                alt="User avatar"
-                width="63"
-                height="63"
-              />
-            </div>
+            <Link to={AppRoute.MY_LIST}>
+              <div className="user-block__avatar">
+                <img
+                  src="img/avatar.jpg"
+                  alt="User avatar"
+                  width="63"
+                  height="63"
+                />
+              </div>
+            </Link>
           ) : (
-            <a href="#" className="user-block__link">
+            <Link to={AppRoute.LOGIN} className="user-block__link">
                 Sign in
-            </a>
+            </Link>
           )}
         </div>
 

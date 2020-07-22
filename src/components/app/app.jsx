@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router} from "react-router-dom";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {getShowMoreFilms} from "../../reducer/state/selectors.js";
@@ -13,10 +13,14 @@ import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
-
+// import {AuthorizationStatus} from "../../reducer/user/user.js";
+import history from "../../history.js";
+import {AppRoute} from "../../constants.js";
+import MyList from "../my-list/my-list.jsx";
+import PrivateRoute from "../private-route/private-route.jsx";
 
 const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
+
 
 class App extends PureComponent {
   constructor(props) {
@@ -88,29 +92,54 @@ class App extends PureComponent {
   render() {
     const {filmCard, films, login, authorizationStatus} = this.props;
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Switch>
-          <Route exact path="/">
-            {authorizationStatus === AuthorizationStatus.NO_AUTH ? (
-              <SignIn onSubmit={login} />
-            ) : (
-              this._renderPage()
-            )}
+          <Route exact path={AppRoute.MAIN}>
+            {this._renderPage()}
           </Route>
-          <Route exact path="/dev-review">
+          <PrivateRoute
+            exact
+            path={AppRoute.MY_LIST}
+            render={() => {
+              return (
+                <MyList
+                  films={films}
+                />
+              );
+            }}
+          />
+          <Route
+            exact
+            path={AppRoute.LOGIN}
+            render={() => {
+              return (
+                <SignIn
+                  onSubmit={login}
+                />
+              );
+            }}
+          />
+          <Route exact path={AppRoute.ADD_REVIEW}>
             <AddReview
               filmCard = {filmCard}
             />
           </Route>
-          <Route exact path="/film-page">
+          <Route exact path={AppRoute.FILM_PAGE}>
             <FilmPage
               filmCard = {filmCard}
               films = {films}
               authorizationStatus = {authorizationStatus}
             />
           </Route>
+          {/* <Route exact path="/">
+            {authorizationStatus === AuthorizationStatus.NO_AUTH ? (
+              <SignIn onSubmit={login} />
+            ) : (
+              this._renderPage()
+            )}  */}
+          {/* </Route> */}
         </Switch>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
