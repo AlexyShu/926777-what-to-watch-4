@@ -3,8 +3,14 @@ import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 
+const getCurentFilm = (films, props) => {
+  return films.find((movie) => movie.id === Number(props.match.params.id));
+};
+
 const FilmPage = (props) => {
   const {filmCard, films, onPlayBtnClick, authorizationStatus} = props;
+  console.log(films)
+  const film = getCurentFilm(films, props);
   return <React.Fragment>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
@@ -32,10 +38,10 @@ const FilmPage = (props) => {
 
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
-            <h2 className="movie-card__title"> {filmCard.name} </h2>
+            <h2 className="movie-card__title"> {film.name} </h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{filmCard.genre}</span>
-              <span className="movie-card__year">{filmCard.year}</span>
+              <span className="movie-card__genre">{film.genre}</span>
+              <span className="movie-card__year">{film.releaseYear}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -66,7 +72,7 @@ const FilmPage = (props) => {
       <div className="movie-card__wrap movie-card__translate-top">
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
-            <img src={filmCard.posterSrc} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={film.posterUrl} alt="The Grand Budapest Hotel poster" width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
@@ -83,14 +89,14 @@ const FilmPage = (props) => {
         <h2 className="catalog__title">More like this</h2>
 
         <div className="catalog__movies-list">
-          {films.filter((film) => film.genre === filmCard.genre)
-          .map((film) => (
-            <article key={film.id} className="small-movie-card catalog__movies-card">
+          {films.filter((it) => it.genre === film.genre)
+          .map((it) => (
+            <article key={it.id} className="small-movie-card catalog__movies-card">
               <div className="small-movie-card__image">
-                <img src={film.posterUrl} alt={film.name} width="280" height="175" />
+                <img src={it.posterUrl} alt={it.name} width="280" height="175" />
               </div>
               <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="#">{film.name}</a>
+                <a className="small-movie-card__link" href="#">{it.name}</a>
               </h3>
             </article>)
           )}
@@ -160,6 +166,25 @@ FilmPage.propTypes = {
         trailerUrl: PropTypes.string
       })
   ).isRequired,
+  film: PropTypes.shape({
+    name: PropTypes.string,
+    posterUrl: PropTypes.string,
+    previewUrl: PropTypes.string,
+    bigPosterUrl: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    description: PropTypes.string,
+    rating: PropTypes.number,
+    votes: PropTypes.number,
+    director: PropTypes.string,
+    starring: PropTypes.arrayOf(PropTypes.string),
+    runTime: PropTypes.string,
+    genre: PropTypes.string,
+    releaseYear: PropTypes.number,
+    id: PropTypes.number,
+    isFavorite: PropTypes.bool,
+    videoUrl: PropTypes.string,
+    trailerUrl: PropTypes.string
+  }).isRequired,
   onPlayBtnClick: PropTypes.func,
   authorizationStatus: PropTypes.string.isRequired
 };

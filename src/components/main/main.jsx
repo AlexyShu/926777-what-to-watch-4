@@ -12,7 +12,7 @@ const GenresWrapper = withActiveItem(GenresList);
 
 const Main = (props) => {
   const {filmCard, films, onFilmCardClick, onPlayBtnClick, filmsCount, showMoreFilms, authorizationStatus} = props;
-  console.log(authorizationStatus)
+  console.log(films)
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -75,7 +75,17 @@ const Main = (props) => {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
+              <button
+              // onClick={() => {
+              //   if (filmCard.isFavorite) {
+              //     removeMovieFromMyList(promoMovie.id);
+              //   } else {
+              //     addMovieToMyList(promoMovie.id);
+              //   }
+              // }}
+                className="btn btn--list movie-card__button"
+                type="button"
+              >
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>

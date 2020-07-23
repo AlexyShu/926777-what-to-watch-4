@@ -18,6 +18,7 @@ const FilmCard = {
   filmStarring: `Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other`,
   video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   time: `1h 39m`,
+  isFavorite: false,
   reviews: [
     {
       rating: 2,

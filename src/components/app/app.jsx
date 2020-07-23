@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {Switch, Route, Router, Redirect} from "react-router-dom";
+import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {getShowMoreFilms} from "../../reducer/state/selectors.js";
@@ -13,14 +13,13 @@ import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
+// import {AuthorizationStatus} from "../../reducer/user/user.js";
 import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
 
 const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
-
 
 class App extends PureComponent {
   constructor(props) {
@@ -42,7 +41,6 @@ class App extends PureComponent {
   _renderPage() {
     const {filmCard, films, filmsCount, showMoreFilms, authorizationStatus} = this.props;
     const {page} = this.state;
-
     switch (page) {
       case `main`:
         return (
@@ -94,11 +92,6 @@ class App extends PureComponent {
     return (
       <Router history={history}>
         <Switch>
-          <Route exact path={AppRoute.LOGIN}
-            render = {() => authorizationStatus === AuthorizationStatus.NO_AUTH
-              ? <SignIn onSubmit={login} />
-              : <Redirect to={AppRoute.MAIN} /> }>
-          </Route>
           <Route exact path={AppRoute.MAIN}>
             {this._renderPage()}
           </Route>
@@ -112,19 +105,25 @@ class App extends PureComponent {
             }}
           />
           <Route exact path={AppRoute.MY_LIST}>
-            <MyList films={films} />
+            <MyList
+              films={films}
+            />
           </Route>
           <Route exact path={AppRoute.ADD_REVIEW}>
             <AddReview
               filmCard = {filmCard}
             />
           </Route>
-          <Route exact path={AppRoute.FILM_PAGE}>
-            <FilmPage
-              filmCard = {filmCard}
-              films = {films}
-              authorizationStatus = {authorizationStatus}
-            />
+          <Route exact path="/film-page/:id"
+            render = {(props) => (
+              <FilmPage
+                {...props}
+                filmCard = {filmCard}
+                films = {films}
+                authorizationStatus = {authorizationStatus}
+                onPlayBtnClick={this.onPlayBtnClick}
+              />
+            )}>
           </Route>
         </Switch>
       </Router>
