@@ -12,7 +12,6 @@ const GenresWrapper = withActiveItem(GenresList);
 
 const Main = (props) => {
   const {filmCard, films, onFilmCardClick, onPlayBtnClick, filmsCount, showMoreFilms, authorizationStatus} = props;
-  console.log(films)
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">

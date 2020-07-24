@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {Switch, Route, BrowserRouter as Router} from "react-router-dom";
+import {Switch, Route, BrowserRouter as Router, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {getShowMoreFilms} from "../../reducer/state/selectors.js";
@@ -20,6 +20,7 @@ import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
 
 const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
+const MoviePage = withRouter(FilmPage);
 
 class App extends PureComponent {
   constructor(props) {
@@ -38,62 +39,75 @@ class App extends PureComponent {
     });
   }
 
-  _renderPage() {
-    const {filmCard, films, filmsCount, showMoreFilms, authorizationStatus} = this.props;
-    const {page} = this.state;
-    switch (page) {
-      case `main`:
-        return (
-          <Main
-            filmCard = {filmCard}
-            films = {films}
-            filmsCount = {filmsCount}
-            showMoreFilms = {showMoreFilms}
-            authorizationStatus = {authorizationStatus}
-            onFilmCardClick={(e) => {
-              e.preventDefault();
-              this.setState({
-                page: `film-page`,
-              });
-            }}
-            onPlayBtnClick={this.onPlayBtnClick}
-          />
-        );
-      case `film-page`:
-        return (
-          <FilmPage
-            filmCard = {filmCard}
-            films = {films}
-            onPlayBtnClick={this.onPlayBtnClick}
-            authorizationStatus = {authorizationStatus}
-          />
-        );
-      case `film-player`:
-        return (
-          <FullScreenVideoPlayer
-            filmCard = {filmCard}
-            muted = {true}
-            autoPlay = {true}
-            onExitClick={() => {
-              this.setState({
-                page: `main`,
-              });
-            }}
-          />
-        );
-      default:
-        return null;
-    }
+  // _renderPage() {
+  //   const {filmCard, films, filmsCount, showMoreFilms, authorizationStatus} = this.props;
+  //   const {page} = this.state;
+  //   switch (page) {
+  //     case `main`:
+  //       return (
+  //         <Main
+  //           filmCard = {filmCard}
+  //           films = {films}
+  //           filmsCount = {filmsCount}
+  //           showMoreFilms = {showMoreFilms}
+  //           authorizationStatus = {authorizationStatus}
+  //           onFilmCardClick={(e) => {
+  //             e.preventDefault();
+  //             this.setState({
+  //               page: `film-page`,
+  //             });
+  //           }}
+  //           onPlayBtnClick={this.onPlayBtnClick}
+  //         />
+  //       );
+  //     case `film-page`:
+  //       return (
+  //         <FilmPage
+  //           filmCard = {filmCard}
+  //           films = {films}
+  //           onPlayBtnClick={this.onPlayBtnClick}
+  //           authorizationStatus = {authorizationStatus}
+  //         />
+  //       );
+  //     case `film-player`:
+  //       return (
+  //         <FullScreenVideoPlayer
+  //           filmCard = {filmCard}
+  //           muted = {true}
+  //           autoPlay = {true}
+  //           onExitClick={() => {
+  //             this.setState({
+  //               page: `main`,
+  //             });
+  //           }}
+  //         />
+  //       );
+  //     default:
+  //       return null;
+  //   }
 
-  }
+  // }
 
   render() {
-    const {filmCard, films, login, authorizationStatus} = this.props;
+    const {filmCard, films, login, authorizationStatus, filmsCount, showMoreFilms, location, match} = this.props;
     return (
       <Router history={history}>
         <Switch>
           <Route exact path={AppRoute.MAIN}>
-            {this._renderPage()}
+            <Main
+              filmCard = {filmCard}
+              films = {films}
+              filmsCount = {filmsCount}
+              showMoreFilms = {showMoreFilms}
+              authorizationStatus = {authorizationStatus}
+              onFilmCardClick={(e) => {
+                e.preventDefault();
+                this.setState({
+                  page: `film-page`,
+                });
+              }}
+              onPlayBtnClick={this.onPlayBtnClick}
+            />
           </Route>
           <PrivateRoute
             exact
@@ -116,12 +130,14 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/film-page/:id"
             render = {(props) => (
-              <FilmPage
+              <MoviePage
                 {...props}
                 filmCard = {filmCard}
                 films = {films}
                 authorizationStatus = {authorizationStatus}
-                onPlayBtnClick={this.onPlayBtnClick}
+                match = {match}
+                location = {location}
+                // onPlayBtnClick={this.onPlayBtnClick}
               />
             )}>
           </Route>
