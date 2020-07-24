@@ -25,10 +25,9 @@ describe(`Render correct Main`, () => {
     .create(
         <Provider store={store}>
           <Main
-            filmCard = {mockFilmCard}
+            promoFilm = {mockFilmCard}
             films = {mockFilms}
             filmsCount = {MOCK_FILMS_COUNT}
-            onFilmCardClick = {mokcFunction}
             showMoreFilms = {mokcFunction}
             onPlayBtnClick = {mokcFunction}
             authorizationStatus = {mockString}

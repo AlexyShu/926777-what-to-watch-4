@@ -7,13 +7,12 @@ import FilmCard from "../film-card/film-card.jsx";
 const TIMEOUT = 1000;
 
 const FilmsList = (props) => {
-  const {filteredFilms, onFilmCardClick, filmsCount, handleChange, activeItem} = props;
+  const {filteredFilms, filmsCount, handleChange, activeItem} = props;
   return <div className="catalog__movies-list">
     {filteredFilms.map((film) =>
       <FilmCard
         key = {film.id}
         film = {film}
-        onFilmCardClick = {onFilmCardClick}
         onMovieCardMouseOver={() => {
           setTimeout(() => {
             handleChange(film.id);
@@ -52,7 +51,6 @@ FilmsList.propTypes = {
         trailerUrl: PropTypes.string
       })
   ).isRequired,
-  onFilmCardClick: PropTypes.func.isRequired,
   filmsCount: PropTypes.number.isRequired,
   activeItem: PropTypes.number,
   handleChange: PropTypes.func.isRequired,

@@ -7,3 +7,4 @@ export const getShowMoreFilms = (state) => {
 export const getActiveFilter = (state) => {
   return state[Namespace.STATE].activeFilter;
 };
+

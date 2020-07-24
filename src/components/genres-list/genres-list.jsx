@@ -11,7 +11,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 const FilmsWrapper = withActiveItem(FilmsList);
 
 const GenresList = (props) => {
-  const {films, onFilterClick, activeFilter, handleChange, onFilmCardClick, filmsCount, filteredFilms} = props;
+  const {films, onFilterClick, activeFilter, handleChange, filmsCount, filteredFilms} = props;
   const filters = [ALL_GENRES, ...new Set(films.map((film) => film.genre))];
   return (
     <React.Fragment>
@@ -34,7 +34,6 @@ const GenresList = (props) => {
       </ul>
       <FilmsWrapper
         filteredFilms = {filteredFilms}
-        onFilmCardClick = {onFilmCardClick}
         filmsCount = {filmsCount}
       />
     </React.Fragment>
@@ -77,7 +76,6 @@ GenresList.propTypes = {
   onFilterClick: PropTypes.func.isRequired,
   activeFilter: PropTypes.string,
   handleChange: PropTypes.func.isRequired,
-  onFilmCardClick: PropTypes.func.isRequired,
   filmsCount: PropTypes.number.isRequired,
   filteredFilms: PropTypes.arrayOf(
       PropTypes.shape({

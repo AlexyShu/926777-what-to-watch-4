@@ -25,7 +25,7 @@ describe(`Render correct App`, () => {
     .create(
         <Provider store={store}>
           <App
-            filmCard = {mockFilmCard}
+            promoFilm = {mockFilmCard}
             films = {mockFilms}
             showMoreFilms = {mokcFunction}
             onPlayBtnClick = {mokcFunction}
@@ -34,6 +34,7 @@ describe(`Render correct App`, () => {
             autoPlay = {mockBool}
             login = {mokcFunction}
             authorizationStatus = {mockString}
+            onFilmTitleClick = {mokcFunction}
           />
         </Provider>)
     .toJSON();

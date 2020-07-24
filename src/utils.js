@@ -44,3 +44,30 @@ export const adapterData = (films) =>
       }
       : {});
 
+export const adapterFilm = (film) =>
+  Object.keys(film).length
+    ? {
+      id: film.id,
+      name: film.name,
+      posterUrl: film.poster_image,
+      previewUrl: film.preview_image,
+      bigPosterUrl: film.background_image,
+      backgroundColor: film.background_color,
+      videoUrl: film.video_link,
+      trailerUrl: film.preview_video_link,
+      description: film.description,
+      rating: film.rating,
+      votes: film.scores_count,
+      director: film.director,
+      starring: film.starring,
+      runTime: formatMovieDuration(film.run_time),
+      genre: film.genre,
+      releaseYear: film.released,
+      isFavorite: film.is_favorite
+    }
+    : {};
+
+export const getCurentFilm = (movies, props) => {
+  return movies.find((movie) => movie.id === Number(props.match.params.id));
+};
+

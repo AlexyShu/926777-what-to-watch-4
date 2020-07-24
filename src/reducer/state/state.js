@@ -4,7 +4,7 @@ import {ALL_GENRES} from "../../constants.js";
 // данные, объект начального состояния
 const initialState = {
   filmsCount: 8,
-  activeFilter: ALL_GENRES
+  activeFilter: ALL_GENRES,
 };
 
 // Action

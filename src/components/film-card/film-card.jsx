@@ -2,17 +2,19 @@ import React from "react";
 import PropTypes from "prop-types";
 import Player from "../player/player.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../constants.js";
 
 
 const VideoPlayer = withPlayer(Player);
 
 
 const FilmCard = (props) => {
-  const {film, onFilmCardClick, onMovieCardMouseOver, onMovieCardMouseOut, isPlaying} = props;
+  const {film, onMovieCardMouseOver, onMovieCardMouseOut, isPlaying} = props;
   return (
+    // <Link to={AppRoute.FILM_PAGE}>
     <article
       className="small-movie-card catalog__movies-card"
-      onClick={onFilmCardClick}
       onMouseOver={onMovieCardMouseOver}
       onMouseOut={onMovieCardMouseOut}
     >
@@ -36,7 +38,9 @@ const FilmCard = (props) => {
       <h3 className="small-movie-card__title">
         <a className="small-movie-card__link" href="#">{film.name}</a>
       </h3>
-    </article>);
+    </article>
+    // </Link>
+  );
 };
 
 
@@ -46,9 +50,9 @@ FilmCard.propTypes = {
     posterUrl: PropTypes.string,
   }).isRequired,
   isPlaying: PropTypes.bool.isRequired,
-  onFilmCardClick: PropTypes.func.isRequired,
   onMovieCardMouseOver: PropTypes.func.isRequired,
-  onMovieCardMouseOut: PropTypes.func.isRequired
+  onMovieCardMouseOut: PropTypes.func.isRequired,
+  onFilmTitleClick: PropTypes.func.isRequired,
 };
 
 export default FilmCard;

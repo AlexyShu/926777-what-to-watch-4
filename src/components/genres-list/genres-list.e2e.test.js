@@ -5,7 +5,7 @@ import {GenresList} from "./genres-list.jsx";
 import {Provider} from "react-redux";
 import Namespace from "../../reducer/namespace.js";
 import configureStore from "redux-mock-store";
-import {mockFilms, MOCK_ACTIVE_FILTER, mokcFunction, MOCK_FILMS_COUNT} from "../../mocks-for-tests.js";
+import {mockFilms, MOCK_ACTIVE_FILTER, MOCK_FILMS_COUNT} from "../../mocks-for-tests.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -32,7 +32,6 @@ describe(`Filter click`, () => {
             onFilterClick = {onFilterClick}
             activeFilter = {MOCK_ACTIVE_FILTER}
             handleChange = {handleChange}
-            onFilmCardClick = {mokcFunction}
             filmsCount = {MOCK_FILMS_COUNT}
             filteredFilms = {mockFilms}
           />

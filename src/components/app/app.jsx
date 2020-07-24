@@ -3,14 +3,14 @@ import {Switch, Route, BrowserRouter as Router, withRouter} from "react-router-d
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {getShowMoreFilms} from "../../reducer/state/selectors.js";
-import {getFilms} from "../../reducer/data/selectors.js";
+import {getFilms, getPromoFilm} from "../../reducer/data/selectors.js";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import FilmPage from "../film-page/film-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
-import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
-import withPlayer from "../../hocs/with-player/with-player.jsx";
+// import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
+// import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 // import {AuthorizationStatus} from "../../reducer/user/user.js";
@@ -19,8 +19,9 @@ import {AppRoute} from "../../constants.js";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
 
-const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
+// const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
 const MoviePage = withRouter(FilmPage);
+
 
 class App extends PureComponent {
   constructor(props) {
@@ -89,23 +90,23 @@ class App extends PureComponent {
   // }
 
   render() {
-    const {filmCard, films, login, authorizationStatus, filmsCount, showMoreFilms, location, match} = this.props;
+    const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms} = this.props;
     return (
       <Router history={history}>
         <Switch>
           <Route exact path={AppRoute.MAIN}>
             <Main
-              filmCard = {filmCard}
               films = {films}
               filmsCount = {filmsCount}
               showMoreFilms = {showMoreFilms}
               authorizationStatus = {authorizationStatus}
-              onFilmCardClick={(e) => {
-                e.preventDefault();
-                this.setState({
-                  page: `film-page`,
-                });
-              }}
+              promoFilm = {promoFilm}
+              // onFilmCardClick={(e) => {
+              //   e.preventDefault();
+              //   this.setState({
+              //     page: `film-page`,
+              //   });
+              // }}
               onPlayBtnClick={this.onPlayBtnClick}
             />
           </Route>
@@ -125,18 +126,15 @@ class App extends PureComponent {
           </Route>
           <Route exact path={AppRoute.ADD_REVIEW}>
             <AddReview
-              filmCard = {filmCard}
+              // filmCard = {filmCard}
             />
           </Route>
           <Route exact path="/film-page/:id"
             render = {(props) => (
               <MoviePage
                 {...props}
-                filmCard = {filmCard}
                 films = {films}
                 authorizationStatus = {authorizationStatus}
-                match = {match}
-                location = {location}
                 // onPlayBtnClick={this.onPlayBtnClick}
               />
             )}>
@@ -147,10 +145,10 @@ class App extends PureComponent {
   }
 }
 
-
 const mapStateToProps = (state) => ({
   filmsCount: getShowMoreFilms(state),
   films: getFilms(state),
+  promoFilm: getPromoFilm(state),
   authorizationStatus: getAuthorizationStatus(state)
 });
 
@@ -160,33 +158,29 @@ const mapDispatchToProps = (dispatch) => ({
   },
   login(authData) {
     dispatch(UserOperation.login(authData));
-  }
+  },
 });
 
 
 App.propTypes = {
-  filmCard: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    video: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    ratingScore: PropTypes.string.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    ratingCount: PropTypes.string.isRequired,
-    descriptionPartOne: PropTypes.string.isRequired,
-    descriptionPartTwo: PropTypes.string.isRequired,
-    filmDirector: PropTypes.string.isRequired,
-    filmStarring: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          rating: PropTypes.number.isRequired,
-          date: PropTypes.string.isRequired,
-          author: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired
-        })
-    ).isRequired
+  promoFilm: PropTypes.shape({
+    name: PropTypes.string,
+    posterUrl: PropTypes.string,
+    previewUrl: PropTypes.string,
+    bigPosterUrl: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    description: PropTypes.string,
+    rating: PropTypes.number,
+    votes: PropTypes.number,
+    director: PropTypes.string,
+    starring: PropTypes.arrayOf(PropTypes.string),
+    runTime: PropTypes.string,
+    genre: PropTypes.string,
+    releaseYear: PropTypes.number,
+    id: PropTypes.number,
+    isFavorite: PropTypes.bool,
+    videoUrl: PropTypes.string,
+    trailerUrl: PropTypes.string
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
@@ -216,7 +210,7 @@ App.propTypes = {
   muted: PropTypes.bool,
   autoPlay: PropTypes.bool,
   login: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 export {App};

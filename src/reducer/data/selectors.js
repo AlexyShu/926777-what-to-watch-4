@@ -6,6 +6,10 @@ export const getFilms = (state) => {
   return state[Namespace.DATA].films;
 };
 
+export const getPromoFilm = (state) => {
+  return state[Namespace.DATA].promoFilm;
+};
+
 const filterFilmsByGenre = (state) => {
   const films = state[Namespace.DATA].films;
   const activeFilter = state[Namespace.STATE].activeFilter;
