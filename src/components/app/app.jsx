@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {Switch, Route, BrowserRouter as Router, withRouter} from "react-router-dom";
+import {Switch, Route, BrowserRouter, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {getShowMoreFilms} from "../../reducer/state/selectors.js";
@@ -14,13 +14,13 @@ import AddReview from "../add-review/add-review.jsx";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 // import {AuthorizationStatus} from "../../reducer/user/user.js";
-import history from "../../history.js";
+// import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
 
 const MoviePage = withRouter(FilmPage);
-
+const MainPage = withRouter(Main);
 
 class App extends PureComponent {
   constructor(props) {
@@ -91,23 +91,26 @@ class App extends PureComponent {
   render() {
     const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms} = this.props;
     return (
-      <Router history={history}>
+      <BrowserRouter>
         <Switch>
-          <Route exact path={AppRoute.MAIN}>
-            <Main
-              films = {films}
-              filmsCount = {filmsCount}
-              showMoreFilms = {showMoreFilms}
-              authorizationStatus = {authorizationStatus}
-              promoFilm = {promoFilm}
-              // onFilmCardClick={(e) => {
-              //   e.preventDefault();
-              //   this.setState({
-              //     page: `film-page`,
-              //   });
-              // }}
-              onPlayBtnClick={this.onPlayBtnClick}
-            />
+          <Route exact path={AppRoute.MAIN}
+            render = {(props) => (
+              <MainPage
+                {...props}
+                films = {films}
+                filmsCount = {filmsCount}
+                showMoreFilms = {showMoreFilms}
+                authorizationStatus = {authorizationStatus}
+                promoFilm = {promoFilm}
+                // onFilmCardClick={(e) => {
+                //   e.preventDefault();
+                //   this.setState({
+                //     page: `film-page`,
+                //   });
+                // }}
+                onPlayBtnClick={this.onPlayBtnClick}
+              />
+            )}>
           </Route>
           <PrivateRoute
             exact
@@ -128,7 +131,7 @@ class App extends PureComponent {
               // filmCard = {filmCard}
             />
           </Route>
-          <Route exact path="/film-page/:id"
+          <Route exact path={AppRoute.FILM_PAGE}
             render = {(props) => (
               <MoviePage
                 {...props}
@@ -139,7 +142,7 @@ class App extends PureComponent {
             )}>
           </Route>
         </Switch>
-      </Router>
+      </BrowserRouter>
     );
   }
 }
@@ -210,6 +213,7 @@ App.propTypes = {
   autoPlay: PropTypes.bool,
   login: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  history: PropTypes.func,
 };
 
 export {App};

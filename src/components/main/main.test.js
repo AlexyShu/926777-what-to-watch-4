@@ -34,6 +34,7 @@ describe(`Render correct Main`, () => {
               showMoreFilms = {mokcFunction}
               onPlayBtnClick = {mokcFunction}
               authorizationStatus = {mockString}
+              history = {mokcFunction}
             />
           </MemoryRouter>
         </Provider>)

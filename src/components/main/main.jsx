@@ -6,7 +6,6 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
-import history from "../../history.js";
 
 const GenresWrapper = withActiveItem(GenresList);
 
@@ -76,7 +75,7 @@ const Main = (props) => {
               </button>
               <button
                 onClick={() => {
-                  history.push(`/film-page/${promoFilm.id}`);
+                  props.history.push(`/film-page/${promoFilm.id}`);
                 }}
                 className="btn btn--list movie-card__button"
                 type="button"
@@ -171,6 +170,7 @@ Main.propTypes = {
   showMoreFilms: PropTypes.func.isRequired,
   onPlayBtnClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  history: PropTypes.func,
 };
 
 export default Main;

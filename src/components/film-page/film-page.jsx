@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {getCurentFilm} from "../../utils.js";
-import history from "../../history.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
 
@@ -62,7 +61,7 @@ const FilmPage = (props) => {
               </button>
               <button
                 onClick={() => {
-                  history.push(`/`);
+                  props.history.push(`/`);
                 }}
                 className="btn btn--list movie-card__button"
                 type="button">
@@ -154,6 +153,7 @@ FilmPage.propTypes = {
       })
   ).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  history: PropTypes.func,
 };
 
 
