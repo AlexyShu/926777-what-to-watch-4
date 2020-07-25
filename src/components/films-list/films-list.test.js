@@ -10,7 +10,6 @@ describe(`Render correct FilmsList`, () => {
         <FilmsList
           films = {mockFilms}
           filmsCount = {MOCK_FILMS_COUNT}
-          onFilmCardClick = {mokcFunction}
           activeItem = {MOCK_FILMS_COUNT}
           handleChange = {mokcFunction}
           filteredFilms = {mockFilms}

@@ -8,7 +8,6 @@ describe(`Render correct FilmCard`, () => {
     const tree = renderer
     .create(<FilmCard
       film = {mockFilmCard}
-      onFilmCardClick = {mokcFunction}
       isPlaying = {mockBool}
       onMovieCardMouseOver = {mokcFunction}
       onMovieCardMouseOut = {mokcFunction}

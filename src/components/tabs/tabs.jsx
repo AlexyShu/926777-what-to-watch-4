@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {TabName} from "../../constants.js";
+import {getTextRating} from "../../utils.js";
 
 class Tabs extends PureComponent {
   constructor(props) {
@@ -15,7 +16,7 @@ class Tabs extends PureComponent {
   }
 
   render() {
-    const {filmCard} = this.props;
+    const {film} = this.props;
     const {selectedTab} = this.state;
 
     return (
@@ -52,17 +53,16 @@ class Tabs extends PureComponent {
         {selectedTab === TabName.OVERVIEW && (
           <>
             <div className="movie-rating">
-              <div className="movie-rating__score">{filmCard.ratingScore}</div>
+              <div className="movie-rating__score">{film.rating}</div>
               <p className="movie-rating__meta">
-                <span className="movie-rating__level">{filmCard.ratingLevel}</span>
-                <span className="movie-rating__count">{filmCard.ratingCount}</span>
+                <span className="movie-rating__level">{getTextRating(film.rating)}</span>
+                <span className="movie-rating__count">{film.votes}{` ratings`}</span>
               </p>
             </div>
             <div className="movie-card__text">
-              <p>{filmCard.descriptionPartOne}</p>
-              <p>{filmCard.descriptionPartTwo}</p>
-              <p className="movie-card__director"><strong>{filmCard.filmDirector}</strong></p>
-              <p className="movie-card__starring"><strong>{filmCard.filmStarring}</strong></p>
+              <p>{film.description}</p>
+              <p className="movie-card__director"><strong>{film.director}</strong></p>
+              <p className="movie-card__starring"><strong>{film.starring}</strong></p>
             </div>
           </>
         )}
@@ -73,13 +73,13 @@ class Tabs extends PureComponent {
                 <p className="movie-card__details-item">
                   <strong className="movie-card__details-name">Director</strong>
                   <span className="movie-card__details-value">
-                    {filmCard.filmDirector}
+                    {film.director}
                   </span>
                 </p>
                 <p className="movie-card__details-item">
                   <strong className="movie-card__details-name">Starring</strong>
                   <span className="movie-card__details-value">
-                    {filmCard.filmStarring}
+                    {film.starring}
                   </span>
                 </p>
               </div>
@@ -87,19 +87,19 @@ class Tabs extends PureComponent {
                 <p className="movie-card__details-item">
                   <strong className="movie-card__details-name">Run Time</strong>
                   <span className="movie-card__details-value">
-                    {filmCard.time}
+                    {film.runTime}
                   </span>
                 </p>
                 <p className="movie-card__details-item">
                   <strong className="movie-card__details-name">Genre</strong>
                   <span className="movie-card__details-value">
-                    {filmCard.genre}
+                    {film.genre}
                   </span>
                 </p>
                 <p className="movie-card__details-item">
                   <strong className="movie-card__details-name">Released</strong>
                   <span className="movie-card__details-value">
-                    {filmCard.year}
+                    {film.releaseYear}
                   </span>
                 </p>
               </div>
@@ -111,7 +111,7 @@ class Tabs extends PureComponent {
             <div className="movie-card__reviews movie-card__row">
               <div className="movie-card__reviews-col">
 
-                {filmCard.reviews.map((review, index) => (
+                {/* {filmCard.reviews.map((review, index) => (
                   <div className="review" key={index + review.author}>
                     <blockquote className="review__quote">
                       <p className="review__text">{review.text}</p>
@@ -124,7 +124,7 @@ class Tabs extends PureComponent {
                     </blockquote>
                     <div className="review__rating">{review.rating}</div>
                   </div>
-                ))}
+                ))} */}
               </div>
             </div>
           </>
@@ -135,28 +135,24 @@ class Tabs extends PureComponent {
 }
 
 Tabs.propTypes = {
-  filmCard: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    video: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    ratingScore: PropTypes.string.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    ratingCount: PropTypes.string.isRequired,
-    descriptionPartOne: PropTypes.string.isRequired,
-    descriptionPartTwo: PropTypes.string.isRequired,
-    filmDirector: PropTypes.string.isRequired,
-    filmStarring: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          rating: PropTypes.number.isRequired,
-          date: PropTypes.string.isRequired,
-          author: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired
-        })
-    ).isRequired
+  film: PropTypes.shape({
+    name: PropTypes.string,
+    posterUrl: PropTypes.string,
+    previewUrl: PropTypes.string,
+    bigPosterUrl: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    description: PropTypes.string,
+    rating: PropTypes.number,
+    votes: PropTypes.number,
+    director: PropTypes.string,
+    starring: PropTypes.arrayOf(PropTypes.string),
+    runTime: PropTypes.string,
+    genre: PropTypes.string,
+    releaseYear: PropTypes.number,
+    id: PropTypes.number,
+    isFavorite: PropTypes.bool,
+    videoUrl: PropTypes.string,
+    trailerUrl: PropTypes.string
   }).isRequired,
 };
 

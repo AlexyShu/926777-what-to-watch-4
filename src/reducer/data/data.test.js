@@ -7,12 +7,13 @@ const api = createAPI(() => {});
 it(`Reducer without additional parameters should return initial state for films and active filter`, () => {
   expect(reducer(void 0, {})).toEqual({
     films: [],
-    comments: []
+    comments: [],
+    promoFilm: {},
   });
 });
 
 describe(`Operation work correctly`, () => {
-  it(`Should make a correct API call to /questions`, function () {
+  it(`Should make a correct API call to /films`, function () {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const filmsData = Operation.getFilms();

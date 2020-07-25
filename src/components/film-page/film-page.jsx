@@ -2,53 +2,69 @@ import React from "react";
 import PropTypes from "prop-types";
 import Tabs from "../tabs/tabs.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {getCurentFilm} from "../../utils.js";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../constants.js";
+
 
 const FilmPage = (props) => {
-  const {filmCard, films, onPlayBtnClick, authorizationStatus} = props;
-  return <React.Fragment>
+  const {films, authorizationStatus} = props;
+  const film = getCurentFilm(films, props);
+  return (film ? <React.Fragment>
     <section className="movie-card movie-card--full">
       <div className="movie-card__hero">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src={film.bigPosterUrl} alt={film.name} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header movie-card__head">
           <div className="logo">
-            <a href="main.html" className="logo__link">
+            <Link to={AppRoute.MAIN} className="logo__link">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
+            <Link to={AppRoute.MY_LIST}>
+              <div className="user-block__avatar">
+                <img
+                  src="img/avatar.jpg"
+                  alt="User avatar"
+                  width="63"
+                  height="63"
+                />
+              </div>
+            </Link>
           </div>
         </header>
 
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
-            <h2 className="movie-card__title"> {filmCard.name} </h2>
+            <h2 className="movie-card__title">{film.name}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{filmCard.genre}</span>
-              <span className="movie-card__year">{filmCard.year}</span>
+              <span className="movie-card__genre">{film.genre}</span>
+              <span className="movie-card__year">{film.releaseYear}</span>
             </p>
 
             <div className="movie-card__buttons">
               <button
                 className="btn btn--play movie-card__button"
-                onClick={onPlayBtnClick}
                 type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
+              <button
+                onClick={() => {
+                  props.history.push(`/`);
+                }}
+                className="btn btn--list movie-card__button"
+                type="button">
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>
@@ -66,12 +82,12 @@ const FilmPage = (props) => {
       <div className="movie-card__wrap movie-card__translate-top">
         <div className="movie-card__info">
           <div className="movie-card__poster movie-card__poster--big">
-            <img src={filmCard.posterSrc} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={film.posterUrl} alt={film.name} width="218" height="327" />
           </div>
 
           <div className="movie-card__desc">
             <Tabs
-              filmCard={filmCard}
+              film={film}
             />
           </div>
         </div>
@@ -81,16 +97,15 @@ const FilmPage = (props) => {
     <div className="page-content">
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
-
         <div className="catalog__movies-list">
-          {films.filter((film) => film.genre === filmCard.genre)
-          .map((film) => (
-            <article key={film.id} className="small-movie-card catalog__movies-card">
+          {films.filter((it) => it.genre === film.genre)
+          .map((it) => (
+            <article key={it.id} className="small-movie-card catalog__movies-card">
               <div className="small-movie-card__image">
-                <img src={film.posterUrl} alt={film.name} width="280" height="175" />
+                <img src={it.posterUrl} alt={it.name} width="280" height="175" />
               </div>
               <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="#">{film.name}</a>
+                <a className="small-movie-card__link" href="#">{it.name}</a>
               </h3>
             </article>)
           )}
@@ -99,11 +114,11 @@ const FilmPage = (props) => {
 
       <footer className="page-footer">
         <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
+          <Link to={AppRoute.MAIN} className="logo__link logo__link--light">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <div className="copyright">
@@ -111,34 +126,11 @@ const FilmPage = (props) => {
         </div>
       </footer>
     </div>
-
-  </React.Fragment>;
+  </React.Fragment>
+    : null);
 };
 
 FilmPage.propTypes = {
-  filmCard: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    video: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    ratingScore: PropTypes.string.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    ratingCount: PropTypes.string.isRequired,
-    descriptionPartOne: PropTypes.string.isRequired,
-    descriptionPartTwo: PropTypes.string.isRequired,
-    filmDirector: PropTypes.string.isRequired,
-    filmStarring: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          rating: PropTypes.number.isRequired,
-          date: PropTypes.string.isRequired,
-          author: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired
-        })
-    ).isRequired
-  }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
@@ -160,8 +152,9 @@ FilmPage.propTypes = {
         trailerUrl: PropTypes.string
       })
   ).isRequired,
-  onPlayBtnClick: PropTypes.func,
-  authorizationStatus: PropTypes.string.isRequired
+  authorizationStatus: PropTypes.string.isRequired,
+  history: PropTypes.func,
 };
+
 
 export default FilmPage;

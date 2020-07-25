@@ -10,13 +10,11 @@ Enzyme.configure({
 
 describe(`Title click and film card mouse over, mouse out`, () => {
   it(`Should film title be pressed`, () => {
-    const onFilmCardClick = jest.fn();
     const onMovieCardMouseOver = jest.fn();
     const onMovieCardMouseOut = jest.fn();
     const filmCard = shallow(
         <FilmCard
           film = {mockFilmCard}
-          onFilmCardClick = {onFilmCardClick}
           isPlaying = {mockBool}
           onMovieCardMouseOver = {onMovieCardMouseOver}
           onMovieCardMouseOut = {onMovieCardMouseOut}
@@ -24,7 +22,6 @@ describe(`Title click and film card mouse over, mouse out`, () => {
     );
 
     const filmCards = filmCard.find(`article.small-movie-card`);
-    const filmCardsCount = filmCards.length;
 
     filmCards.forEach((film) => {
       film.props().onClick();
@@ -32,7 +29,6 @@ describe(`Title click and film card mouse over, mouse out`, () => {
     filmCards.simulate(`mouseover`);
     filmCards.simulate(`mouseout`);
 
-    expect(onFilmCardClick).toHaveBeenCalledTimes(filmCardsCount);
     expect(onMovieCardMouseOver.mock.calls.length).toBe(1);
     expect(onMovieCardMouseOver.mock.calls[0][0]).toMatchObject(mockFilmCard);
     expect(onMovieCardMouseOut.mock.calls.length).toBe(1);

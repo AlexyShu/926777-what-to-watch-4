@@ -4,12 +4,13 @@ import GenresList from "../genres-list/genres-list.jsx";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../constants.js";
 
 const GenresWrapper = withActiveItem(GenresList);
 
-
 const Main = (props) => {
-  const {filmCard, films, onFilmCardClick, onPlayBtnClick, filmsCount, showMoreFilms, authorizationStatus} = props;
+  const {films, onPlayBtnClick, filmsCount, showMoreFilms, authorizationStatus, promoFilm} = props;
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -29,18 +30,20 @@ const Main = (props) => {
 
         <div className="user-block">
           {authorizationStatus === AuthorizationStatus.AUTH ? (
-            <div className="user-block__avatar">
-              <img
-                src="img/avatar.jpg"
-                alt="User avatar"
-                width="63"
-                height="63"
-              />
-            </div>
+            <Link to={AppRoute.MY_LIST}>
+              <div className="user-block__avatar">
+                <img
+                  src="img/avatar.jpg"
+                  alt="User avatar"
+                  width="63"
+                  height="63"
+                />
+              </div>
+            </Link>
           ) : (
-            <a href="#" className="user-block__link">
+            <Link to={AppRoute.LOGIN} className="user-block__link">
                 Sign in
-            </a>
+            </Link>
           )}
         </div>
 
@@ -50,13 +53,13 @@ const Main = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src={filmCard.posterSrc} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={promoFilm.posterUrl} alt="The Grand Budapest Hotel poster" width="218" height="327" />
           </div>
           <div className="movie-card__desc">
-            <h2 className="movie-card__title"> {filmCard.name} </h2>
+            <h2 className="movie-card__title"> {promoFilm.name} </h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre"> {filmCard.genre} </span>
-              <span className="movie-card__year"> {filmCard.year} </span>
+              <span className="movie-card__genre"> {promoFilm.genre} </span>
+              <span className="movie-card__year"> {promoFilm.releaseYear} </span>
             </p>
 
             <div className="movie-card__buttons">
@@ -70,7 +73,13 @@ const Main = (props) => {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
+              <button
+                onClick={() => {
+                  props.history.push(`/film-page/${promoFilm.id}`);
+                }}
+                className="btn btn--list movie-card__button"
+                type="button"
+              >
                 <svg viewBox="0 0 19 20" width="19" height="20">
                   <use xlinkHref="#add"></use>
                 </svg>
@@ -88,7 +97,6 @@ const Main = (props) => {
 
         <GenresWrapper
           films = {films}
-          onFilmCardClick = {onFilmCardClick}
           filmsCount = {filmsCount}
         />
         {filmsCount >= films.length ? null :
@@ -118,18 +126,24 @@ const Main = (props) => {
 };
 
 Main.propTypes = {
-  filmCard: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    ratingScore: PropTypes.string.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    ratingCount: PropTypes.string.isRequired,
-    descriptionPartOne: PropTypes.string.isRequired,
-    descriptionPartTwo: PropTypes.string.isRequired,
-    filmDirector: PropTypes.string.isRequired,
-    filmStarring: PropTypes.string.isRequired,
+  promoFilm: PropTypes.shape({
+    name: PropTypes.string,
+    posterUrl: PropTypes.string,
+    previewUrl: PropTypes.string,
+    bigPosterUrl: PropTypes.string,
+    backgroundColor: PropTypes.string,
+    description: PropTypes.string,
+    rating: PropTypes.number,
+    votes: PropTypes.number,
+    director: PropTypes.string,
+    starring: PropTypes.arrayOf(PropTypes.string),
+    runTime: PropTypes.string,
+    genre: PropTypes.string,
+    releaseYear: PropTypes.number,
+    id: PropTypes.number,
+    isFavorite: PropTypes.bool,
+    videoUrl: PropTypes.string,
+    trailerUrl: PropTypes.string
   }).isRequired,
   films: PropTypes.arrayOf(
       PropTypes.shape({
@@ -152,11 +166,11 @@ Main.propTypes = {
         trailerUrl: PropTypes.string
       })
   ).isRequired,
-  onFilmCardClick: PropTypes.func.isRequired,
   filmsCount: PropTypes.number.isRequired,
   showMoreFilms: PropTypes.func.isRequired,
   onPlayBtnClick: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired
+  authorizationStatus: PropTypes.string.isRequired,
+  history: PropTypes.func,
 };
 
 export default Main;

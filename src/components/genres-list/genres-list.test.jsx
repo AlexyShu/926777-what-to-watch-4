@@ -26,7 +26,6 @@ describe(`Render correct GenresList`, () => {
             onFilterClick = {mokcFunction}
             activeFilter = {MOCK_ACTIVE_FILTER}
             handleChange= {mokcFunction}
-            onFilmCardClick = {mokcFunction}
             filmsCount = {MOCK_FILMS_COUNT}
             filteredFilms = {mockFilms}
           />
