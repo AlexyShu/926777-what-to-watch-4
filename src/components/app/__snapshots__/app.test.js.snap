@@ -68,7 +68,6 @@ Array [
           <img
             alt="The Grand Budapest Hotel poster"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
             width="218"
           />
         </div>
@@ -96,7 +95,6 @@ Array [
               className="movie-card__year"
             >
                
-              2014
                
             </span>
           </p>
@@ -123,6 +121,7 @@ Array [
             </button>
             <button
               className="btn btn--list movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg

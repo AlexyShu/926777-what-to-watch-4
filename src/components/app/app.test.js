@@ -13,6 +13,7 @@ describe(`Render correct App`, () => {
     const store = mockStore({
       [Namespace.DATA]: {
         films: mockFilms,
+        promoFilm: mockFilmCard
       },
       [Namespace.STATE]: {
         filmsCount: MOCK_FILMS_COUNT
@@ -34,7 +35,6 @@ describe(`Render correct App`, () => {
             autoPlay = {mockBool}
             login = {mokcFunction}
             authorizationStatus = {mockString}
-            onFilmTitleClick = {mokcFunction}
           />
         </Provider>)
     .toJSON();

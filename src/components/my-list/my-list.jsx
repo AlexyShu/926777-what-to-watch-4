@@ -5,6 +5,7 @@ import {AppRoute} from "../../constants.js";
 
 const MyList = (props) => {
   const {films} = props;
+  const favoriteFilms = films.filter((film) => film.isFavorite);
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -30,7 +31,7 @@ const MyList = (props) => {
 
         <div className="catalog__movies-list">
 
-          {films.map((film) => (
+          {favoriteFilms.map((film) => (
             <article key={film.id} className="small-movie-card catalog__movies-card">
               <div className="small-movie-card__image">
                 <img src={film.posterUrl} alt={film.name} width="280" height="175" />

@@ -6,9 +6,9 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
+import history from "../../history.js";
 
 const GenresWrapper = withActiveItem(GenresList);
-
 
 const Main = (props) => {
   const {films, onPlayBtnClick, filmsCount, showMoreFilms, authorizationStatus, promoFilm} = props;
@@ -75,13 +75,9 @@ const Main = (props) => {
                 <span>Play</span>
               </button>
               <button
-              // onClick={() => {
-              //   if (filmCard.isFavorite) {
-              //     removeMovieFromMyList(promoMovie.id);
-              //   } else {
-              //     addMovieToMyList(promoMovie.id);
-              //   }
-              // }}
+                onClick={() => {
+                  history.push(`/film-page/${promoFilm.id}`);
+                }}
                 className="btn btn--list movie-card__button"
                 type="button"
               >

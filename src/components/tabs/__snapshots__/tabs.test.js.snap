@@ -56,12 +56,13 @@ exports[`Render correct Tabs Render Tabs 1`] = `
       <span
         className="movie-rating__level"
       >
-        ТУТ ДОЛЖНА БЫТЬ ФУНКЦИЯ
+        Very good
       </span>
       <span
         className="movie-rating__count"
       >
         240
+         ratings
       </span>
     </p>
   </div>

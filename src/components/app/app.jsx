@@ -19,7 +19,6 @@ import {AppRoute} from "../../constants.js";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
 
-// const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
 const MoviePage = withRouter(FilmPage);
 
 
@@ -149,7 +148,7 @@ const mapStateToProps = (state) => ({
   filmsCount: getShowMoreFilms(state),
   films: getFilms(state),
   promoFilm: getPromoFilm(state),
-  authorizationStatus: getAuthorizationStatus(state)
+  authorizationStatus: getAuthorizationStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

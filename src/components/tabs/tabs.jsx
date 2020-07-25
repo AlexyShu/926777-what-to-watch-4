@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {TabName} from "../../constants.js";
+import {getTextRating} from "../../utils.js";
 
 class Tabs extends PureComponent {
   constructor(props) {
@@ -54,10 +55,8 @@ class Tabs extends PureComponent {
             <div className="movie-rating">
               <div className="movie-rating__score">{film.rating}</div>
               <p className="movie-rating__meta">
-                <span className="movie-rating__level">
-                  {`ТУТ ДОЛЖНА БЫТЬ ФУНКЦИЯ`}
-                </span>
-                <span className="movie-rating__count">{film.votes}</span>
+                <span className="movie-rating__level">{getTextRating(film.rating)}</span>
+                <span className="movie-rating__count">{film.votes}{` ratings`}</span>
               </p>
             </div>
             <div className="movie-card__text">

@@ -4,14 +4,16 @@ import {extend, adapterData, adapterFilm} from "../../utils.js";
 const initialState = {
   films: [],
   comments: [],
-  promoFilm: {}
+  promoFilm: {},
+  // favoriteFilms: []
 };
 
 // Action
 const ActionType = {
   GET_FILMS: `GET_FILMS`,
   GET_PROMO_FILM: `GET_PROMO_FILM`,
-  GET_COMMENTS: `GET_COMMENTS`
+  GET_COMMENTS: `GET_COMMENTS`,
+  // GET_FAVORITE_FILMS: `GET_FAVORITE_FILMS`,
 };
 
 const ActionCreator = {
@@ -26,7 +28,11 @@ const ActionCreator = {
   getComments: (comments) => ({
     type: ActionType.GET_COMMENTS,
     payload: comments
-  })
+  }),
+  // getFavoriteFilms: (favoriteFilms) => ({
+  //   type: ActionType.GET_FILMS,
+  //   payload: favoriteFilms
+  // }),
 };
 
 const Operation = {
@@ -57,7 +63,13 @@ const Operation = {
     .then(() => {
       dispatch(Operation.getComments());
     });
-  }
+  },
+  // getFavoriteFilms: () => (dispatch, getState, api) => {
+  //   return api.get(`/favorite`)
+  //   .then((response) => {
+  //     dispatch(ActionCreator.getFilms(adapterData(response.data)));
+  //   });
+  // },
 };
 
 const reducer = (state = initialState, action) => {
@@ -74,6 +86,10 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         comments: action.payload
       });
+    // case ActionType.GET_FAVORITE_FILMS:
+    //   return extend(state, {
+    //     favoriteFilms: action.payload
+    //   });
   }
   return state;
 };

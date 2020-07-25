@@ -8,7 +8,6 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const PrivateRoute = (props) => {
   const {render, path, exact, authorizationStatus} = props;
-  console.log(authorizationStatus)
   return (
     <Route
       path={path}

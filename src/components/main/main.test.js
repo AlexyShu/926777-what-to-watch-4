@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Main from "./main.jsx";
+import {MemoryRouter} from "react-router-dom";
 import {mockFilmCard, mockFilms, mokcFunction, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
 import Namespace from "../../reducer/namespace.js";
 
@@ -13,6 +14,7 @@ describe(`Render correct Main`, () => {
     const store = mockStore({
       [Namespace.DATA]: {
         films: mockFilms,
+        promoFilm: mockFilmCard
       },
       [Namespace.STATE]: {
         filmsCount: MOCK_FILMS_COUNT
@@ -24,17 +26,21 @@ describe(`Render correct Main`, () => {
     const tree = renderer
     .create(
         <Provider store={store}>
-          <Main
-            promoFilm = {mockFilmCard}
-            films = {mockFilms}
-            filmsCount = {MOCK_FILMS_COUNT}
-            showMoreFilms = {mokcFunction}
-            onPlayBtnClick = {mokcFunction}
-            authorizationStatus = {mockString}
-          />
+          <MemoryRouter>
+            <Main
+              promoFilm = {mockFilmCard}
+              films = {mockFilms}
+              filmsCount = {MOCK_FILMS_COUNT}
+              showMoreFilms = {mokcFunction}
+              onPlayBtnClick = {mokcFunction}
+              authorizationStatus = {mockString}
+            />
+          </MemoryRouter>
         </Provider>)
     .toJSON();
 
     expect(tree).toMatchSnapshot();
   });
 });
+
+
