@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import {Switch, Route, BrowserRouter, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
@@ -13,8 +13,6 @@ import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
-// import {AuthorizationStatus} from "../../reducer/user/user.js";
-// import history from "../../history.js";
 import {AppRoute} from "../../constants.js";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
@@ -23,75 +21,59 @@ const MoviePage = withRouter(FilmPage);
 const MainPage = withRouter(Main);
 const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
 const FullScreenVideoPlayerPage = withRouter(FullScreenVideoPlayer);
+const AddReviewPage = withRouter(AddReview);
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms} = this.props;
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path={AppRoute.MAIN}
-            render = {(props) => (
-              <MainPage
-                {...props}
-                films = {films}
-                filmsCount = {filmsCount}
-                showMoreFilms = {showMoreFilms}
-                authorizationStatus = {authorizationStatus}
-                promoFilm = {promoFilm}
-                // onFilmCardClick={(e) => {
-                //   e.preventDefault();
-                //   this.setState({
-                //     page: `film-page`,
-                //   });
-                // }}
-              />
-            )}>
-          </Route>
-          <PrivateRoute
-            exact
-            path={AppRoute.LOGIN}
-            render={() => {
-              return (
-                <SignIn onSubmit={login} />
-              );
-            }}
+const App = (props) => {
+  const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms} = props;
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={AppRoute.MAIN}>
+          <MainPage
+            films = {films}
+            filmsCount = {filmsCount}
+            showMoreFilms = {showMoreFilms}
+            authorizationStatus = {authorizationStatus}
+            promoFilm = {promoFilm}
           />
-          <Route exact path={AppRoute.MY_LIST}>
-            <MyList
-              films={films}
-            />
-          </Route>
-          <Route exact path='/films/:id/player'>
-            <FullScreenVideoPlayerPage
-              films = {films}
-              muted = {true}
-              autoPlay = {true}
-            />
-          </Route>
-          <Route exact path={AppRoute.ADD_REVIEW}>
-            <AddReview
-              // filmCard = {filmCard}
-            />
-          </Route>
-          <Route exact path={AppRoute.FILM_PAGE}
-            render = {(props) => (
-              <MoviePage
-                {...props}
-                films = {films}
-                authorizationStatus = {authorizationStatus}
-              />
-            )}>
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.LOGIN}
+          render={() => {
+            return (
+              <SignIn onSubmit={login} />
+            );
+          }}
+        />
+        <Route exact path={AppRoute.MY_LIST}>
+          <MyList
+            films={films}
+          />
+        </Route>
+        <Route exact path='/films/:id/player'>
+          <FullScreenVideoPlayerPage
+            films = {films}
+            muted = {true}
+            autoPlay = {true}
+          />
+        </Route>
+        <Route exact path={AppRoute.ADD_REVIEW}>
+          <AddReviewPage
+            films = {films}
+          />
+        </Route>
+        <Route exact path={AppRoute.FILM_PAGE}>
+          <MoviePage
+            films = {films}
+            authorizationStatus = {authorizationStatus}
+          />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+};
+
 
 const mapStateToProps = (state) => ({
   filmsCount: getShowMoreFilms(state),

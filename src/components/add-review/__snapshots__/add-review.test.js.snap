@@ -60,7 +60,7 @@ exports[`Render correct AddReview Render AddReview 1`] = `
               className="breadcrumbs__link"
               href="movie-page.html"
             >
-              The Grand Budapest
+              The Grand Budapest Hotel
             </a>
           </li>
           <li
@@ -93,7 +93,7 @@ exports[`Render correct AddReview Render AddReview 1`] = `
       className="movie-card__poster movie-card__poster--small"
     >
       <img
-        alt="The Grand Budapest"
+        alt="The Grand Budapest Hotel"
         height="327"
         src="img/the-grand-budapest-hotel-poster.jpg"
         width="218"

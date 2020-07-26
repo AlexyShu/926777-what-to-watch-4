@@ -2,6 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {Operation} from "../../reducer/data/data";
 import {connect} from "react-redux";
+import {getCurentFilm} from "../../utils.js";
 
 const MIN_REVIEW_LENGTH = 50;
 const MAX_REVIEW_LENGTH = 400;
@@ -56,7 +57,8 @@ class AddReview extends PureComponent {
   }
 
   render() {
-    const {filmCard} = this.props;
+    const {films} = this.props;
+    const film = getCurentFilm(films, this.props);
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
@@ -79,7 +81,7 @@ class AddReview extends PureComponent {
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
                   <a href="movie-page.html" className="breadcrumbs__link">
-                    {filmCard.name}
+                    {film.name}
                   </a>
                 </li>
                 <li className="breadcrumbs__item">
@@ -102,8 +104,8 @@ class AddReview extends PureComponent {
 
           <div className="movie-card__poster movie-card__poster--small">
             <img
-              src={filmCard.posterSrc}
-              alt={filmCard.name}
+              src={film.posterUrl}
+              alt={film.name}
               width="218"
               height="327"
             />
@@ -214,29 +216,27 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 AddReview.propTypes = {
-  filmCard: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    video: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    ratingScore: PropTypes.string.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    ratingCount: PropTypes.string.isRequired,
-    descriptionPartOne: PropTypes.string.isRequired,
-    descriptionPartTwo: PropTypes.string.isRequired,
-    filmDirector: PropTypes.string.isRequired,
-    filmStarring: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          rating: PropTypes.number.isRequired,
-          date: PropTypes.string.isRequired,
-          author: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired
-        })
-    ).isRequired
-  }).isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        posterUrl: PropTypes.string,
+        previewUrl: PropTypes.string,
+        bigPosterUrl: PropTypes.string,
+        backgroundColor: PropTypes.string,
+        description: PropTypes.string,
+        rating: PropTypes.number,
+        votes: PropTypes.number,
+        director: PropTypes.string,
+        starring: PropTypes.arrayOf(PropTypes.string),
+        runTime: PropTypes.string,
+        genre: PropTypes.string,
+        releaseYear: PropTypes.number,
+        id: PropTypes.number,
+        isFavorite: PropTypes.bool,
+        videoUrl: PropTypes.string,
+        trailerUrl: PropTypes.string
+      })
+  ).isRequired,
   onSubmit: PropTypes.func.isRequired
 };
 

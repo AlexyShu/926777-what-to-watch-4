@@ -1,12 +1,18 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import AddReview from "./add-review.jsx";
-import {mokcFunction, mockFilmCard, MOCK_FILMS_COUNT, mockFilms, mockString} from "../../mocks-for-tests.js";
+import {mokcFunction, MOCK_FILMS_COUNT, mockFilms, mockString} from "../../mocks-for-tests.js";
 import Namespace from "../../reducer/namespace.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 
 const mockStore = configureStore([]);
+
+const match = {
+  params: {
+    id: 1,
+  }
+};
 
 describe(`Render correct AddReview`, () => {
   it(`Render AddReview`, () => {
@@ -27,8 +33,9 @@ describe(`Render correct AddReview`, () => {
     .create(
         <Provider store={store}>
           <AddReview
+            match = {match}
             onMovieCaronSubmitdMouseOut = {mokcFunction}
-            filmCard = {mockFilmCard}
+            films = {mockFilms}
           />
         </Provider>)
     .toJSON();
