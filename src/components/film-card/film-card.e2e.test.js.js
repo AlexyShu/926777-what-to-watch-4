@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import FilmCard from "./film-card.jsx";
-import {mockFilmCard, mockBool} from "../../mocks-for-tests.js";
+import {mockFilm, mockBool} from "../../mocks-for-tests.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -14,7 +14,7 @@ describe(`Title click and film card mouse over, mouse out`, () => {
     const onMovieCardMouseOut = jest.fn();
     const filmCard = shallow(
         <FilmCard
-          film = {mockFilmCard}
+          film = {mockFilm}
           isPlaying = {mockBool}
           onMovieCardMouseOver = {onMovieCardMouseOver}
           onMovieCardMouseOut = {onMovieCardMouseOut}
@@ -30,7 +30,7 @@ describe(`Title click and film card mouse over, mouse out`, () => {
     filmCards.simulate(`mouseout`);
 
     expect(onMovieCardMouseOver.mock.calls.length).toBe(1);
-    expect(onMovieCardMouseOver.mock.calls[0][0]).toMatchObject(mockFilmCard);
+    expect(onMovieCardMouseOver.mock.calls[0][0]).toMatchObject(mockFilm);
     expect(onMovieCardMouseOut.mock.calls.length).toBe(1);
   });
 });

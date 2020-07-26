@@ -27,60 +27,7 @@ const FullScreenVideoPlayerPage = withRouter(FullScreenVideoPlayer);
 class App extends PureComponent {
   constructor(props) {
     super(props);
-
-    this.state = {
-      page: `main`,
-    };
   }
-
-  // _renderPage() {
-  //   const {filmCard, films, filmsCount, showMoreFilms, authorizationStatus} = this.props;
-  //   const {page} = this.state;
-  //   switch (page) {
-  //     case `main`:
-  //       return (
-  //         <Main
-  //           filmCard = {filmCard}
-  //           films = {films}
-  //           filmsCount = {filmsCount}
-  //           showMoreFilms = {showMoreFilms}
-  //           authorizationStatus = {authorizationStatus}
-  //           onFilmCardClick={(e) => {
-  //             e.preventDefault();
-  //             this.setState({
-  //               page: `film-page`,
-  //             });
-  //           }}
-  //           onPlayBtnClick={this.onPlayBtnClick}
-  //         />
-  //       );
-  //     case `film-page`:
-  //       return (
-  //         <FilmPage
-  //           filmCard = {filmCard}
-  //           films = {films}
-  //           onPlayBtnClick={this.onPlayBtnClick}
-  //           authorizationStatus = {authorizationStatus}
-  //         />
-  //       );
-  //     case `film-player`:
-  //       return (
-  //         <FullScreenVideoPlayer
-  //           filmCard = {filmCard}
-  //           muted = {true}
-  //           autoPlay = {true}
-  //           onExitClick={() => {
-  //             this.setState({
-  //               page: `main`,
-  //             });
-  //           }}
-  //         />
-  //       );
-  //     default:
-  //       return null;
-  //   }
-
-  // }
 
   render() {
     const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms} = this.props;
@@ -137,7 +84,6 @@ class App extends PureComponent {
                 {...props}
                 films = {films}
                 authorizationStatus = {authorizationStatus}
-                // onPlayBtnClick={this.onPlayBtnClick}
               />
             )}>
           </Route>

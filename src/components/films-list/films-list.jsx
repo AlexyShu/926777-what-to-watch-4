@@ -21,6 +21,7 @@ const FilmsList = (props) => {
         onMovieCardMouseOut={() => handleChange(null)}
         isPlaying={film.id === activeItem}
       />
+
     ).slice(0, filmsCount)}
   </div>;
 };
