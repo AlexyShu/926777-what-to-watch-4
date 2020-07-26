@@ -2,10 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
+import FilmCard from "../film-card/film-card.jsx";
+import {getFavoriteFilms} from "../../reducer/data/selectors.js";
+import {connect} from "react-redux";
 
 const MyList = (props) => {
-  const {films} = props;
-  const favoriteFilms = films.filter((film) => film.isFavorite);
+  const {favoriteFilms} = props;
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -32,14 +34,10 @@ const MyList = (props) => {
         <div className="catalog__movies-list">
 
           {favoriteFilms.map((film) => (
-            <article key={film.id} className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src={film.posterUrl} alt={film.name} width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">{film.name}</a>
-              </h3>
-            </article>)
+            <FilmCard
+              key = {film.id}
+              film = {film}
+            />)
           )}
 
         </div>
@@ -47,11 +45,11 @@ const MyList = (props) => {
 
       <footer className="page-footer">
         <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
+          <Link to={AppRoute.MAIN} className="logo__link logo__link--light">
             <span className="logo__letter logo__letter--1">W</span>
             <span className="logo__letter logo__letter--2">T</span>
             <span className="logo__letter logo__letter--3">W</span>
-          </a>
+          </Link>
         </div>
 
         <div className="copyright">
@@ -62,8 +60,12 @@ const MyList = (props) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  favoriteFilms: getFavoriteFilms(state),
+});
+
 MyList.propTypes = {
-  films: PropTypes.arrayOf(
+  favoriteFilms: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
         posterUrl: PropTypes.string,
@@ -87,4 +89,5 @@ MyList.propTypes = {
 
 };
 
-export default MyList;
+export {MyList};
+export default connect(mapStateToProps)(MyList);

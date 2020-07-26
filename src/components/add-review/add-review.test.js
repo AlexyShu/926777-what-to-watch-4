@@ -5,6 +5,7 @@ import {mokcFunction, MOCK_FILMS_COUNT, mockFilms, mockString} from "../../mocks
 import Namespace from "../../reducer/namespace.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {MemoryRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -32,11 +33,13 @@ describe(`Render correct AddReview`, () => {
     const tree = renderer
     .create(
         <Provider store={store}>
-          <AddReview
-            match = {match}
-            onMovieCaronSubmitdMouseOut = {mokcFunction}
-            films = {mockFilms}
-          />
+          <MemoryRouter>
+            <AddReview
+              match = {match}
+              onMovieCaronSubmitdMouseOut = {mokcFunction}
+              films = {mockFilms}
+            />
+          </MemoryRouter>
         </Provider>)
     .toJSON();
 

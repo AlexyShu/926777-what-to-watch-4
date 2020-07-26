@@ -14,7 +14,7 @@ const Main = (props) => {
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        <img src={promoFilm.bigPosterUrl} alt={promoFilm.name} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -53,7 +53,7 @@ const Main = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src={promoFilm.posterUrl} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={promoFilm.posterUrl} alt={promoFilm.name} width="218" height="327" />
           </div>
           <div className="movie-card__desc">
             <h2 className="movie-card__title"> {promoFilm.name} </h2>

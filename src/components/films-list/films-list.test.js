@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {FilmsList} from "./films-list.jsx";
+import FilmsList from "./films-list.jsx";
 import {mockFilms, mokcFunction, MOCK_FILMS_COUNT, mockFilmCard, mockString} from "../../mocks-for-tests.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
@@ -28,7 +28,6 @@ describe(`Render correct FilmsList`, () => {
         <Provider store={store}>
           <MemoryRouter>
             <FilmsList
-              films = {mockFilms}
               filmsCount = {MOCK_FILMS_COUNT}
               activeItem = {MOCK_FILMS_COUNT}
               handleChange = {mokcFunction}

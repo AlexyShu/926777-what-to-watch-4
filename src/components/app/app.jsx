@@ -46,11 +46,6 @@ const App = (props) => {
             );
           }}
         />
-        <Route exact path={AppRoute.MY_LIST}>
-          <MyList
-            films={films}
-          />
-        </Route>
         <Route exact path='/films/:id/player'>
           <FullScreenVideoPlayerPage
             films = {films}
@@ -68,6 +63,9 @@ const App = (props) => {
             films = {films}
             authorizationStatus = {authorizationStatus}
           />
+        </Route>
+        <Route exact path={AppRoute.MY_LIST}>
+          <MyList />
         </Route>
       </Switch>
     </BrowserRouter>

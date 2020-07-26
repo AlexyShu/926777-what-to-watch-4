@@ -1,6 +1,4 @@
 import React from "react";
-import {connect} from "react-redux";
-import {getFilms} from "../../reducer/data/selectors.js";
 import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
 import {TIMEOUT} from "../../constants.js";
@@ -9,7 +7,7 @@ import {TIMEOUT} from "../../constants.js";
 const FilmsList = (props) => {
   const {filteredFilms, filmsCount, handleChange, activeItem} = props;
   return <div className="catalog__movies-list">
-    {filteredFilms.map((film) =>
+    {filteredFilms.map((film) => (
       <FilmCard
         key = {film.id}
         film = {film}
@@ -20,15 +18,9 @@ const FilmsList = (props) => {
         }}
         onMovieCardMouseOut={() => handleChange(null)}
         isPlaying={film.id === activeItem}
-      />
-
-    ).slice(0, filmsCount)}
+      />)).slice(0, filmsCount)}
   </div>;
 };
-
-const mapStateToProps = (state) => ({
-  films: getFilms(state)
-});
 
 FilmsList.propTypes = {
   filteredFilms: PropTypes.arrayOf(
@@ -57,5 +49,4 @@ FilmsList.propTypes = {
   handleChange: PropTypes.func.isRequired,
 };
 
-export {FilmsList};
-export default connect(mapStateToProps)(FilmsList);
+export default FilmsList;

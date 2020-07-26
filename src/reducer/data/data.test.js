@@ -9,6 +9,7 @@ it(`Reducer without additional parameters should return initial state for films 
     films: [],
     comments: [],
     promoFilm: {},
+    favoriteFilms: []
   });
 });
 

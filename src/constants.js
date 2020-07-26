@@ -12,7 +12,7 @@ export const AppRoute = {
   ADD_REVIEW: `/films/:id/review`,
   FILM_PAGE: `/film-page/:id`,
   MY_LIST: `/my-list`,
-  FULL_SCREEN_PLAER: `/full-screen-player`,
+  FULL_SCREEN_PLAER: `/films/:id/player`,
 };
 
 export const TIMEOUT = 1000;
