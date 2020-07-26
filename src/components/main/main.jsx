@@ -10,7 +10,7 @@ import {AppRoute} from "../../constants.js";
 const GenresWrapper = withActiveItem(GenresList);
 
 const Main = (props) => {
-  const {films, onPlayBtnClick, filmsCount, showMoreFilms, authorizationStatus, promoFilm} = props;
+  const {films, filmsCount, showMoreFilms, authorizationStatus, promoFilm} = props;
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -64,7 +64,9 @@ const Main = (props) => {
 
             <div className="movie-card__buttons">
               <button
-                onClick={onPlayBtnClick}
+                onClick={() => {
+                  props.history.push(`/films/${promoFilm.id}/player`);
+                }}
                 className="btn btn--play movie-card__button"
                 type="button"
               >
@@ -168,7 +170,6 @@ Main.propTypes = {
   ).isRequired,
   filmsCount: PropTypes.number.isRequired,
   showMoreFilms: PropTypes.func.isRequired,
-  onPlayBtnClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   history: PropTypes.func,
 };

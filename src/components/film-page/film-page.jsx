@@ -52,6 +52,9 @@ const FilmPage = (props) => {
 
             <div className="movie-card__buttons">
               <button
+                onClick={() => {
+                  props.history.push(`/films/${film.id}/player`);
+                }}
                 className="btn btn--play movie-card__button"
                 type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">

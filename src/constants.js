@@ -12,4 +12,5 @@ export const AppRoute = {
   ADD_REVIEW: `/add-review`,
   FILM_PAGE: `/film-page/:id`,
   MY_LIST: `/my-list`,
+  FULL_SCREEN_PLAER: `/full-screen-player`,
 };

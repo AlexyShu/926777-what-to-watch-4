@@ -32,7 +32,6 @@ describe(`Render correct Main`, () => {
               films = {mockFilms}
               filmsCount = {MOCK_FILMS_COUNT}
               showMoreFilms = {mokcFunction}
-              onPlayBtnClick = {mokcFunction}
               authorizationStatus = {mockString}
               history = {mokcFunction}
             />

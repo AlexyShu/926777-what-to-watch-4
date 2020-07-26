@@ -9,8 +9,8 @@ import Main from "../main/main.jsx";
 import FilmPage from "../film-page/film-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import AddReview from "../add-review/add-review.jsx";
-// import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
-// import withPlayer from "../../hocs/with-player/with-player.jsx";
+import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
+import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 // import {AuthorizationStatus} from "../../reducer/user/user.js";
@@ -21,6 +21,8 @@ import PrivateRoute from "../private-route/private-route.jsx";
 
 const MoviePage = withRouter(FilmPage);
 const MainPage = withRouter(Main);
+const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
+const FullScreenVideoPlayerPage = withRouter(FullScreenVideoPlayer);
 
 class App extends PureComponent {
   constructor(props) {
@@ -29,14 +31,6 @@ class App extends PureComponent {
     this.state = {
       page: `main`,
     };
-    this.onPlayBtnClick = this.onPlayBtnClick.bind(this);
-  }
-
-  onPlayBtnClick(e) {
-    e.preventDefault();
-    this.setState({
-      page: `film-player`,
-    });
   }
 
   // _renderPage() {
@@ -108,7 +102,6 @@ class App extends PureComponent {
                 //     page: `film-page`,
                 //   });
                 // }}
-                onPlayBtnClick={this.onPlayBtnClick}
               />
             )}>
           </Route>
@@ -124,6 +117,13 @@ class App extends PureComponent {
           <Route exact path={AppRoute.MY_LIST}>
             <MyList
               films={films}
+            />
+          </Route>
+          <Route exact path='/films/:id/player'>
+            <FullScreenVideoPlayerPage
+              films = {films}
+              muted = {true}
+              autoPlay = {true}
             />
           </Route>
           <Route exact path={AppRoute.ADD_REVIEW}>
@@ -207,8 +207,6 @@ App.propTypes = {
   ).isRequired,
   filmsCount: PropTypes.number.isRequired,
   showMoreFilms: PropTypes.func.isRequired,
-  onPlayBtnClick: PropTypes.func,
-  onExitClick: PropTypes.func,
   muted: PropTypes.bool,
   autoPlay: PropTypes.bool,
   login: PropTypes.func.isRequired,
