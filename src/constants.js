@@ -14,3 +14,5 @@ export const AppRoute = {
   MY_LIST: `/my-list`,
   FULL_SCREEN_PLAER: `/full-screen-player`,
 };
+
+export const TIMEOUT = 1000;

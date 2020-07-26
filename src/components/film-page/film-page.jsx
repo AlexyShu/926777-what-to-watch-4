@@ -5,6 +5,7 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {getCurentFilm} from "../../utils.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
+import FilmCard from "../film-card/film-card.jsx";
 
 
 const FilmPage = (props) => {
@@ -101,17 +102,13 @@ const FilmPage = (props) => {
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
         <div className="catalog__movies-list">
-          {films.filter((it) => it.genre === film.genre)
-          .map((it) => (
-            <article key={it.id} className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src={it.posterUrl} alt={it.name} width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="#">{it.name}</a>
-              </h3>
-            </article>)
-          )}
+          {films.filter((movie) => movie.genre === film.genre)
+          .map((movie) => (
+            <FilmCard
+              key = {movie.id}
+              film = {movie}
+            />)
+          ).slice(0, 4)}
         </div>
       </section>
 
@@ -157,6 +154,8 @@ FilmPage.propTypes = {
   ).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   history: PropTypes.func,
+  activeItem: PropTypes.number,
+  handleChange: PropTypes.func.isRequired,
 };
 
 

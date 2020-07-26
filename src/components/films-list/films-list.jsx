@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import {getFilms} from "../../reducer/data/selectors.js";
 import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
+import {TIMEOUT} from "../../constants.js";
 
-const TIMEOUT = 1000;
 
 const FilmsList = (props) => {
   const {filteredFilms, filmsCount, handleChange, activeItem} = props;
