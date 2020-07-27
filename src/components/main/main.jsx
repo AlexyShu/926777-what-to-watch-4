@@ -65,7 +65,7 @@ const Main = (props) => {
             <div className="movie-card__buttons">
               <button
                 onClick={() => {
-                  props.history.push(`/films/${promoFilm.id}/player`);
+                  props.history.push(`/player/${promoFilm.id}`);
                 }}
                 className="btn btn--play movie-card__button"
                 type="button"
@@ -77,7 +77,7 @@ const Main = (props) => {
               </button>
               <button
                 onClick={() => {
-                  props.history.push(`/film-page/${promoFilm.id}`);
+                  props.history.push(`/films/${promoFilm.id}`);
                 }}
                 className="btn btn--list movie-card__button"
                 type="button"
@@ -100,6 +100,7 @@ const Main = (props) => {
         <GenresWrapper
           films = {films}
           filmsCount = {filmsCount}
+          showMoreFilms = {showMoreFilms}
         />
         {filmsCount >= films.length ? null :
           <ShowMoreButton

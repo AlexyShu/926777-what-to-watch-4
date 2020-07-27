@@ -13,6 +13,7 @@ const ActionType = {
   GET_FILMS: `GET_FILMS`,
   GET_PROMO_FILM: `GET_PROMO_FILM`,
   GET_COMMENTS: `GET_COMMENTS`,
+  ADD_COMMENTS: `ADD_COMMENTS`,
   GET_FAVORITE_FILMS: `GET_FAVORITE_FILMS`,
 };
 
@@ -48,20 +49,20 @@ const Operation = {
       dispatch(ActionCreator.getPromoFilm(adapterFilm(response.data)));
     });
   },
-  getComments: () => (dispatch, getState, api) => {
-    return api.get(`/comments/41`)
+  getComments: (id) => (dispatch, getState, api) => {
+    return api.get(`/comments/${id}`)
     .then((response) => {
       dispatch(ActionCreator.getComments(response.data));
     });
   },
-  addComment: (commentData) => (dispatch, getState, api) => {
+  addComment: (id, commentData) => (dispatch, getState, api) => {
     return api
-      .post(`/comments/41`, {
+      .post(`/comments/${id}`, {
         rating: commentData.rating,
         comment: commentData.comment
       })
     .then(() => {
-      dispatch(Operation.getComments());
+      dispatch(Operation.getComments(commentData.id));
     });
   },
   getFavoriteFilms: () => (dispatch, getState, api) => {

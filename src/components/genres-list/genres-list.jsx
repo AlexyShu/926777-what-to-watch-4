@@ -8,10 +8,11 @@ import {ALL_GENRES} from "../../constants.js";
 import FilmsList from "../films-list/films-list.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 
+
 const FilmsWrapper = withActiveItem(FilmsList);
 
 const GenresList = (props) => {
-  const {films, onFilterClick, activeFilter, handleChange, filmsCount, filteredFilms} = props;
+  const {films, onFilterClick, activeFilter, handleChange, filmsCount, filteredFilms, showMoreFilms} = props;
   const filters = [ALL_GENRES, ...new Set(films.map((film) => film.genre))];
   return (
     <React.Fragment>
@@ -30,7 +31,7 @@ const GenresList = (props) => {
               {filter}
             </a>
           </li>)
-        )}
+        ).slice(0, 9)}
       </ul>
       <FilmsWrapper
         filteredFilms = {filteredFilms}

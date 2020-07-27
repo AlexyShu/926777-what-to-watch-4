@@ -54,7 +54,7 @@ const FilmPage = (props) => {
             <div className="movie-card__buttons">
               <button
                 onClick={() => {
-                  props.history.push(`/films/${film.id}/player`);
+                  props.history.push(`/player/${film.id}`);
                 }}
                 className="btn btn--play movie-card__button"
                 type="button">

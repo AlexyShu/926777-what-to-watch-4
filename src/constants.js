@@ -10,9 +10,9 @@ export const AppRoute = {
   MAIN: `/`,
   LOGIN: `/login`,
   ADD_REVIEW: `/films/:id/review`,
-  FILM_PAGE: `/film-page/:id`,
+  FILM_PAGE: `/films/:id`,
   MY_LIST: `/my-list`,
-  FULL_SCREEN_PLAER: `/films/:id/player`,
+  FULL_SCREEN_PLAER: `/player/:id`,
 };
 
 export const TIMEOUT = 1000;

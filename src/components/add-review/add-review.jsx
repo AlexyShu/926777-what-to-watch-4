@@ -35,10 +35,11 @@ class AddReview extends PureComponent {
 
   handleSubmit(evt) {
     const {onSubmit} = this.props;
+    const {id} = getCurentFilm(this.props.films, this.props);
     evt.preventDefault();
     this.toggleFormDisability();
 
-    onSubmit(
+    onSubmit(id,
         {
           rating: this.submitFormRef.current.rating.value,
           comment: this.commentRef.current.value
@@ -83,7 +84,7 @@ class AddReview extends PureComponent {
               <nav className="breadcrumbs">
                 <ul className="breadcrumbs__list">
                   <li className="breadcrumbs__item">
-                    <Link to={`/film-page/${film.id}`} className="breadcrumbs__link">
+                    <Link to={`/films/${film.id}`} className="breadcrumbs__link">
                       {film.name}
                     </Link>
                   </li>
@@ -217,6 +218,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(Operation.addComment(commentData));
   }
 });
+
 
 AddReview.propTypes = {
   films: PropTypes.arrayOf(

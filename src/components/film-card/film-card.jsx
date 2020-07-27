@@ -9,7 +9,7 @@ const VideoPlayer = withPlayer(Player);
 const FilmCard = (props) => {
   const {film, onMovieCardMouseOver, onMovieCardMouseOut, isPlaying} = props;
   return (
-    <Link to={`/film-page/${film.id}`} className="small-movie-card catalog__movies-card small-movie-card__link">
+    <Link to={`/films/${film.id}`} className="small-movie-card catalog__movies-card small-movie-card__link">
       <article
         onMouseOver={onMovieCardMouseOver}
         onMouseOut={onMovieCardMouseOut}
