@@ -21,6 +21,7 @@ class Tabs extends PureComponent {
   render() {
     const {film, comments, onTabOverviewClick} = this.props;
     const {selectedTab} = this.state;
+
     return (
       <div className="movie-card__desc">
         <nav className="movie-nav movie-card__nav">
@@ -30,7 +31,6 @@ class Tabs extends PureComponent {
                 className="movie-nav__link"
                 onClick={() => {
                   this.setState({selectedTab: TabName.OVERVIEW});
-                  onTabOverviewClick(film.id);
                 }}
               >
                 Overview
@@ -47,7 +47,10 @@ class Tabs extends PureComponent {
             <li className={`movie-nav__item ${this.getActiveTab(TabName.REVIEWS)}`}>
               <a
                 className="movie-nav__link"
-                onClick={() => this.setState({selectedTab: TabName.REVIEWS})}
+                onClick={() => {
+                  this.setState({selectedTab: TabName.REVIEWS});
+                  onTabOverviewClick(film.id);
+                }}
               >
                 Reviews
               </a>
@@ -179,7 +182,8 @@ Tabs.propTypes = {
           id: PropTypes.number,
           name: PropTypes.string
         })
-      }))
+      })),
+  onTabOverviewClick: PropTypes.func.isRequired
 };
 
 

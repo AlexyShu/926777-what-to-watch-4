@@ -83,11 +83,7 @@ exports[`Render correct Tabs Render Tabs 1`] = `
       className="movie-card__starring"
     >
       <strong>
-        Bill Murray
-        Edward Norton
-        Jude Law
-        Willem Dafoe
-        Saoirse Ronan
+        Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan
       </strong>
     </p>
   </div>

@@ -62,7 +62,7 @@ const Operation = {
         comment: commentData.comment
       })
     .then(() => {
-      dispatch(Operation.getComments(commentData.id));
+      dispatch(Operation.addComment(true));
     });
   },
   getFavoriteFilms: () => (dispatch, getState, api) => {

@@ -14,9 +14,9 @@ const PrivateRoute = (props) => {
       exact={exact}
       render={() => {
         return (
-          authorizationStatus === AuthorizationStatus.NO_AUTH
+          authorizationStatus === AuthorizationStatus.AUTH
             ? render()
-            : <Redirect to={AppRoute.MY_LIST} />
+            : <Redirect to={AppRoute.LOGINT} />
         );
       }}
     />

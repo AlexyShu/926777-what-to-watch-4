@@ -3,7 +3,7 @@
 exports[`Render correct FilmCard Render FilmCard 1`] = `
 <a
   className="small-movie-card catalog__movies-card small-movie-card__link"
-  href="/film-page/1"
+  href="/films/1"
   onClick={[Function]}
 >
   <article

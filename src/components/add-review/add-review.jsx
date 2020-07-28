@@ -35,11 +35,11 @@ class AddReview extends PureComponent {
 
   handleSubmit(evt) {
     const {onSubmit} = this.props;
-    const {id} = getCurentFilm(this.props.films, this.props);
+    const film = getCurentFilm(this.props.films, this.props);
     evt.preventDefault();
     this.toggleFormDisability();
 
-    onSubmit(id,
+    onSubmit(film.id,
         {
           rating: this.submitFormRef.current.rating.value,
           comment: this.commentRef.current.value
@@ -214,8 +214,8 @@ class AddReview extends PureComponent {
 
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(commentData) {
-    dispatch(Operation.addComment(commentData));
+  onSubmit(id, commentData) {
+    dispatch(Operation.addComment(id, commentData));
   }
 });
 

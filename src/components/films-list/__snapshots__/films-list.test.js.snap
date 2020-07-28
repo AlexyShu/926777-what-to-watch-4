@@ -6,7 +6,7 @@ exports[`Render correct FilmsList Render FilmsList 1`] = `
 >
   <a
     className="small-movie-card catalog__movies-card small-movie-card__link"
-    href="/film-page/1"
+    href="/films/1"
     onClick={[Function]}
   >
     <article
@@ -37,7 +37,7 @@ exports[`Render correct FilmsList Render FilmsList 1`] = `
   </a>
   <a
     className="small-movie-card catalog__movies-card small-movie-card__link"
-    href="/film-page/2"
+    href="/films/2"
     onClick={[Function]}
   >
     <article
@@ -68,7 +68,7 @@ exports[`Render correct FilmsList Render FilmsList 1`] = `
   </a>
   <a
     className="small-movie-card catalog__movies-card small-movie-card__link"
-    href="/film-page/3"
+    href="/films/3"
     onClick={[Function]}
   >
     <article

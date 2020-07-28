@@ -238,11 +238,7 @@ Array [
                 className="movie-card__starring"
               >
                 <strong>
-                  Bill Murray
-                  Edward Norton
-                  Jude Law
-                  Willem Dafoe
-                  Saoirse Ronan
+                  Bill Murray, Edward Norton, Jude Law, Willem Dafoe, Saoirse Ronan
                 </strong>
               </p>
             </div>
@@ -267,7 +263,7 @@ Array [
       >
         <a
           className="small-movie-card catalog__movies-card small-movie-card__link"
-          href="/film-page/1"
+          href="/films/1"
           onClick={[Function]}
         >
           <article>

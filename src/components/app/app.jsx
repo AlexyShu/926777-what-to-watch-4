@@ -50,10 +50,10 @@ class App extends PureComponent {
           </Route>
           <PrivateRoute
             exact
-            path={AppRoute.LOGIN}
+            path={AppRoute.MY_LIST}
             render={() => {
               return (
-                <SignIn onSubmit={login} />
+                <MyList />
               );
             }}
           />
@@ -64,19 +64,25 @@ class App extends PureComponent {
               autoPlay = {true}
             />
           </Route>
-          <Route exact path={AppRoute.ADD_REVIEW}>
-            <AddReviewPage
-              films = {films}
-            />
-          </Route>
+          <PrivateRoute
+            exact
+            path={AppRoute.ADD_REVIEW}
+            render={() => {
+              return (
+                <AddReviewPage
+                  films = {films}
+                />
+              );
+            }}
+          />
           <Route exact path={AppRoute.FILM_PAGE}>
             <MoviePage
               films = {films}
               authorizationStatus = {authorizationStatus}
             />
           </Route>
-          <Route exact path={AppRoute.MY_LIST}>
-            <MyList />
+          <Route exact path={AppRoute.LOGIN}>
+            <SignIn onSubmit={login} />
           </Route>
           <Route exact path="/loading-error">
             <LoadingError />
