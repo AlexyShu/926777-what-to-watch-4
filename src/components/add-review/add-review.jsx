@@ -1,6 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
-import {Operation} from "../../reducer/data/data";
+import {Operation} from "../../reducer/data/data.js";
+import {sendReview} from "../../reducer/data/selectors.js";
 import {connect} from "react-redux";
 import {getCurentFilm} from "../../utils.js";
 import {Link} from "react-router-dom";
@@ -38,6 +39,7 @@ class AddReview extends PureComponent {
     const film = getCurentFilm(this.props.films, this.props);
     evt.preventDefault();
     this.toggleFormDisability();
+    console.log(this.props.successComment)
 
     onSubmit(film.id,
         {
@@ -47,6 +49,11 @@ class AddReview extends PureComponent {
         () => {
           this.toggleFormDisability();
           this.setState({commentAdded: true});
+          if (this.props.successComment) {
+            this.props.history.push(`/films/${film.id}`);
+          } else {
+            this.props.history.push(`/loading-error`);
+          }
         }
     );
   }
@@ -59,9 +66,17 @@ class AddReview extends PureComponent {
     });
   }
 
+  // redirectToPage() {
+  //   const film = getCurentFilm(this.props.films, this.props);
+  //   if (this.props.successComment) {
+  //     this.props.history.push(`/films/${film.id}`);
+  //   } this.props.history.push(`/loading-error`);
+  // }
+
   render() {
-    const {films} = this.props;
+    const {films, successComment} = this.props;
     const film = getCurentFilm(films, this.props);
+
     return (
       film ?
         <section className="movie-card movie-card--full">
@@ -213,6 +228,10 @@ class AddReview extends PureComponent {
 }
 
 
+const mapStateToProps = (state) => ({
+  successComment: sendReview(state),
+});
+
 const mapDispatchToProps = (dispatch) => ({
   onSubmit(id, commentData) {
     dispatch(Operation.addComment(id, commentData));
@@ -242,8 +261,10 @@ AddReview.propTypes = {
         trailerUrl: PropTypes.string
       })
   ).isRequired,
-  onSubmit: PropTypes.func.isRequired
+  onSubmit: PropTypes.func.isRequired,
+  history: PropTypes.func,
+  successComment: PropTypes.bool,
 };
 
 
-export default connect(null, mapDispatchToProps)(AddReview);
+export default connect(mapStateToProps, mapDispatchToProps)(AddReview);

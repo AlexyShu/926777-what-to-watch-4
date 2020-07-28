@@ -32,4 +32,8 @@ export const getComments = (state) => {
   return state[Namespace.DATA].comments;
 };
 
+export const sendReview = (state) => {
+  return state[Namespace.DATA].successComment;
+};
+
 

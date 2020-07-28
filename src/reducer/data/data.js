@@ -1,11 +1,17 @@
 import {extend, adapterData, adapterFilm} from "../../utils.js";
 
+const SuccessComment = {
+  SUCSESS: true,
+  ERROR: false
+};
+
 // данные, объект начального состояния
 const initialState = {
   films: [],
   comments: [],
   promoFilm: {},
-  favoriteFilms: []
+  favoriteFilms: [],
+  successComment: SuccessComment.ERROR
 };
 
 // Action
@@ -15,6 +21,7 @@ const ActionType = {
   GET_COMMENTS: `GET_COMMENTS`,
   ADD_COMMENTS: `ADD_COMMENTS`,
   GET_FAVORITE_FILMS: `GET_FAVORITE_FILMS`,
+  SEND_SUCCESS_COMMENT: `SEND_SUCCESS_COMMENT`
 };
 
 const ActionCreator = {
@@ -33,6 +40,10 @@ const ActionCreator = {
   getFavoriteFilms: (favoriteFilms) => ({
     type: ActionType.GET_FAVORITE_FILMS,
     payload: favoriteFilms
+  }),
+  sendReview: (status) => ({
+    type: ActionType.SEND_SUCCESS_COMMENT,
+    payload: status,
   }),
 };
 
@@ -62,7 +73,8 @@ const Operation = {
         comment: commentData.comment
       })
     .then(() => {
-      dispatch(Operation.addComment(true));
+      // dispatch(Operation.addComment(true));
+      dispatch(ActionCreator.sendReview(SuccessComment.SUCSESS));
     });
   },
   getFavoriteFilms: () => (dispatch, getState, api) => {
@@ -90,6 +102,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.GET_FAVORITE_FILMS:
       return extend(state, {
         favoriteFilms: action.payload
+      });
+    case ActionType.SEND_SUCCESS_COMMENT:
+      return extend(state, {
+        successComment: action.payload
       });
   }
   return state;
