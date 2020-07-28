@@ -13,6 +13,7 @@ export const AppRoute = {
   FILM_PAGE: `/films/:id`,
   MY_LIST: `/my-list`,
   FULL_SCREEN_PLAER: `/player/:id`,
+  ERROR: `/loading-error`
 };
 
 export const TIMEOUT = 1000;

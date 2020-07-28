@@ -66,7 +66,7 @@ const Operation = {
       dispatch(ActionCreator.getComments(response.data));
     });
   },
-  addComment: (id, commentData) => (dispatch, getState, api) => {
+  addComment: (id, commentData, onSuccess) => (dispatch, getState, api) => {
     return api
       .post(`/comments/${id}`, {
         rating: commentData.rating,
@@ -75,6 +75,7 @@ const Operation = {
     .then(() => {
       // dispatch(Operation.addComment(true));
       dispatch(ActionCreator.sendReview(SuccessComment.SUCSESS));
+      onSuccess();
     });
   },
   getFavoriteFilms: () => (dispatch, getState, api) => {

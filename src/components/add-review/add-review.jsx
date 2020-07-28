@@ -39,7 +39,6 @@ class AddReview extends PureComponent {
     const film = getCurentFilm(this.props.films, this.props);
     evt.preventDefault();
     this.toggleFormDisability();
-    console.log(this.props.successComment)
 
     onSubmit(film.id,
         {
@@ -66,15 +65,8 @@ class AddReview extends PureComponent {
     });
   }
 
-  // redirectToPage() {
-  //   const film = getCurentFilm(this.props.films, this.props);
-  //   if (this.props.successComment) {
-  //     this.props.history.push(`/films/${film.id}`);
-  //   } this.props.history.push(`/loading-error`);
-  // }
-
   render() {
-    const {films, successComment} = this.props;
+    const {films} = this.props;
     const film = getCurentFilm(films, this.props);
 
     return (
@@ -233,8 +225,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(id, commentData) {
-    dispatch(Operation.addComment(id, commentData));
+  onSubmit(id, commentData, onSuccess) {
+    dispatch(Operation.addComment(id, commentData, onSuccess));
   }
 });
 

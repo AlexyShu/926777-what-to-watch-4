@@ -84,7 +84,7 @@ class App extends PureComponent {
           <Route exact path={AppRoute.LOGIN}>
             <SignIn onSubmit={login} />
           </Route>
-          <Route exact path="/loading-error">
+          <Route exact path={AppRoute.ERROR}>
             <LoadingError />
           </Route>
         </Switch>
