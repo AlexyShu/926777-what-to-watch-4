@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import AddReview from "./add-review.jsx";
-import {mokcFunction, MOCK_FILMS_COUNT, mockFilms, mockString} from "../../mocks-for-tests.js";
+import {mokcFunction, MOCK_FILMS_COUNT, mockFilms, mockString, mockBool} from "../../mocks-for-tests.js";
 import Namespace from "../../reducer/namespace.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
@@ -38,6 +38,8 @@ describe(`Render correct AddReview`, () => {
               match = {match}
               onMovieCaronSubmitdMouseOut = {mokcFunction}
               films = {mockFilms}
+              handleChangeTextValidation = {mokcFunction}
+              isFormInvalid = {mockBool}
             />
           </MemoryRouter>
         </Provider>)

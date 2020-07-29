@@ -6,6 +6,9 @@ import {getCurentFilm} from "../../utils.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
 import FilmCard from "../film-card/film-card.jsx";
+import withActiveTab from "../../hocs/with-active-tab/with-active-tab.jsx";
+
+const TabsWrapper = withActiveTab(Tabs);
 
 
 const FilmPage = (props) => {
@@ -102,7 +105,7 @@ const FilmPage = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <Tabs
+            <TabsWrapper
               film={film}
             />
           </div>

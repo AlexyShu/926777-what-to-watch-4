@@ -18,18 +18,22 @@ import {AppRoute} from "../../constants.js";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
 import LoadingError from "../loading-error/loading-error.jsx";
+import withFormValidation from "../../hocs/with-form-validation/with-form-validation.jsx";
 
 
 const MoviePage = withRouter(FilmPage);
 const MainPage = withRouter(Main);
 const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
 const FullScreenVideoPlayerPage = withRouter(FullScreenVideoPlayer);
-const AddReviewPage = withRouter(AddReview);
+const AddReviewWrapper = withFormValidation(AddReview);
+const AddReviewPage = withRouter(AddReviewWrapper);
+
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
   }
+
   render() {
     const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms, user, removeFavoriteFilms, addFavoriteFilms} = this.props;
     if (films === null || films === undefined || promoFilm === null || promoFilm === undefined) {

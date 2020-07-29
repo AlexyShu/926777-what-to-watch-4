@@ -5,10 +5,8 @@ import {sendReview} from "../../reducer/data/selectors.js";
 import {connect} from "react-redux";
 import {getCurentFilm} from "../../utils.js";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../constants.js";
+import {AppRoute, MIN_REVIEW_LENGTH, MAX_REVIEW_LENGTH} from "../../constants.js";
 
-const MIN_REVIEW_LENGTH = 50;
-const MAX_REVIEW_LENGTH = 400;
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -19,13 +17,7 @@ class AddReview extends PureComponent {
     this.sendCommentButtonRef = createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.toggleFormDisability = this.toggleFormDisability.bind(this);
-
-    this.state = {
-      commentAdded: false,
-      isFormInvalid: true
-    };
   }
 
   toggleFormDisability() {
@@ -47,7 +39,6 @@ class AddReview extends PureComponent {
         },
         () => {
           this.toggleFormDisability();
-          this.setState({commentAdded: true});
           if (this.props.successComment) {
             this.props.history.push(`/films/${film.id}`);
           } else {
@@ -57,16 +48,9 @@ class AddReview extends PureComponent {
     );
   }
 
-  handleChange(evt) {
-    this.setState({
-      isFormInvalid:
-        evt.target.value.length < MIN_REVIEW_LENGTH ||
-        evt.target.value.length > MAX_REVIEW_LENGTH
-    });
-  }
 
   render() {
-    const {films} = this.props;
+    const {films, handleChangeTextValidation, isFormInvalid} = this.props;
     const film = getCurentFilm(films, this.props);
 
     return (
@@ -199,14 +183,14 @@ class AddReview extends PureComponent {
                   ref={this.commentRef}
                   minLength={MIN_REVIEW_LENGTH}
                   maxLength={MAX_REVIEW_LENGTH}
-                  onChange={this.handleChange}
+                  onChange={handleChangeTextValidation}
                 />
                 <div className="add-review__submit">
                   <button
                     className="add-review__btn"
                     type="submit"
                     ref={this.sendCommentButtonRef}
-                    disabled={this.state.isFormInvalid}
+                    disabled={isFormInvalid}
                   >
                     Post
                   </button>
@@ -256,6 +240,8 @@ AddReview.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   history: PropTypes.func,
   successComment: PropTypes.bool,
+  handleChangeTextValidation: PropTypes.func,
+  isFormInvalid: PropTypes.bool,
 };
 
 
