@@ -9,7 +9,7 @@ import FilmCard from "../film-card/film-card.jsx";
 
 
 const FilmPage = (props) => {
-  const {films, authorizationStatus} = props;
+  const {films, authorizationStatus, removeFavoriteFilms, addFavoriteFilms} = props;
   const film = getCurentFilm(films, props);
   return (film ? <React.Fragment>
     <section className="movie-card movie-card--full">
@@ -65,13 +65,25 @@ const FilmPage = (props) => {
               </button>
               <button
                 onClick={() => {
-                  props.history.push(`/`);
+                  if (film.isFavorite) {
+                    removeFavoriteFilms(film.id);
+                    props.history.push(`/`);
+                  } else {
+                    addFavoriteFilms(film.id);
+                  }
                 }}
                 className="btn btn--list movie-card__button"
-                type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
+                type="button"
+              >
+                {film.isFavorite ? (
+                  <svg viewBox="0 0 18 14" width="18" height="14">
+                    <use xlinkHref="#in-list"></use>
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"></use>
+                  </svg>
+                )}
                 <span>My list</span>
               </button>
               {authorizationStatus === AuthorizationStatus.AUTH ? (
@@ -156,6 +168,8 @@ FilmPage.propTypes = {
   history: PropTypes.func,
   activeItem: PropTypes.number,
   handleChange: PropTypes.func.isRequired,
+  addFavoriteFilms: PropTypes.func.isRequired,
+  removeFavoriteFilms: PropTypes.func.isRequired,
 };
 
 

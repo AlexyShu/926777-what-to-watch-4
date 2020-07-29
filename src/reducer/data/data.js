@@ -21,7 +21,9 @@ const ActionType = {
   GET_COMMENTS: `GET_COMMENTS`,
   ADD_COMMENTS: `ADD_COMMENTS`,
   GET_FAVORITE_FILMS: `GET_FAVORITE_FILMS`,
-  SEND_SUCCESS_COMMENT: `SEND_SUCCESS_COMMENT`
+  SEND_SUCCESS_COMMENT: `SEND_SUCCESS_COMMENT`,
+  ADD_FAVORITE_FILMS: `ADD_FAVORITE_FILMS`,
+  DELETE_FAVORITE_FILMS: `DELETE_FAVORITE_FILMS`
 };
 
 const ActionCreator = {
@@ -45,6 +47,18 @@ const ActionCreator = {
     type: ActionType.SEND_SUCCESS_COMMENT,
     payload: status,
   }),
+  addFavoriteFilms: (film) => {
+    return {
+      type: ActionType.ADD_FAVORITE_FILMS,
+      payload: film,
+    };
+  },
+  deleteFavoriteFilms: (film) => {
+    return {
+      type: ActionType.DELETE_FAVORITE_FILMS,
+      payload: film,
+    };
+  },
 };
 
 const Operation = {
@@ -84,6 +98,24 @@ const Operation = {
       dispatch(ActionCreator.getFavoriteFilms(adapterData(response.data)));
     });
   },
+  addFavoriteFilms: (id) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${id}/1`)
+      .then((response) => {
+        dispatch(ActionCreator.addFavoriteFilms(adapterFilm(response.data)));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
+  removeFavoriteFilms: (id) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${id}/0`)
+      .then((response) => {
+        dispatch(ActionCreator.removeFavoriteFilms(adapterFilm(response.data)));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -100,16 +132,25 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         comments: action.payload
       });
-    case ActionType.GET_FAVORITE_FILMS:
-      return extend(state, {
-        favoriteFilms: action.payload
-      });
     case ActionType.SEND_SUCCESS_COMMENT:
       return extend(state, {
         successComment: action.payload
       });
+    case ActionType.ADD_FAVORITE_FILMS:
+      return extend(state, {
+        favoriteFilms: [...state.favoriteFilms].filter((film) => film.id !== action.payload.id),
+      });
+    case ActionType.DELETE_FAVORITE_FILMS:
+      return extend(state, {
+        favoriteFilms: [...state.favoriteFilms].filter((film) => film.id !== action.payload.id),
+      });
+    case ActionType.GET_FAVORITE_FILMS:
+      return extend(state, {
+        favoriteFilms: action.payload
+      });
   }
   return state;
 };
+
 
 export {reducer, ActionType, ActionCreator, Operation};

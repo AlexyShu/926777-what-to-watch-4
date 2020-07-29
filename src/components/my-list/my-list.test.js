@@ -15,7 +15,8 @@ describe(`Render correct MyList`, () => {
     const store = mockStore({
       [Namespace.DATA]: {
         films: mockFilms,
-        promoFilm: mockFilmCard
+        promoFilm: mockFilmCard,
+        favoriteFilms: mockFilms
       },
       [Namespace.STATE]: {
         filmsCount: MOCK_FILMS_COUNT
@@ -29,7 +30,7 @@ describe(`Render correct MyList`, () => {
         <Provider store={store}>
           <MemoryRouter>
             <MyList
-              films = {mockFilms}
+              favoriteFilmsfilms = {mockFilms}
             />
           </MemoryRouter>
         </Provider>)

@@ -12,6 +12,7 @@ import AddReview from "../add-review/add-review.jsx";
 import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
 import {getAuthorizationStatus, getUser} from "../../reducer/user/selectors.js";
 import {AppRoute} from "../../constants.js";
 import MyList from "../my-list/my-list.jsx";
@@ -30,7 +31,7 @@ class App extends PureComponent {
     super(props);
   }
   render() {
-    const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms, user} = this.props;
+    const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms, user, removeFavoriteFilms, addFavoriteFilms} = this.props;
     if (films === null || films === undefined || promoFilm === null || promoFilm === undefined) {
       return (
         <LoadingError />
@@ -47,6 +48,8 @@ class App extends PureComponent {
               authorizationStatus = {authorizationStatus}
               promoFilm = {promoFilm}
               user = {user}
+              removeFavoriteFilms = {removeFavoriteFilms}
+              addFavoriteFilms = {addFavoriteFilms}
             />
           </Route>
           <PrivateRoute
@@ -80,6 +83,8 @@ class App extends PureComponent {
             <MoviePage
               films = {films}
               authorizationStatus = {authorizationStatus}
+              removeFavoriteFilms = {removeFavoriteFilms}
+              addFavoriteFilms = {addFavoriteFilms}
             />
           </Route>
           <Route exact path={AppRoute.LOGIN}>
@@ -110,6 +115,12 @@ const mapDispatchToProps = (dispatch) => ({
   login(authData) {
     dispatch(UserOperation.login(authData));
   },
+  addFavoriteFilms(id) {
+    dispatch(DataOperation.addFavoriteFilms(id));
+  },
+  removeFavoriteFilms(id) {
+    dispatch(DataOperation.removeFavoriteFilms(id));
+  }
 });
 
 
@@ -167,6 +178,8 @@ App.propTypes = {
     name: PropTypes.string,
     avatarUrl: PropTypes.string,
   }).isRequired,
+  addFavoriteFilms: PropTypes.func.isRequired,
+  removeFavoriteFilms: PropTypes.func.isRequired,
 };
 
 export {App};

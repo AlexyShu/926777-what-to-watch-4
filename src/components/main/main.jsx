@@ -7,10 +7,11 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
 
+
 const GenresWrapper = withActiveItem(GenresList);
 
 const Main = (props) => {
-  const {films, filmsCount, showMoreFilms, authorizationStatus, promoFilm} = props;
+  const {films, filmsCount, showMoreFilms, authorizationStatus, promoFilm, removeFavoriteFilms, addFavoriteFilms} = props;
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -77,14 +78,26 @@ const Main = (props) => {
               </button>
               <button
                 onClick={() => {
-                  props.history.push(`/films/${promoFilm.id}`);
+                  if (promoFilm.isFavorite) {
+                    removeFavoriteFilms(promoFilm.id);
+                  } else {
+                    addFavoriteFilms(promoFilm.id);
+                    props.history.push(`/films/${promoFilm.id}`);
+                  }
                 }}
                 className="btn btn--list movie-card__button"
                 type="button"
               >
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
+                {promoFilm.isFavorite ? (
+                  <svg viewBox="0 0 18 14" width="18" height="14">
+                    <use xlinkHref="#in-list"></use>
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"></use>
+                  </svg>
+                )}
+
                 <span>My list</span>
               </button>
             </div>
@@ -173,7 +186,10 @@ Main.propTypes = {
   showMoreFilms: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   history: PropTypes.func,
+  addFavoriteFilms: PropTypes.func.isRequired,
+  removeFavoriteFilms: PropTypes.func.isRequired,
 };
+
 
 export default Main;
 
