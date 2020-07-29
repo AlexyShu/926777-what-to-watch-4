@@ -12,7 +12,7 @@ import AddReview from "../add-review/add-review.jsx";
 import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {getAuthorizationStatus, getUser} from "../../reducer/user/selectors.js";
 import {AppRoute} from "../../constants.js";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
@@ -30,7 +30,7 @@ class App extends PureComponent {
     super(props);
   }
   render() {
-    const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms} = this.props;
+    const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms, user} = this.props;
     if (films === null || films === undefined || promoFilm === null || promoFilm === undefined) {
       return (
         <LoadingError />
@@ -46,6 +46,7 @@ class App extends PureComponent {
               showMoreFilms = {showMoreFilms}
               authorizationStatus = {authorizationStatus}
               promoFilm = {promoFilm}
+              user = {user}
             />
           </Route>
           <PrivateRoute
@@ -99,6 +100,7 @@ const mapStateToProps = (state) => ({
   films: getFilms(state),
   promoFilm: getPromoFilm(state),
   authorizationStatus: getAuthorizationStatus(state),
+  user: getUser(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -159,6 +161,12 @@ App.propTypes = {
   login: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   history: PropTypes.func,
+  user: PropTypes.shape({
+    id: PropTypes.number,
+    email: PropTypes.string,
+    name: PropTypes.string,
+    avatarUrl: PropTypes.string,
+  }).isRequired,
 };
 
 export {App};
