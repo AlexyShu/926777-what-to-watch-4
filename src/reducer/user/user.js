@@ -57,7 +57,7 @@ const Operation = {
       });
   },
 
-  login: (authData) => (dispatch, getState, api) => {
+  login: (authData, onSuccess) => (dispatch, getState, api) => {
     return api
       .post(`/login`, {
         email: authData.login,
@@ -65,6 +65,7 @@ const Operation = {
       })
       .then(() => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        onSuccess();
       });
   }
 };

@@ -27,6 +27,7 @@ const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
 const FullScreenVideoPlayerPage = withRouter(FullScreenVideoPlayer);
 const AddReviewWrapper = withFormValidation(AddReview);
 const AddReviewPage = withRouter(AddReviewWrapper);
+const SignInPage = withRouter(SignIn);
 
 
 class App extends PureComponent {
@@ -92,7 +93,10 @@ class App extends PureComponent {
             />
           </Route>
           <Route exact path={AppRoute.LOGIN}>
-            <SignIn onSubmit={login} />
+            <SignInPage
+              onSubmit={login}
+              authorizationStatus={authorizationStatus}
+            />
           </Route>
           <Route exact path={AppRoute.ERROR}>
             <LoadingError />
@@ -116,8 +120,8 @@ const mapDispatchToProps = (dispatch) => ({
   showMoreFilms() {
     dispatch(ActionCreator.showMoreFilms());
   },
-  login(authData) {
-    dispatch(UserOperation.login(authData));
+  login(authData, onSuccess) {
+    dispatch(UserOperation.login(authData, onSuccess));
   },
   addFavoriteFilms(id) {
     dispatch(DataOperation.addFavoriteFilms(id));

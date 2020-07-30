@@ -1,6 +1,6 @@
 import {extend, adapterData, adapterFilm} from "../../utils.js";
 
-const SuccessComment = {
+const SuccessPost = {
   SUCSESS: true,
   ERROR: false
 };
@@ -11,7 +11,7 @@ const initialState = {
   comments: [],
   promoFilm: {},
   favoriteFilms: [],
-  successComment: SuccessComment.ERROR
+  successComment: SuccessPost.ERROR,
 };
 
 // Action
@@ -88,7 +88,7 @@ const Operation = {
       })
     .then(() => {
       // dispatch(Operation.addComment(true));
-      dispatch(ActionCreator.sendReview(SuccessComment.SUCSESS));
+      dispatch(ActionCreator.sendReview(SuccessPost.SUCSESS));
       onSuccess();
     });
   },

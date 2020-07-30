@@ -2,6 +2,7 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -21,8 +22,16 @@ class SignIn extends PureComponent {
     onSubmit({
       login: this.loginRef.current.value,
       password: this.passwordRef.current.value
+    },
+    () => {
+      if (this.props.authorizationStatus === AuthorizationStatus.AUTH) {
+        this.props.history.push(`/`);
+      } else {
+        this.props.history.push(`/loading-error`);
+      }
     });
   }
+
   render() {
     return (
       <div className="user-page">
@@ -105,7 +114,9 @@ class SignIn extends PureComponent {
 }
 
 SignIn.propTypes = {
-  onSubmit: PropTypes.func
+  onSubmit: PropTypes.func,
+  authorizationStatus: PropTypes.string,
+  history: PropTypes.func,
 };
 
 export default SignIn;
