@@ -12,7 +12,7 @@ import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 const FilmsWrapper = withActiveItem(FilmsList);
 
 const GenresList = (props) => {
-  const {films, onFilterClick, activeFilter, handleChange, filmsCount, filteredFilms} = props;
+  const {films, onFilterClick, activeFilter, handleChange, filmsCount, filteredFilms, showMoreFilms} = props;
   const filters = [ALL_GENRES, ...new Set(films.map((film) => film.genre))];
   return (
     <React.Fragment>
@@ -36,6 +36,7 @@ const GenresList = (props) => {
       <FilmsWrapper
         filteredFilms = {filteredFilms}
         filmsCount = {filmsCount}
+        showMoreFilms = {showMoreFilms}
       />
     </React.Fragment>
   );
@@ -99,6 +100,7 @@ GenresList.propTypes = {
         trailerUrl: PropTypes.string
       })
   ).isRequired,
+  showMoreFilms: PropTypes.func.isRequired,
 };
 
 export {GenresList};

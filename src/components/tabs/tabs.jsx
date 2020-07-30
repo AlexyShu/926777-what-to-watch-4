@@ -170,7 +170,7 @@ Tabs.propTypes = {
           name: PropTypes.string
         })
       })),
-  onTabOverviewClick: PropTypes.func.isRequired,
+  onTabOverviewClick: PropTypes.func,
   getActiveTab: PropTypes.func.isRequired,
   setActiveTab: PropTypes.func.isRequired,
   selectedTab: PropTypes.string.isRequired,

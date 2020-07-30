@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import GenresList from "../genres-list/genres-list.jsx";
-import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
@@ -115,11 +114,6 @@ const Main = (props) => {
           filmsCount = {filmsCount}
           showMoreFilms = {showMoreFilms}
         />
-        {filmsCount >= films.length ? null :
-          <ShowMoreButton
-            showMoreFilms = {showMoreFilms}
-          />
-        }
 
       </section>
 

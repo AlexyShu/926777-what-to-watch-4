@@ -30,6 +30,7 @@ describe(`Render correct GenresList`, () => {
               handleChange= {mokcFunction}
               filmsCount = {MOCK_FILMS_COUNT}
               filteredFilms = {mockFilms}
+              showMoreFilms = {mokcFunction}
             />
           </MemoryRouter>
         </Provider>)

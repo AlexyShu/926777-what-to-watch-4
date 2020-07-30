@@ -167,7 +167,7 @@ FilmPage.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   history: PropTypes.func,
   activeItem: PropTypes.number,
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
   addFavoriteFilms: PropTypes.func.isRequired,
   removeFavoriteFilms: PropTypes.func.isRequired,
 };

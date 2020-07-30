@@ -32,6 +32,7 @@ describe(`Render correct FilmsList`, () => {
               activeItem = {MOCK_FILMS_COUNT}
               handleChange = {mokcFunction}
               filteredFilms = {mockFilms}
+              showMoreFilms = {mokcFunction}
             />
           </MemoryRouter>
         </Provider>)

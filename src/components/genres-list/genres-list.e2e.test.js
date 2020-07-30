@@ -5,7 +5,7 @@ import {GenresList} from "./genres-list.jsx";
 import {Provider} from "react-redux";
 import Namespace from "../../reducer/namespace.js";
 import configureStore from "redux-mock-store";
-import {mockFilms, MOCK_ACTIVE_FILTER, MOCK_FILMS_COUNT} from "../../mocks-for-tests.js";
+import {mockFilms, MOCK_ACTIVE_FILTER, MOCK_FILMS_COUNT, mokcFunction} from "../../mocks-for-tests.js";
 import {MemoryRouter} from "react-router-dom";
 
 Enzyme.configure({
@@ -36,11 +36,12 @@ describe(`Filter click`, () => {
               handleChange = {handleChange}
               filmsCount = {MOCK_FILMS_COUNT}
               filteredFilms = {mockFilms}
+              showMoreFilms = {mokcFunction}
             />
           </MemoryRouter>
         </Provider>);
 
-    const filters = filtersList.find(`catalog__genres-item`);
+    const filters = filtersList.find(`li.catalog__genres-item`);
     const filtersCount = filters.length;
 
     filters.forEach((filter) => {

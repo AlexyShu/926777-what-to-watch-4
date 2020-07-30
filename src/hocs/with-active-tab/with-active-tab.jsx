@@ -66,7 +66,7 @@ const withActiveTab = (Component) => {
             name: PropTypes.string
           })
         })),
-    onTabOverviewClick: PropTypes.func.isRequired
+    onTabOverviewClick: PropTypes.func
   };
 
   return WithActiveTab;

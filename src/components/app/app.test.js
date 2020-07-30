@@ -37,6 +37,7 @@ describe(`Render correct App`, () => {
             authorizationStatus = {mockString}
             addFavoriteFilms = {mokcFunction}
             removeFavoriteFilms = {mokcFunction}
+            history = {mokcFunction}
           />
         </Provider>)
     .toJSON();

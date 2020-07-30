@@ -2,24 +2,32 @@ import React from "react";
 import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
 import {TIMEOUT} from "../../constants.js";
+import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
 
 const FilmsList = (props) => {
-  const {filteredFilms, filmsCount, handleChange, activeItem} = props;
-  return <div className="catalog__movies-list">
-    {filteredFilms.map((film) => (
-      <FilmCard
-        key = {film.id}
-        film = {film}
-        onMovieCardMouseOver={() => {
-          setTimeout(() => {
-            handleChange(film.id);
-          }, TIMEOUT);
-        }}
-        onMovieCardMouseOut={() => handleChange(null)}
-        isPlaying={film.id === activeItem}
-      />)).slice(0, filmsCount)}
-  </div>;
+  const {filteredFilms, filmsCount, handleChange, activeItem, showMoreFilms} = props;
+  return <React.Fragment>
+    <div className="catalog__movies-list">
+      {filteredFilms.map((film) => (
+        <FilmCard
+          key = {film.id}
+          film = {film}
+          onMovieCardMouseOver={() => {
+            setTimeout(() => {
+              handleChange(film.id);
+            }, TIMEOUT);
+          }}
+          onMovieCardMouseOut={() => handleChange(null)}
+          isPlaying={film.id === activeItem}
+        />)).slice(0, filmsCount)}
+    </div>
+    {filmsCount >= filteredFilms.length ? null :
+      <ShowMoreButton
+        showMoreFilms = {showMoreFilms}
+      />
+    };
+  </React.Fragment>;
 };
 
 FilmsList.propTypes = {
@@ -46,7 +54,8 @@ FilmsList.propTypes = {
   ).isRequired,
   filmsCount: PropTypes.number.isRequired,
   activeItem: PropTypes.number,
-  handleChange: PropTypes.func.isRequired,
+  handleChange: PropTypes.func,
+  showMoreFilms: PropTypes.func.isRequired,
 };
 
 export default FilmsList;
