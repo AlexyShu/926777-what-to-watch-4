@@ -266,7 +266,10 @@ Array [
           href="/films/1"
           onClick={[Function]}
         >
-          <article>
+          <article
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+          >
             <div
               className="small-movie-card__image"
             >

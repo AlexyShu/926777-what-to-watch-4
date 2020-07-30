@@ -5,10 +5,12 @@ import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {getCurentFilm} from "../../utils.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
-import FilmCard from "../film-card/film-card.jsx";
+import SimilarFilmsList from "../similar-films-list/similar-films-list.jsx";
 import withActiveTab from "../../hocs/with-active-tab/with-active-tab.jsx";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 
 const TabsWrapper = withActiveTab(Tabs);
+const SimilarFilmsWrapper = withActiveItem(SimilarFilmsList);
 
 
 const FilmPage = (props) => {
@@ -116,15 +118,10 @@ const FilmPage = (props) => {
     <div className="page-content">
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
-        <div className="catalog__movies-list">
-          {films.filter((movie) => movie.genre === film.genre)
-          .map((movie) => (
-            <FilmCard
-              key = {movie.id}
-              film = {movie}
-            />)
-          ).slice(0, 4)}
-        </div>
+        <SimilarFilmsWrapper
+          films = {films}
+          film = {film}
+        />
       </section>
 
       <footer className="page-footer">
