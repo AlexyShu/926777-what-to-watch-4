@@ -2,9 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
-import FilmCard from "../film-card/film-card.jsx";
+import FavoritsFilms from "../favorits-films/favorits-films.jsx";
 import {getFavoriteFilms} from "../../reducer/data/selectors.js";
 import {connect} from "react-redux";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
+
+
+const FavoritsFilmsWrapper = withActiveItem(FavoritsFilms);
 
 const MyList = (props) => {
   const {favoriteFilms} = props;
@@ -30,8 +34,11 @@ const MyList = (props) => {
 
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
+        <FavoritsFilmsWrapper
+          favoriteFilms = {favoriteFilms}
+        />
 
-        <div className="catalog__movies-list">
+        {/* <div className="catalog__movies-list">
 
           {favoriteFilms.map((film) => (
             <FilmCard
@@ -40,7 +47,7 @@ const MyList = (props) => {
             />)
           )}
 
-        </div>
+        </div> */}
       </section>
 
       <footer className="page-footer">

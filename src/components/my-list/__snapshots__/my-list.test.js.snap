@@ -68,7 +68,10 @@ exports[`Render correct MyList Render MyList 1`] = `
         href="/films/1"
         onClick={[Function]}
       >
-        <article>
+        <article
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
           <div
             className="small-movie-card__image"
           >
@@ -96,7 +99,10 @@ exports[`Render correct MyList Render MyList 1`] = `
         href="/films/2"
         onClick={[Function]}
       >
-        <article>
+        <article
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
           <div
             className="small-movie-card__image"
           >
@@ -124,7 +130,10 @@ exports[`Render correct MyList Render MyList 1`] = `
         href="/films/3"
         onClick={[Function]}
       >
-        <article>
+        <article
+          onMouseOut={[Function]}
+          onMouseOver={[Function]}
+        >
           <div
             className="small-movie-card__image"
           >
