@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FilmCard from "./film-card.jsx";
-import {mockFilm, mockBool, mokcFunction, mockFilms, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
+import {mockFilm, MOCK_BOOL, mokcFunction, mockFilms, MOCK_FILMS_COUNT, MOCK_STRING} from "../../mocks-for-tests.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Namespace from "../../reducer/namespace.js";
@@ -20,7 +20,7 @@ describe(`Render correct FilmCard`, () => {
         filmsCount: MOCK_FILMS_COUNT
       },
       [Namespace.USER]: {
-        authorizationStatus: mockString
+        authorizationStatus: MOCK_STRING
       }
     });
     const tree = renderer
@@ -29,7 +29,7 @@ describe(`Render correct FilmCard`, () => {
           <MemoryRouter>
             <FilmCard
               film = {mockFilm}
-              isPlaying = {mockBool}
+              isPlaying = {MOCK_BOOL}
               onMovieCardMouseOver = {mokcFunction}
               onMovieCardMouseOut = {mokcFunction}
             />

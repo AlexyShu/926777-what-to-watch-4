@@ -5,7 +5,6 @@ const SuccessPost = {
   ERROR: false
 };
 
-// данные, объект начального состояния
 const initialState = {
   films: [],
   comments: [],
@@ -14,7 +13,6 @@ const initialState = {
   successComment: SuccessPost.ERROR,
 };
 
-// Action
 const ActionType = {
   GET_FILMS: `GET_FILMS`,
   GET_PROMO_FILM: `GET_PROMO_FILM`,
@@ -87,7 +85,6 @@ const Operation = {
         comment: commentData.comment
       })
     .then(() => {
-      // dispatch(Operation.addComment(true));
       dispatch(ActionCreator.sendReview(SuccessPost.SUCSESS));
       onSuccess();
     });
@@ -139,12 +136,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.ADD_FAVORITE_FILMS:
       return extend(state, {
         favoriteFilms: [...state.favoriteFilms].filter((film) => film.id !== action.payload.id),
-        promoFilm: action.payload.isFavorite
       });
     case ActionType.DELETE_FAVORITE_FILMS:
       return extend(state, {
         favoriteFilms: [...state.favoriteFilms].filter((film) => film.id !== action.payload.id),
-        promoFilm: action.payload.isFavorite
       });
     case ActionType.GET_FAVORITE_FILMS:
       return extend(state, {

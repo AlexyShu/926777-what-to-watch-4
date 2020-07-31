@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MyList from "./my-list.jsx";
-import {mockFilms, mockFilm, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
+import {mockFilms, mockFilm, MOCK_FILMS_COUNT, MOCK_STRING} from "../../mocks-for-tests.js";
 import {MemoryRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
@@ -22,7 +22,7 @@ describe(`Render correct MyList`, () => {
         filmsCount: MOCK_FILMS_COUNT
       },
       [Namespace.USER]: {
-        authorizationStatus: mockString
+        authorizationStatus: MOCK_STRING
       }
     });
     const tree = renderer

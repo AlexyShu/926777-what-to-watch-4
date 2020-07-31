@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import SimilarFilmsList from "./similar-films-list.jsx";
-import {mockFilms, mokcFunction, MOCK_FILMS_COUNT, mockFilm, mockString} from "../../mocks-for-tests.js";
+import {mockFilms, mokcFunction, MOCK_FILMS_COUNT, mockFilm, MOCK_STRING} from "../../mocks-for-tests.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Namespace from "../../reducer/namespace.js";
@@ -20,7 +20,7 @@ describe(`Render correct SimilarFilmsList`, () => {
         filmsCount: MOCK_FILMS_COUNT
       },
       [Namespace.USER]: {
-        authorizationStatus: mockString
+        authorizationStatus: MOCK_STRING
       }
     });
     const tree = renderer

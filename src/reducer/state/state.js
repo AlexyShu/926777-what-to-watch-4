@@ -1,13 +1,11 @@
 import {extend} from "../../utils.js";
 import {ALL_GENRES} from "../../constants.js";
 
-// данные, объект начального состояния
 const initialState = {
   filmsCount: 8,
   activeFilter: ALL_GENRES,
 };
 
-// Action
 const ActionType = {
   SHOW_MORE_FILMS: `SHOW_MORE_FILMS`,
   CHANGE_GENRE: `CHANGE_GENRE`,

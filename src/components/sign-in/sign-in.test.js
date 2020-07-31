@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import SignIn from "./sign-in.jsx";
-import {mokcFunction, mockString} from "../../mocks-for-tests.js";
+import {mokcFunction, MOCK_STRING} from "../../mocks-for-tests.js";
 import {MemoryRouter} from "react-router-dom";
 
 
@@ -12,7 +12,7 @@ describe(`Render correct SignIn`, () => {
         <MemoryRouter>
           <SignIn
             onSubmit = {mokcFunction}
-            authorizationStatus = {mockString}
+            authorizationStatus = {MOCK_STRING}
             history= {mokcFunction}
           />
         </MemoryRouter>)

@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FullScreenPlayer from "./full-screen-player.jsx";
-import {mockFilms, mokcFunction, mockBool, mockFilm, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
+import {mockFilms, mokcFunction, MOCK_BOOL, mockFilm, MOCK_FILMS_COUNT, MOCK_STRING} from "../../mocks-for-tests.js";
 import {MemoryRouter} from "react-router-dom";
 import Namespace from "../../reducer/namespace.js";
 import {Provider} from "react-redux";
@@ -26,7 +26,7 @@ describe(`Render correct FullScreenPlayer`, () => {
         filmsCount: MOCK_FILMS_COUNT
       },
       [Namespace.USER]: {
-        authorizationStatus: mockString
+        authorizationStatus: MOCK_STRING
       }
     });
     const tree = renderer
@@ -37,7 +37,7 @@ describe(`Render correct FullScreenPlayer`, () => {
               match = {match}
               films = {mockFilms}
               videoRef = {mokcFunction}
-              isPlaying = {mockBool}
+              isPlaying = {MOCK_BOOL}
               getToggleProgress = {mokcFunction}
               getTimeDuration = {mokcFunction}
               onLoadedMetadata = {mokcFunction}

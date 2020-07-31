@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import {Switch, Route, BrowserRouter, withRouter} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from "prop-types";
@@ -30,81 +30,76 @@ const AddReviewPage = withRouter(AddReviewWrapper);
 const SignInPage = withRouter(SignIn);
 
 
-class App extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms, removeFavoriteFilms, addFavoriteFilms} = this.props;
-    if (films === null || films === undefined || promoFilm === null || promoFilm === undefined) {
-      return (
-        <LoadingError />
-      );
-    }
+const App = (props) => {
+  const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms, removeFavoriteFilms, addFavoriteFilms} = props;
+  if (films === null || films === undefined || promoFilm === null || promoFilm === undefined) {
     return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path={AppRoute.MAIN}>
-            <MainPage
-              films = {films}
-              filmsCount = {filmsCount}
-              showMoreFilms = {showMoreFilms}
-              authorizationStatus = {authorizationStatus}
-              promoFilm = {promoFilm}
-              removeFavoriteFilms = {removeFavoriteFilms}
-              addFavoriteFilms = {addFavoriteFilms}
-            />
-          </Route>
-          <PrivateRoute
-            exact
-            path={AppRoute.MY_LIST}
-            render={() => {
-              return (
-                <MyList />
-              );
-            }}
-          />
-          <Route exact path={AppRoute.FULL_SCREEN_PLAER}>
-            <FullScreenVideoPlayerPage
-              films = {films}
-              muted = {true}
-              autoPlay = {true}
-            />
-          </Route>
-          <PrivateRoute
-            exact
-            path={AppRoute.ADD_REVIEW}
-            render={() => {
-              return (
-                <AddReviewPage
-                  films = {films}
-                />
-              );
-            }}
-          />
-          <Route exact path={AppRoute.FILM_PAGE}>
-            <MoviePage
-              films = {films}
-              authorizationStatus = {authorizationStatus}
-              removeFavoriteFilms = {removeFavoriteFilms}
-              addFavoriteFilms = {addFavoriteFilms}
-            />
-          </Route>
-          <Route exact path={AppRoute.LOGIN}>
-            <SignInPage
-              onSubmit={login}
-              authorizationStatus={authorizationStatus}
-            />
-          </Route>
-          <Route exact path={AppRoute.ERROR}>
-            <LoadingError />
-          </Route>
-        </Switch>
-      </BrowserRouter>
+      <LoadingError />
     );
   }
-}
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={AppRoute.MAIN}>
+          <MainPage
+            films = {films}
+            filmsCount = {filmsCount}
+            showMoreFilms = {showMoreFilms}
+            authorizationStatus = {authorizationStatus}
+            promoFilm = {promoFilm}
+            removeFavoriteFilms = {removeFavoriteFilms}
+            addFavoriteFilms = {addFavoriteFilms}
+          />
+        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.MY_LIST}
+          render={() => {
+            return (
+              <MyList />
+            );
+          }}
+        />
+        <Route exact path={AppRoute.FULL_SCREEN_PLAER}>
+          <FullScreenVideoPlayerPage
+            films = {films}
+            muted = {true}
+            autoPlay = {true}
+          />
+        </Route>
+        <PrivateRoute
+          exact
+          path={AppRoute.ADD_REVIEW}
+          render={() => {
+            return (
+              <AddReviewPage
+                films = {films}
+              />
+            );
+          }}
+        />
+        <Route exact path={AppRoute.FILM_PAGE}>
+          <MoviePage
+            films = {films}
+            authorizationStatus = {authorizationStatus}
+            removeFavoriteFilms = {removeFavoriteFilms}
+            addFavoriteFilms = {addFavoriteFilms}
+          />
+        </Route>
+        <Route exact path={AppRoute.LOGIN}>
+          <SignInPage
+            onSubmit={login}
+            authorizationStatus={authorizationStatus}
+          />
+        </Route>
+        <Route exact path={AppRoute.ERROR}>
+          <LoadingError />
+        </Route>
+      </Switch>
+    </BrowserRouter>
+  );
+};
+
 
 App.propTypes = {
   promoFilm: PropTypes.shape({
@@ -153,7 +148,7 @@ App.propTypes = {
   autoPlay: PropTypes.bool,
   login: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  history: PropTypes.func,
+  // history: PropTypes.func,
   addFavoriteFilms: PropTypes.func.isRequired,
   removeFavoriteFilms: PropTypes.func.isRequired,
 };

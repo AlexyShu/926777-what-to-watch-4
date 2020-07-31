@@ -2,7 +2,7 @@ import React from "react";
 import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import FilmCard from "./film-card.jsx";
-import {mockFilm, mockBool} from "../../mocks-for-tests.js";
+import {mockFilm, MOCK_BOOL} from "../../mocks-for-tests.js";
 
 Enzyme.configure({
   adapter: new Adapter(),
@@ -15,7 +15,7 @@ describe(`Title click and film card mouse over, mouse out`, () => {
     const filmCard = shallow(
         <FilmCard
           film = {mockFilm}
-          isPlaying = {mockBool}
+          isPlaying = {MOCK_BOOL}
           onMovieCardMouseOver = {onMovieCardMouseOver}
           onMovieCardMouseOut = {onMovieCardMouseOut}
         />

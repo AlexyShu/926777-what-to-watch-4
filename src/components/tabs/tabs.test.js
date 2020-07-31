@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Tabs from "./tabs.jsx";
-import {mockString, mockFilm, mockComments, mokcFunction, mockFilms, MOCK_FILMS_COUNT} from "../../mocks-for-tests.js";
+import {MOCK_STRING, mockFilm, mockComments, mokcFunction, mockFilms, MOCK_FILMS_COUNT} from "../../mocks-for-tests.js";
 import {Provider} from "react-redux";
 import Namespace from "../../reducer/namespace.js";
 import configureStore from "redux-mock-store";
@@ -27,7 +27,7 @@ describe(`Render correct Tabs`, () => {
             onTabOverviewClick = {mokcFunction}
             getActiveTab = {mokcFunction}
             setActiveTab = {mokcFunction}
-            selectedTab = {mockString}
+            selectedTab = {MOCK_STRING}
           />
         </Provider>)
   .toJSON();

@@ -4,7 +4,6 @@ const Error = {
   UNAUTHORIZED: 401
 };
 
-// функция для получения сконфигурированного экземпляра из axios
 export const createAPI = (onUnauthorized) => {
   const api = axios.create({
     baseURL: `https://4.react.pages.academy/wtw`,

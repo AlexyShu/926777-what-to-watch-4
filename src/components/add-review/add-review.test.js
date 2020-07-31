@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import AddReview from "./add-review.jsx";
-import {mokcFunction, MOCK_FILMS_COUNT, mockFilms, mockString, mockBool} from "../../mocks-for-tests.js";
+import {mokcFunction, MOCK_FILMS_COUNT, mockFilms, MOCK_STRING, MOCK_BOOL} from "../../mocks-for-tests.js";
 import Namespace from "../../reducer/namespace.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
@@ -24,10 +24,10 @@ describe(`Render correct AddReview`, () => {
       },
       [Namespace.STATE]: {
         filmsCount: MOCK_FILMS_COUNT,
-        activeFilter: mockString
+        activeFilter: MOCK_STRING
       },
       [Namespace.USER]: {
-        authorizationStatus: mockString
+        authorizationStatus: MOCK_STRING
       }
     });
     const tree = renderer
@@ -39,7 +39,7 @@ describe(`Render correct AddReview`, () => {
               onMovieCaronSubmitdMouseOut = {mokcFunction}
               films = {mockFilms}
               handleChangeTextValidation = {mokcFunction}
-              isFormInvalid = {mockBool}
+              isFormInvalid = {MOCK_BOOL}
             />
           </MemoryRouter>
         </Provider>)

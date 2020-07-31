@@ -83,11 +83,11 @@ export const mokcFunction = () => {};
 
 export const MOCK_FILMS_COUNT = 8;
 
-export const mockString = `blablabla`;
+export const MOCK_STRING = `blablabla`;
 
 export const MOCK_ACTIVE_FILTER = `All genres`;
 
-export const mockBool = false;
+export const MOCK_BOOL = false;
 
 export const mockComments = [{
   "id": 1,
