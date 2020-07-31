@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import SimilarFilmsList from "./similar-films-list.jsx";
-import {mockFilms, mokcFunction, MOCK_FILMS_COUNT, mockFilm, mockFilmCard, mockString} from "../../mocks-for-tests.js";
+import {mockFilms, mokcFunction, MOCK_FILMS_COUNT, mockFilm, mockString} from "../../mocks-for-tests.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Namespace from "../../reducer/namespace.js";
@@ -14,7 +14,7 @@ describe(`Render correct SimilarFilmsList`, () => {
     const store = mockStore({
       [Namespace.DATA]: {
         films: mockFilms,
-        promoFilm: mockFilmCard
+        promoFilm: mockFilm
       },
       [Namespace.STATE]: {
         filmsCount: MOCK_FILMS_COUNT

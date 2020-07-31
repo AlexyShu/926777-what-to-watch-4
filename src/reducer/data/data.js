@@ -139,10 +139,12 @@ const reducer = (state = initialState, action) => {
     case ActionType.ADD_FAVORITE_FILMS:
       return extend(state, {
         favoriteFilms: [...state.favoriteFilms].filter((film) => film.id !== action.payload.id),
+        promoFilm: action.payload.isFavorite
       });
     case ActionType.DELETE_FAVORITE_FILMS:
       return extend(state, {
         favoriteFilms: [...state.favoriteFilms].filter((film) => film.id !== action.payload.id),
+        promoFilm: action.payload.isFavorite
       });
     case ActionType.GET_FAVORITE_FILMS:
       return extend(state, {
@@ -151,6 +153,5 @@ const reducer = (state = initialState, action) => {
   }
   return state;
 };
-
 
 export {reducer, ActionType, ActionCreator, Operation};

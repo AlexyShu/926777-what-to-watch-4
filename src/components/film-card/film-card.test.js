@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FilmCard from "./film-card.jsx";
-import {mockFilm, mockBool, mokcFunction, mockFilms, mockFilmCard, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
+import {mockFilm, mockBool, mokcFunction, mockFilms, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Namespace from "../../reducer/namespace.js";
@@ -14,7 +14,7 @@ describe(`Render correct FilmCard`, () => {
     const store = mockStore({
       [Namespace.DATA]: {
         films: mockFilms,
-        promoFilm: mockFilmCard
+        promoFilm: mockFilm
       },
       [Namespace.STATE]: {
         filmsCount: MOCK_FILMS_COUNT

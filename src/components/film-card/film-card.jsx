@@ -1,8 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
 import Player from "../player/player.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
-import {Link} from "react-router-dom";
+
 
 const VideoPlayer = withPlayer(Player);
 
@@ -32,7 +33,7 @@ const FilmCard = (props) => {
           )}
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="#">{film.name}</a>
+          {film.name}
         </h3>
       </article>
     </Link>

@@ -1,11 +1,11 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
+import {Link} from "react-router-dom";
+import {getCurentFilm} from "../../utils.js";
+import {AppRoute, MIN_REVIEW_LENGTH, MAX_REVIEW_LENGTH} from "../../constants.js";
 import {Operation} from "../../reducer/data/data.js";
 import {sendReview} from "../../reducer/data/selectors.js";
-import {connect} from "react-redux";
-import {getCurentFilm} from "../../utils.js";
-import {Link} from "react-router-dom";
-import {AppRoute, MIN_REVIEW_LENGTH, MAX_REVIEW_LENGTH} from "../../constants.js";
 
 
 class AddReview extends PureComponent {
@@ -203,18 +203,6 @@ class AddReview extends PureComponent {
   }
 }
 
-
-const mapStateToProps = (state) => ({
-  successComment: sendReview(state),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onSubmit(id, commentData, onSuccess) {
-    dispatch(Operation.addComment(id, commentData, onSuccess));
-  }
-});
-
-
 AddReview.propTypes = {
   films: PropTypes.arrayOf(
       PropTypes.shape({
@@ -244,5 +232,14 @@ AddReview.propTypes = {
   isFormInvalid: PropTypes.bool,
 };
 
+const mapStateToProps = (state) => ({
+  successComment: sendReview(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSubmit(id, commentData, onSuccess) {
+    dispatch(Operation.addComment(id, commentData, onSuccess));
+  }
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddReview);

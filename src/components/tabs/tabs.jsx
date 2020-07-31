@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 import {TabName} from "../../constants.js";
 import {getTextRating, formatDate} from "../../utils.js";
 import {getComments} from "../../reducer/data/selectors.js";
-import {connect} from "react-redux";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 
 const Tabs = (props) => {
@@ -129,16 +129,6 @@ const Tabs = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  comments: getComments(state)
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onTabOverviewClick(id) {
-    dispatch(DataOperation.getComments(id));
-  },
-});
-
 Tabs.propTypes = {
   film: PropTypes.shape({
     name: PropTypes.string,
@@ -175,6 +165,16 @@ Tabs.propTypes = {
   setActiveTab: PropTypes.func.isRequired,
   selectedTab: PropTypes.string.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  comments: getComments(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onTabOverviewClick(id) {
+    dispatch(DataOperation.getComments(id));
+  },
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tabs);

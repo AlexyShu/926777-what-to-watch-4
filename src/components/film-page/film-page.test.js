@@ -4,7 +4,7 @@ import FilmPage from "./film-page.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {MemoryRouter} from "react-router-dom";
-import {mockFilmCard, mockFilms, MOCK_FILMS_COUNT, mockString, mokcFunction} from "../../mocks-for-tests.js";
+import {mockFilm, mockFilms, MOCK_FILMS_COUNT, mockString, mokcFunction} from "../../mocks-for-tests.js";
 import Namespace from "../../reducer/namespace.js";
 
 const mockStore = configureStore([]);
@@ -20,7 +20,7 @@ describe(`Render correct FilmPage`, () => {
     const store = mockStore({
       [Namespace.DATA]: {
         films: mockFilms,
-        promoFilm: mockFilmCard
+        promoFilm: mockFilm
       },
       [Namespace.STATE]: {
         filmsCount: MOCK_FILMS_COUNT

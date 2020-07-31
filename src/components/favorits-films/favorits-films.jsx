@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FilmCard from "../film-card/film-card.jsx";
 import {TIMEOUT} from "../../constants.js";
+import FilmCard from "../film-card/film-card.jsx";
 
 
 const FavoritsFilms = (props) => {

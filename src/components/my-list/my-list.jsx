@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../constants.js";
-import FavoritsFilms from "../favorits-films/favorits-films.jsx";
-import {getFavoriteFilms} from "../../reducer/data/selectors.js";
 import {connect} from "react-redux";
+import {AppRoute} from "../../constants.js";
+import {getFavoriteFilms} from "../../reducer/data/selectors.js";
+import FavoritsFilms from "../favorits-films/favorits-films.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 
 
@@ -37,17 +37,6 @@ const MyList = (props) => {
         <FavoritsFilmsWrapper
           favoriteFilms = {favoriteFilms}
         />
-
-        {/* <div className="catalog__movies-list">
-
-          {favoriteFilms.map((film) => (
-            <FilmCard
-              key = {film.id}
-              film = {film}
-            />)
-          )}
-
-        </div> */}
       </section>
 
       <footer className="page-footer">
@@ -66,10 +55,6 @@ const MyList = (props) => {
     </div>
   );
 };
-
-const mapStateToProps = (state) => ({
-  favoriteFilms: getFavoriteFilms(state),
-});
 
 MyList.propTypes = {
   favoriteFilms: PropTypes.arrayOf(
@@ -93,8 +78,11 @@ MyList.propTypes = {
         trailerUrl: PropTypes.string
       })
   ).isRequired,
-
 };
+
+const mapStateToProps = (state) => ({
+  favoriteFilms: getFavoriteFilms(state),
+});
 
 export {MyList};
 export default connect(mapStateToProps)(MyList);

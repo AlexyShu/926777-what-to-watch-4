@@ -75,12 +75,7 @@ Array [
         <h3
           className="small-movie-card__title"
         >
-          <a
-            className="small-movie-card__link"
-            href="#"
-          >
-            The Grand Budapest Hotel
-          </a>
+          The Grand Budapest Hotel
         </h3>
       </article>
     </a>
@@ -106,12 +101,7 @@ Array [
         <h3
           className="small-movie-card__title"
         >
-          <a
-            className="small-movie-card__link"
-            href="#"
-          >
-            The Grand Budapest Hotel
-          </a>
+          The Grand Budapest Hotel
         </h3>
       </article>
     </a>
@@ -137,12 +127,7 @@ Array [
         <h3
           className="small-movie-card__title"
         >
-          <a
-            className="small-movie-card__link"
-            href="#"
-          >
-            The Grand Budapest Hotel
-          </a>
+          The Grand Budapest Hotel
         </h3>
       </article>
     </a>

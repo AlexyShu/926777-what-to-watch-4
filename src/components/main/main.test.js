@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import Main from "./main.jsx";
 import {MemoryRouter} from "react-router-dom";
-import {mockFilmCard, mockFilms, mokcFunction, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
+import {mockFilm, mockFilms, mokcFunction, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
 import Namespace from "../../reducer/namespace.js";
 
 const mockStore = configureStore([]);
@@ -14,7 +14,7 @@ describe(`Render correct Main`, () => {
     const store = mockStore({
       [Namespace.DATA]: {
         films: mockFilms,
-        promoFilm: mockFilmCard
+        promoFilm: mockFilm
       },
       [Namespace.STATE]: {
         filmsCount: MOCK_FILMS_COUNT
@@ -28,7 +28,7 @@ describe(`Render correct Main`, () => {
         <Provider store={store}>
           <MemoryRouter>
             <Main
-              promoFilm = {mockFilmCard}
+              promoFilm = {mockFilm}
               films = {mockFilms}
               filmsCount = {MOCK_FILMS_COUNT}
               showMoreFilms = {mokcFunction}

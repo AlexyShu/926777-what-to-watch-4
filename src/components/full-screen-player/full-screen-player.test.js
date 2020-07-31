@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import FullScreenPlayer from "./full-screen-player.jsx";
-import {mockFilms, mokcFunction, mockBool, mockFilmCard, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
+import {mockFilms, mokcFunction, mockBool, mockFilm, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
 import {MemoryRouter} from "react-router-dom";
 import Namespace from "../../reducer/namespace.js";
 import {Provider} from "react-redux";
@@ -20,7 +20,7 @@ describe(`Render correct FullScreenPlayer`, () => {
     const store = mockStore({
       [Namespace.DATA]: {
         films: mockFilms,
-        promoFilm: mockFilmCard
+        promoFilm: mockFilm
       },
       [Namespace.STATE]: {
         filmsCount: MOCK_FILMS_COUNT

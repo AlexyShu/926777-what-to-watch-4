@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MyList from "./my-list.jsx";
-import {mockFilms, mockFilmCard, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
+import {mockFilms, mockFilm, MOCK_FILMS_COUNT, mockString} from "../../mocks-for-tests.js";
 import {MemoryRouter} from "react-router-dom";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
@@ -15,7 +15,7 @@ describe(`Render correct MyList`, () => {
     const store = mockStore({
       [Namespace.DATA]: {
         films: mockFilms,
-        promoFilm: mockFilmCard,
+        promoFilm: mockFilm,
         favoriteFilms: mockFilms
       },
       [Namespace.STATE]: {

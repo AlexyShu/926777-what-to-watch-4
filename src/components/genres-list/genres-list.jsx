@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {ALL_GENRES} from "../../constants.js";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {getFilmsByGenre} from "../../reducer/data/selectors.js";
 import {getActiveFilter} from "../../reducer/state/selectors.js";
-import {ALL_GENRES} from "../../constants.js";
 import FilmsList from "../films-list/films-list.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 
@@ -41,17 +41,6 @@ const GenresList = (props) => {
     </React.Fragment>
   );
 };
-
-const mapStateToProps = (state) => ({
-  activeFilter: getActiveFilter(state),
-  filteredFilms: getFilmsByGenre(state)
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onFilterClick(genre) {
-    dispatch(ActionCreator.changeGenre(genre));
-  }
-});
 
 GenresList.propTypes = {
   films: PropTypes.arrayOf(
@@ -102,6 +91,17 @@ GenresList.propTypes = {
   ).isRequired,
   showMoreFilms: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  activeFilter: getActiveFilter(state),
+  filteredFilms: getFilmsByGenre(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFilterClick(genre) {
+    dispatch(ActionCreator.changeGenre(genre));
+  }
+});
 
 export {GenresList};
 export default connect(mapStateToProps, mapDispatchToProps)(GenresList);
