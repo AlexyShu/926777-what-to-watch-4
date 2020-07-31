@@ -20,14 +20,12 @@ describe(`Render correct App`, () => {
       },
       [Namespace.USER]: {
         authorizationStatus: mockString,
-        user: mockUser
       }
     });
     const tree = renderer
     .create(
         <Provider store={store}>
           <App
-            user = {mockUser}
             promoFilm = {mockFilmCard}
             films = {mockFilms}
             showMoreFilms = {mokcFunction}

@@ -13,7 +13,7 @@ import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
-import {getAuthorizationStatus, getUser} from "../../reducer/user/selectors.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AppRoute} from "../../constants.js";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
@@ -52,7 +52,6 @@ class App extends PureComponent {
               showMoreFilms = {showMoreFilms}
               authorizationStatus = {authorizationStatus}
               promoFilm = {promoFilm}
-              user = {user}
               removeFavoriteFilms = {removeFavoriteFilms}
               addFavoriteFilms = {addFavoriteFilms}
             />
@@ -113,7 +112,6 @@ const mapStateToProps = (state) => ({
   films: getFilms(state),
   promoFilm: getPromoFilm(state),
   authorizationStatus: getAuthorizationStatus(state),
-  user: getUser(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -180,12 +178,6 @@ App.propTypes = {
   login: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   history: PropTypes.func,
-  user: PropTypes.shape({
-    id: PropTypes.number,
-    email: PropTypes.string,
-    name: PropTypes.string,
-    avatarUrl: PropTypes.string,
-  }).isRequired,
   addFavoriteFilms: PropTypes.func.isRequired,
   removeFavoriteFilms: PropTypes.func.isRequired,
 };

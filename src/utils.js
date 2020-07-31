@@ -67,15 +67,6 @@ export const adapterFilm = (film) =>
     }
     : {};
 
-export const adapterUser = (user) =>
-  Object.keys(user).length
-    ? {
-      id: user.id,
-      email: user.email,
-      name: user.name,
-      avatarUrl: user.avatar_url
-    }
-    : {};
 
 export const getCurentFilm = (movies, props) => {
   return movies.find((movie) => movie.id === Number(props.match.params.id));
