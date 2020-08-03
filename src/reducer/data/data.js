@@ -51,7 +51,7 @@ const ActionCreator = {
       payload: film,
     };
   },
-  deleteFavoriteFilms: (film) => {
+  removeFavoriteFilms: (film) => {
     return {
       type: ActionType.DELETE_FAVORITE_FILMS,
       payload: film,
@@ -115,6 +115,15 @@ const Operation = {
   },
 };
 
+const getFilmForMyList = (film, payload) => {
+  if (film.id === payload.id) {
+    film.isFavorite = payload.isFavorite;
+    return film;
+  } else {
+    return film;
+  }
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_FILMS:
@@ -136,10 +145,12 @@ const reducer = (state = initialState, action) => {
     case ActionType.ADD_FAVORITE_FILMS:
       return extend(state, {
         favoriteFilms: [...state.favoriteFilms].filter((film) => film.id !== action.payload.id),
+        promoFilm: getFilmForMyList(state.promoFilm, action.payload),
       });
     case ActionType.DELETE_FAVORITE_FILMS:
       return extend(state, {
         favoriteFilms: [...state.favoriteFilms].filter((film) => film.id !== action.payload.id),
+        promoFilm: getFilmForMyList(state.promoFilm, action.payload),
       });
     case ActionType.GET_FAVORITE_FILMS:
       return extend(state, {
