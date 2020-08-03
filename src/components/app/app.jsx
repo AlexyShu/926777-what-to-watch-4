@@ -17,6 +17,7 @@ import FullScreenPlayer from "../full-screen-player/full-screen-player.jsx";
 import MyList from "../my-list/my-list.jsx";
 import LoadingError from "../loading-error/loading-error.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
+import PrivateRouteForLogin from "../private-route-for-login/private-route-for-login.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 import withFormValidation from "../../hocs/with-form-validation/with-form-validation.jsx";
 
@@ -86,12 +87,18 @@ const App = (props) => {
             addFavoriteFilms = {addFavoriteFilms}
           />
         </Route>
-        <Route exact path={AppRoute.LOGIN}>
-          <SignInPage
-            onSubmit={login}
-            authorizationStatus={authorizationStatus}
-          />
-        </Route>
+        <PrivateRouteForLogin
+          exact
+          path={AppRoute.LOGIN}
+          render={() => {
+            return (
+              <SignInPage
+                onSubmit={login}
+                authorizationStatus={authorizationStatus}
+              />
+            );
+          }}
+        />
         <Route exact path={AppRoute.ERROR}>
           <LoadingError />
         </Route>
