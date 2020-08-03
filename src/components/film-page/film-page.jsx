@@ -72,7 +72,7 @@ const FilmPage = (props) => {
                 onClick={() => {
                   if (film.isFavorite) {
                     removeFavoriteFilms(film.id);
-                    props.history.push(`/`);
+                    // props.history.push(`/`);
                   } else {
                     addFavoriteFilms(film.id);
                   }

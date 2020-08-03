@@ -10,7 +10,7 @@ const GenresWrapper = withActiveItem(GenresList);
 
 const Main = (props) => {
   const {films, filmsCount, showMoreFilms, authorizationStatus, promoFilm, removeFavoriteFilms, addFavoriteFilms} = props;
-  console.log(promoFilm.isFavorite)
+  // console.log(promoFilm.isFavorite)
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -81,7 +81,7 @@ const Main = (props) => {
                     removeFavoriteFilms(promoFilm.id);
                   } else {
                     addFavoriteFilms(promoFilm.id);
-                    props.history.push(`/films/${promoFilm.id}`);
+                    // props.history.push(`/films/${promoFilm.id}`);
                   }
                 }}
                 className="btn btn--list movie-card__button"
