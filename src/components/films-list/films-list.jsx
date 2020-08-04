@@ -4,7 +4,6 @@ import FilmCard from "../film-card/film-card.jsx";
 import {TIMEOUT} from "../../constants.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
-
 const FilmsList = (props) => {
   const {filteredFilms, filmsCount, handleChange, activeItem, showMoreFilms} = props;
   return <React.Fragment>

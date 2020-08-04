@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import {TIMEOUT} from "../../constants.js";
 import FilmCard from "../film-card/film-card.jsx";
 
-
 const FavoritsFilms = (props) => {
   const {favoriteFilms, handleChange, activeItem} = props;
   return <div className="catalog__movies-list">

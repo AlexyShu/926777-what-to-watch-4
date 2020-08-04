@@ -10,14 +10,13 @@ const GenresWrapper = withActiveItem(GenresList);
 
 const Main = (props) => {
   const {films, filmsCount, showMoreFilms, authorizationStatus, promoFilm, removeFavoriteFilms, addFavoriteFilms} = props;
+
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
         <img src={promoFilm.bigPosterUrl} alt={promoFilm.name} />
       </div>
-
       <h1 className="visually-hidden">WTW</h1>
-
       <header className="page-header movie-card__head">
         <div className="logo">
           <a className="logo__link">
@@ -26,7 +25,6 @@ const Main = (props) => {
             <span className="logo__letter logo__letter--3">W</span>
           </a>
         </div>
-
         <div className="user-block">
           {authorizationStatus === AuthorizationStatus.AUTH ? (
             <Link to={AppRoute.MY_LIST}>
@@ -45,10 +43,7 @@ const Main = (props) => {
             </Link>
           )}
         </div>
-
-
       </header>
-
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
@@ -60,7 +55,6 @@ const Main = (props) => {
               <span className="movie-card__genre"> {promoFilm.genre} </span>
               <span className="movie-card__year"> {promoFilm.releaseYear} </span>
             </p>
-
             <div className="movie-card__buttons">
               <button
                 onClick={() => {
@@ -95,7 +89,6 @@ const Main = (props) => {
                     <use xlinkHref="#add"></use>
                   </svg>
                 )}
-
                 <span>My list</span>
               </button>
             </div>
@@ -103,19 +96,15 @@ const Main = (props) => {
         </div>
       </div>
     </section>
-
     <div className="page-content">
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-
         <GenresWrapper
           films = {films}
           filmsCount = {filmsCount}
           showMoreFilms = {showMoreFilms}
         />
-
       </section>
-
       <footer className="page-footer">
         <div className="logo">
           <a className="logo__link logo__link--light">
@@ -124,13 +113,11 @@ const Main = (props) => {
             <span className="logo__letter logo__letter--3">W</span>
           </a>
         </div>
-
         <div className="copyright">
           <p>© 2019 What to watch Ltd.</p>
         </div>
       </footer>
     </div>
-
   </React.Fragment>;
 };
 
@@ -182,7 +169,6 @@ Main.propTypes = {
   addFavoriteFilms: PropTypes.func.isRequired,
   removeFavoriteFilms: PropTypes.func.isRequired,
 };
-
 
 export default Main;
 

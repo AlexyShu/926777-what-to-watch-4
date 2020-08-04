@@ -38,7 +38,6 @@ const FullScreenPlayer = (props) => {
       >
         Exit
       </button>
-
       <div className="player__controls">
         <div className="player__controls-row">
           <div className="player__time">
@@ -56,7 +55,6 @@ const FullScreenPlayer = (props) => {
           </div>
           <div className="player__time-value">{getTimeDuration()}</div>
         </div>
-
         <div className="player__controls-row">
           <button
             type="button"
@@ -81,7 +79,6 @@ const FullScreenPlayer = (props) => {
             )}
           </button>
           <div className="player__name">Transpotting</div>
-
           <button
             onClick={onFullscreenButtonClick}
             type="button"

@@ -60,9 +60,7 @@ class AddReview extends PureComponent {
             <div className="movie-card__bg">
               <img src={film.bigPosterUrl} alt={film.name} />
             </div>
-
             <h1 className="visually-hidden">WTW</h1>
-
             <header className="page-header">
               <div className="logo">
                 <Link to={AppRoute.MAIN} className="logo__link">
@@ -71,7 +69,6 @@ class AddReview extends PureComponent {
                   <span className="logo__letter logo__letter--3">W</span>
                 </Link>
               </div>
-
               <nav className="breadcrumbs">
                 <ul className="breadcrumbs__list">
                   <li className="breadcrumbs__item">
@@ -84,7 +81,6 @@ class AddReview extends PureComponent {
                   </li>
                 </ul>
               </nav>
-
               <div className="user-block">
                 <div className="user-block__avatar">
                   <img
@@ -96,7 +92,6 @@ class AddReview extends PureComponent {
                 </div>
               </div>
             </header>
-
             <div className="movie-card__poster movie-card__poster--small">
               <img
                 src={film.posterUrl}
@@ -106,7 +101,6 @@ class AddReview extends PureComponent {
               />
             </div>
           </div>
-
           <div className="add-review">
             <form
               action="#"
@@ -126,7 +120,6 @@ class AddReview extends PureComponent {
                   <label className="rating__label" htmlFor="star-1">
                     Rating 1
                   </label>
-
                   <input
                     className="rating__input"
                     id="star-2"
@@ -137,7 +130,6 @@ class AddReview extends PureComponent {
                   <label className="rating__label" htmlFor="star-2">
                     Rating 2
                   </label>
-
                   <input
                     className="rating__input"
                     id="star-3"
@@ -149,7 +141,6 @@ class AddReview extends PureComponent {
                   <label className="rating__label" htmlFor="star-3">
                     Rating 3
                   </label>
-
                   <input
                     className="rating__input"
                     id="star-4"
@@ -160,7 +151,6 @@ class AddReview extends PureComponent {
                   <label className="rating__label" htmlFor="star-4">
                     Rating 4
                   </label>
-
                   <input
                     className="rating__input"
                     id="star-5"
@@ -173,7 +163,6 @@ class AddReview extends PureComponent {
                   </label>
                 </div>
               </div>
-
               <div className="add-review__text">
                 <textarea
                   className="add-review__textarea"

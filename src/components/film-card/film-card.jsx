@@ -4,11 +4,11 @@ import {Link} from "react-router-dom";
 import Player from "../player/player.jsx";
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 
-
 const VideoPlayer = withPlayer(Player);
 
 const FilmCard = (props) => {
   const {film, onMovieCardMouseOver, onMovieCardMouseOut, isPlaying} = props;
+
   return (
     <Link to={`/films/${film.id}`} className="small-movie-card catalog__movies-card small-movie-card__link">
       <article
@@ -39,7 +39,6 @@ const FilmCard = (props) => {
     </Link>
   );
 };
-
 
 FilmCard.propTypes = {
   film: PropTypes.shape({

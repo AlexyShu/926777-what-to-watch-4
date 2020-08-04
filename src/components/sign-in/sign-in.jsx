@@ -16,7 +16,6 @@ class SignIn extends PureComponent {
 
   handleSubmit(evt) {
     const {onSubmit} = this.props;
-
     evt.preventDefault();
 
     onSubmit({
@@ -43,10 +42,8 @@ class SignIn extends PureComponent {
               <span className="logo__letter logo__letter--3">W</span>
             </Link>
           </div>
-
           <h1 className="page-title user-page__title">Sign in</h1>
         </header>
-
         <div className="sign-in user-page__content">
           <form
             action="#"
@@ -94,7 +91,6 @@ class SignIn extends PureComponent {
             </div>
           </form>
         </div>
-
         <footer className="page-footer">
           <div className="logo">
             <Link to={AppRoute.MAIN} className="logo__link logo__link--light">
@@ -103,7 +99,6 @@ class SignIn extends PureComponent {
               <span className="logo__letter logo__letter--3">W</span>
             </Link>
           </div>
-
           <div className="copyright">
             <p>© 2019 What to watch Ltd.</p>
           </div>

@@ -20,7 +20,6 @@ const withActiveTab = (Component) => {
       this.setState({selectedTab: tabName});
     }
 
-
     render() {
       const {selectedTab} = this.state;
       return (
@@ -33,7 +32,6 @@ const withActiveTab = (Component) => {
       );
     }
   }
-
 
   WithActiveTab.propTypes = {
     film: PropTypes.shape({

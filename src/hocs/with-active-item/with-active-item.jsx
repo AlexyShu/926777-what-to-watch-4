@@ -17,7 +17,6 @@ const withActiveItem = (Component) => {
       }));
     }
 
-
     render() {
       const {activeItem} = this.state;
       return <Component
@@ -28,7 +27,6 @@ const withActiveItem = (Component) => {
 
     }
   }
-
 
   WithActiveItem.propTypes = {
     films: PropTypes.arrayOf(

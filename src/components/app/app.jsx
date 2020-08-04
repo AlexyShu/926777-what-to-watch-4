@@ -21,7 +21,6 @@ import PrivateRouteForLogin from "../private-route-for-login/private-route-for-l
 import withPlayer from "../../hocs/with-player/with-player.jsx";
 import withFormValidation from "../../hocs/with-form-validation/with-form-validation.jsx";
 
-
 const MoviePage = withRouter(FilmPage);
 const MainPage = withRouter(Main);
 const FullScreenVideoPlayer = withPlayer(FullScreenPlayer);
@@ -30,7 +29,6 @@ const AddReviewWrapper = withFormValidation(AddReview);
 const AddReviewPage = withRouter(AddReviewWrapper);
 const SignInPage = withRouter(SignIn);
 
-
 const App = (props) => {
   const {films, promoFilm, login, authorizationStatus, filmsCount, showMoreFilms, removeFavoriteFilms, addFavoriteFilms} = props;
   if (films === null || films === undefined || promoFilm === null || promoFilm === undefined) {
@@ -38,6 +36,7 @@ const App = (props) => {
       <LoadingError />
     );
   }
+
   return (
     <BrowserRouter>
       <Switch>
@@ -107,7 +106,6 @@ const App = (props) => {
   );
 };
 
-
 App.propTypes = {
   promoFilm: PropTypes.shape({
     name: PropTypes.string,
@@ -155,11 +153,10 @@ App.propTypes = {
   autoPlay: PropTypes.bool,
   login: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  // history: PropTypes.func,
+  history: PropTypes.any,
   addFavoriteFilms: PropTypes.func.isRequired,
   removeFavoriteFilms: PropTypes.func.isRequired,
 };
-
 
 const mapStateToProps = (state) => ({
   filmsCount: getShowMoreFilms(state),
@@ -182,7 +179,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(DataOperation.removeFavoriteFilms(id));
   }
 });
-
 
 export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);

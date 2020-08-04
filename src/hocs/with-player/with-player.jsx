@@ -98,5 +98,4 @@ const withPlayer = (Component) => {
   return WithPlayer;
 };
 
-
 export default withPlayer;

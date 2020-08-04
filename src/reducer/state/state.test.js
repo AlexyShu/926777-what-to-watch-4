@@ -63,7 +63,6 @@ it(`Reducer should change current genre`, () => {
   });
 });
 
-
 describe(`Action creators work correctly for action SHOW MORE FILMS`, () => {
   it(`Action creator for show more films returns correct action`, () => {
     expect(ActionCreator.showMoreFilms()).toEqual({

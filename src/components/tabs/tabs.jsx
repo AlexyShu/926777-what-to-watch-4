@@ -46,7 +46,6 @@ const Tabs = (props) => {
           </li>
         </ul>
       </nav>
-
       {selectedTab === TabName.OVERVIEW && (
           <>
             <div className="movie-rating">
@@ -175,7 +174,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(DataOperation.getComments(id));
   },
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tabs);
 

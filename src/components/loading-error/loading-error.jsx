@@ -8,5 +8,4 @@ const LoadingError = () => {
   );
 };
 
-
 export default LoadingError;

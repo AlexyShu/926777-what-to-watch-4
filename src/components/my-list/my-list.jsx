@@ -7,11 +7,11 @@ import {getFavoriteFilms} from "../../reducer/data/selectors.js";
 import FavoritsFilms from "../favorits-films/favorits-films.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 
-
 const FavoritsFilmsWrapper = withActiveItem(FavoritsFilms);
 
 const MyList = (props) => {
   const {favoriteFilms} = props;
+
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
@@ -22,23 +22,19 @@ const MyList = (props) => {
             <span className="logo__letter logo__letter--3">W</span>
           </Link>
         </div>
-
         <h1 className="page-title user-page__title">My list</h1>
-
         <div className="user-block">
           <div className="user-block__avatar">
             <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
           </div>
         </div>
       </header>
-
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
         <FavoritsFilmsWrapper
           favoriteFilms = {favoriteFilms}
         />
       </section>
-
       <footer className="page-footer">
         <div className="logo">
           <Link to={AppRoute.MAIN} className="logo__link logo__link--light">
@@ -47,7 +43,6 @@ const MyList = (props) => {
             <span className="logo__letter logo__letter--3">W</span>
           </Link>
         </div>
-
         <div className="copyright">
           <p>© 2019 What to watch Ltd.</p>
         </div>

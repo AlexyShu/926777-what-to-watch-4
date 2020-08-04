@@ -8,7 +8,6 @@ import {getActiveFilter} from "../../reducer/state/selectors.js";
 import FilmsList from "../films-list/films-list.jsx";
 import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 
-
 const FilmsWrapper = withActiveItem(FilmsList);
 
 const GenresList = (props) => {

@@ -15,7 +15,6 @@ const withFormValidation = (Component) => {
       this.handleChangeTextValidation = this.handleChangeTextValidation.bind(this);
     }
 
-
     handleChangeTextValidation(evt) {
       this.setState({
         isFormInvalid:
@@ -35,7 +34,6 @@ const withFormValidation = (Component) => {
       );
     }
   }
-
 
   WithFormValidation.propTypes = {
     films: PropTypes.arrayOf(

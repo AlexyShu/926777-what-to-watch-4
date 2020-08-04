@@ -9,7 +9,6 @@ import Namespace from "../../reducer/namespace.js";
 
 const mockStore = configureStore([]);
 
-
 describe(`Render correct MyList`, () => {
   it(`Render MyList`, () => {
     const store = mockStore({
