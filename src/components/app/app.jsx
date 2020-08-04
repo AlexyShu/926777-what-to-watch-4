@@ -89,6 +89,7 @@ const App = (props) => {
         <PrivateRouteForLogin
           exact
           path={AppRoute.LOGIN}
+          authorizationStatus={authorizationStatus}
           render={() => {
             return (
               <SignInPage

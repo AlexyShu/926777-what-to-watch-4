@@ -206,7 +206,6 @@ Array [
       <div
         className="catalog__movies-list"
       />
-      ;
     </section>
     <footer
       className="page-footer"

@@ -25,7 +25,7 @@ const FilmsList = (props) => {
       <ShowMoreButton
         showMoreFilms = {showMoreFilms}
       />
-    };
+    }
   </React.Fragment>;
 };
 

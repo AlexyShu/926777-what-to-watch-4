@@ -1,9 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Route, Redirect} from "react-router-dom";
-import {connect} from "react-redux";
 import {AppRoute} from "../../constants.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 
 const PrivateRouteForLogin = (props) => {
@@ -14,7 +12,7 @@ const PrivateRouteForLogin = (props) => {
       exact={exact}
       render={() => {
         return (
-          authorizationStatus === AuthorizationStatus.AUTH
+          authorizationStatus === AuthorizationStatus.NO_AUTH
             ? render()
             : <Redirect to={AppRoute.MAIN} />
         );
@@ -30,9 +28,4 @@ PrivateRouteForLogin.propTypes = {
   render: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
-});
-
-export {PrivateRouteForLogin};
-export default connect(mapStateToProps)(PrivateRouteForLogin);
+export default PrivateRouteForLogin;

@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import {PrivateRouteForLogin} from "./private-route-for-login.jsx";
+import PrivateRouteForLogin from "./private-route-for-login.jsx";
 import {MOCK_BOOL, MOCK_STRING, mokcFunction} from "../../mocks-for-tests.js";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
