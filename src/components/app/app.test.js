@@ -3,7 +3,7 @@ import renderer from "react-test-renderer";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import App from "./app.jsx";
-import {mockFilmCard, mockFilms, mokcFunction, MOCK_FILMS_COUNT, mockBool, mockString} from "../../mocks-for-tests.js";
+import {mockFilm, mockFilms, mokcFunction, MOCK_FILMS_COUNT, MOCK_BOOL, MOCK_STRING} from "../../mocks-for-tests.js";
 import Namespace from "../../reducer/namespace.js";
 
 const mockStore = configureStore([]);
@@ -13,28 +13,29 @@ describe(`Render correct App`, () => {
     const store = mockStore({
       [Namespace.DATA]: {
         films: mockFilms,
-        promoFilm: mockFilmCard
+        promoFilm: mockFilm
       },
       [Namespace.STATE]: {
         filmsCount: MOCK_FILMS_COUNT
       },
       [Namespace.USER]: {
-        authorizationStatus: mockString
+        authorizationStatus: MOCK_STRING,
       }
     });
     const tree = renderer
     .create(
         <Provider store={store}>
           <App
-            promoFilm = {mockFilmCard}
+            promoFilm = {mockFilm}
             films = {mockFilms}
             showMoreFilms = {mokcFunction}
-            onPlayBtnClick = {mokcFunction}
-            onExitClick = {mokcFunction}
-            muted = {mockBool}
-            autoPlay = {mockBool}
+            muted = {MOCK_BOOL}
+            autoPlay = {MOCK_BOOL}
             login = {mokcFunction}
-            authorizationStatus = {mockString}
+            authorizationStatus = {MOCK_STRING}
+            addFavoriteFilms = {mokcFunction}
+            removeFavoriteFilms = {mokcFunction}
+            // history = {mokcFunction}
           />
         </Provider>)
     .toJSON();

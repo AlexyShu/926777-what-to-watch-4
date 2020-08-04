@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {Route, Redirect} from "react-router-dom";
-import {AppRoute} from "../../constants.js";
 import {connect} from "react-redux";
+import {AppRoute} from "../../constants.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {AuthorizationStatus} from "../../reducer/user/user.js";
 
@@ -14,9 +14,9 @@ const PrivateRoute = (props) => {
       exact={exact}
       render={() => {
         return (
-          authorizationStatus === AuthorizationStatus.NO_AUTH
+          authorizationStatus === AuthorizationStatus.AUTH
             ? render()
-            : <Redirect to={AppRoute.MY_LIST} />
+            : <Redirect to={AppRoute.LOGINT} />
         );
       }}
     />

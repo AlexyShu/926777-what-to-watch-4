@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import Namespace from "../../reducer/namespace.js";
 import configureStore from "redux-mock-store";
 import {mockFilms, mokcFunction, MOCK_ACTIVE_FILTER, MOCK_FILMS_COUNT} from "../../mocks-for-tests.js";
+import {MemoryRouter} from "react-router-dom";
 
 const mockStore = configureStore([]);
 
@@ -21,14 +22,17 @@ describe(`Render correct GenresList`, () => {
     const tree = renderer
     .create(
         <Provider store={store}>
-          <GenresList
-            films = {mockFilms}
-            onFilterClick = {mokcFunction}
-            activeFilter = {MOCK_ACTIVE_FILTER}
-            handleChange= {mokcFunction}
-            filmsCount = {MOCK_FILMS_COUNT}
-            filteredFilms = {mockFilms}
-          />
+          <MemoryRouter>
+            <GenresList
+              films = {mockFilms}
+              onFilterClick = {mokcFunction}
+              activeFilter = {MOCK_ACTIVE_FILTER}
+              handleChange= {mokcFunction}
+              filmsCount = {MOCK_FILMS_COUNT}
+              filteredFilms = {mockFilms}
+              showMoreFilms = {mokcFunction}
+            />
+          </MemoryRouter>
         </Provider>)
       .toJSON();
 

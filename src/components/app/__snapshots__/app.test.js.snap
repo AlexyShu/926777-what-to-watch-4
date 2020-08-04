@@ -10,7 +10,7 @@ Array [
     >
       <img
         alt="The Grand Budapest Hotel"
-        src="img/bg-the-grand-budapest-hotel.jpg"
+        src="img/the-grand-budapest-hotel-bg.jpg"
       />
     </div>
     <h1
@@ -66,8 +66,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="The Grand Budapest Hotel"
             height="327"
+            src="img/the-grand-budapest-hotel-poster.jpg"
             width="218"
           />
         </div>
@@ -78,7 +79,7 @@ Array [
             className="movie-card__title"
           >
              
-            The Grand Budapest
+            The Grand Budapest Hotel
              
           </h2>
           <p
@@ -88,13 +89,14 @@ Array [
               className="movie-card__genre"
             >
                
-              Drama
+              Comedy
                
             </span>
             <span
               className="movie-card__year"
             >
                
+              2014
                
             </span>
           </p>
@@ -204,6 +206,7 @@ Array [
       <div
         className="catalog__movies-list"
       />
+      ;
     </section>
     <footer
       className="page-footer"

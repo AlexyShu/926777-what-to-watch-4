@@ -1,86 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render correct FilmsList Render FilmsList 1`] = `
-<div
-  className="catalog__movies-list"
->
-  <article
-    className="small-movie-card catalog__movies-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+Array [
+  <div
+    className="catalog__movies-list"
   >
-    <div
-      className="small-movie-card__image"
+    <a
+      className="small-movie-card catalog__movies-card small-movie-card__link"
+      href="/films/1"
+      onClick={[Function]}
     >
-      <img
-        alt="The Grand Budapest Hotel"
-        height="175"
-        src="img/the-grand-budapest-hotel-poster.jpg"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
-        href="#"
+      <article
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
       >
-        The Grand Budapest Hotel
-      </a>
-    </h3>
-  </article>
-  <article
-    className="small-movie-card catalog__movies-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
-  >
-    <div
-      className="small-movie-card__image"
+        <div
+          className="small-movie-card__image"
+        >
+          <img
+            alt="The Grand Budapest Hotel"
+            height="175"
+            src="img/the-grand-budapest-hotel-poster.jpg"
+            width="280"
+          />
+        </div>
+        <h3
+          className="small-movie-card__title"
+        >
+          The Grand Budapest Hotel
+        </h3>
+      </article>
+    </a>
+    <a
+      className="small-movie-card catalog__movies-card small-movie-card__link"
+      href="/films/2"
+      onClick={[Function]}
     >
-      <img
-        alt="The Grand Budapest Hotel"
-        height="175"
-        src="img/the-grand-budapest-hotel-poster.jpg"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
-        href="#"
+      <article
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
       >
-        The Grand Budapest Hotel
-      </a>
-    </h3>
-  </article>
-  <article
-    className="small-movie-card catalog__movies-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
-  >
-    <div
-      className="small-movie-card__image"
+        <div
+          className="small-movie-card__image"
+        >
+          <img
+            alt="The Grand Budapest Hotel"
+            height="175"
+            src="img/the-grand-budapest-hotel-poster.jpg"
+            width="280"
+          />
+        </div>
+        <h3
+          className="small-movie-card__title"
+        >
+          The Grand Budapest Hotel
+        </h3>
+      </article>
+    </a>
+    <a
+      className="small-movie-card catalog__movies-card small-movie-card__link"
+      href="/films/3"
+      onClick={[Function]}
     >
-      <img
-        alt="The Grand Budapest Hotel"
-        height="175"
-        src="img/the-grand-budapest-hotel-poster.jpg"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
-        href="#"
+      <article
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
       >
-        The Grand Budapest Hotel
-      </a>
-    </h3>
-  </article>
-</div>
+        <div
+          className="small-movie-card__image"
+        >
+          <img
+            alt="The Grand Budapest Hotel"
+            height="175"
+            src="img/the-grand-budapest-hotel-poster.jpg"
+            width="280"
+          />
+        </div>
+        <h3
+          className="small-movie-card__title"
+        >
+          The Grand Budapest Hotel
+        </h3>
+      </article>
+    </a>
+  </div>,
+  ";",
+]
 `;

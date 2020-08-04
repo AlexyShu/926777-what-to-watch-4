@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {getCurentFilm} from "../../utils.js";
 
 const FullScreenPlayer = (props) => {
   const {
-    filmCard,
+    films,
     videoRef,
     isPlaying,
     getToggleProgress,
@@ -13,24 +14,24 @@ const FullScreenPlayer = (props) => {
     onFullscreenButtonClick,
     onPlayButtonClick,
     onExitButtonClick,
-    onExitClick
   } = props;
-  return (
+  const film = getCurentFilm(films, props);
+  return (film ?
     <div className="player">
       <video
         ref={videoRef}
         width="100%"
         className="player__video"
-        poster={filmCard.posterSrc}
+        poster={film.bigPosterUrl}
         onLoadedMetadata={onLoadedMetadata}
         onTimeUpdate={onTimeUpdate}
       >
-        <source src={filmCard.video} />
+        <source src={film.videoUrl} />
       </video>
       <button
         onClick={() => {
           onExitButtonClick();
-          onExitClick();
+          props.history.push(`/`);
         }}
         type="button"
         className="player__exit"
@@ -94,34 +95,32 @@ const FullScreenPlayer = (props) => {
         </div>
       </div>
     </div>
-
+    : null
   );
 };
 
 FullScreenPlayer.propTypes = {
-  filmCard: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    video: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    posterSrc: PropTypes.string.isRequired,
-    year: PropTypes.number.isRequired,
-    ratingScore: PropTypes.string.isRequired,
-    ratingLevel: PropTypes.string.isRequired,
-    ratingCount: PropTypes.string.isRequired,
-    descriptionPartOne: PropTypes.string.isRequired,
-    descriptionPartTwo: PropTypes.string.isRequired,
-    filmDirector: PropTypes.string.isRequired,
-    filmStarring: PropTypes.string.isRequired,
-    time: PropTypes.string.isRequired,
-    reviews: PropTypes.arrayOf(
-        PropTypes.shape({
-          rating: PropTypes.number.isRequired,
-          date: PropTypes.string.isRequired,
-          author: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired
-        })
-    ).isRequired
-  }).isRequired,
+  films: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        posterUrl: PropTypes.string,
+        previewUrl: PropTypes.string,
+        bigPosterUrl: PropTypes.string,
+        backgroundColor: PropTypes.string,
+        description: PropTypes.string,
+        rating: PropTypes.number,
+        votes: PropTypes.number,
+        director: PropTypes.string,
+        starring: PropTypes.arrayOf(PropTypes.string),
+        runTime: PropTypes.string,
+        genre: PropTypes.string,
+        releaseYear: PropTypes.number,
+        id: PropTypes.number,
+        isFavorite: PropTypes.bool,
+        videoUrl: PropTypes.string,
+        trailerUrl: PropTypes.string
+      })
+  ).isRequired,
   isPlaying: PropTypes.bool.isRequired,
   getToggleProgress: PropTypes.func.isRequired,
   getTimeDuration: PropTypes.func.isRequired,
@@ -130,11 +129,11 @@ FullScreenPlayer.propTypes = {
   onFullscreenButtonClick: PropTypes.func.isRequired,
   onExitButtonClick: PropTypes.func.isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
-  onExitClick: PropTypes.func.isRequired,
   videoRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({current: PropTypes.instanceOf(Element)})
-  ])
+  ]),
+  history: PropTypes.func,
 };
 
 export default FullScreenPlayer;

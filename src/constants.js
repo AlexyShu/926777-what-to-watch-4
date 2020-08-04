@@ -9,7 +9,15 @@ export const TabName = {
 export const AppRoute = {
   MAIN: `/`,
   LOGIN: `/login`,
-  ADD_REVIEW: `/add-review`,
-  FILM_PAGE: `/film-page/:id`,
+  ADD_REVIEW: `/films/:id/review`,
+  FILM_PAGE: `/films/:id`,
   MY_LIST: `/my-list`,
+  FULL_SCREEN_PLAER: `/player/:id`,
+  ERROR: `/loading-error`
 };
+
+export const TIMEOUT = 1000;
+
+export const MIN_REVIEW_LENGTH = 50;
+
+export const MAX_REVIEW_LENGTH = 400;

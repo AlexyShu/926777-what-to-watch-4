@@ -1,19 +1,27 @@
 import {extend, adapterData, adapterFilm} from "../../utils.js";
 
-// данные, объект начального состояния
+const SuccessPost = {
+  SUCSESS: true,
+  ERROR: false
+};
+
 const initialState = {
   films: [],
   comments: [],
   promoFilm: {},
-  // favoriteFilms: []
+  favoriteFilms: [],
+  successComment: SuccessPost.ERROR,
 };
 
-// Action
 const ActionType = {
   GET_FILMS: `GET_FILMS`,
   GET_PROMO_FILM: `GET_PROMO_FILM`,
   GET_COMMENTS: `GET_COMMENTS`,
-  // GET_FAVORITE_FILMS: `GET_FAVORITE_FILMS`,
+  ADD_COMMENTS: `ADD_COMMENTS`,
+  GET_FAVORITE_FILMS: `GET_FAVORITE_FILMS`,
+  SEND_SUCCESS_COMMENT: `SEND_SUCCESS_COMMENT`,
+  ADD_FAVORITE_FILMS: `ADD_FAVORITE_FILMS`,
+  DELETE_FAVORITE_FILMS: `DELETE_FAVORITE_FILMS`
 };
 
 const ActionCreator = {
@@ -29,10 +37,26 @@ const ActionCreator = {
     type: ActionType.GET_COMMENTS,
     payload: comments
   }),
-  // getFavoriteFilms: (favoriteFilms) => ({
-  //   type: ActionType.GET_FILMS,
-  //   payload: favoriteFilms
-  // }),
+  getFavoriteFilms: (favoriteFilms) => ({
+    type: ActionType.GET_FAVORITE_FILMS,
+    payload: favoriteFilms
+  }),
+  sendReview: (status) => ({
+    type: ActionType.SEND_SUCCESS_COMMENT,
+    payload: status,
+  }),
+  addFavoriteFilms: (film) => {
+    return {
+      type: ActionType.ADD_FAVORITE_FILMS,
+      payload: film,
+    };
+  },
+  removeFavoriteFilms: (film) => {
+    return {
+      type: ActionType.DELETE_FAVORITE_FILMS,
+      payload: film,
+    };
+  },
 };
 
 const Operation = {
@@ -48,28 +72,57 @@ const Operation = {
       dispatch(ActionCreator.getPromoFilm(adapterFilm(response.data)));
     });
   },
-  getComments: () => (dispatch, getState, api) => {
-    return api.get(`/comments/41`)
+  getComments: (id) => (dispatch, getState, api) => {
+    return api.get(`/comments/${id}`)
     .then((response) => {
       dispatch(ActionCreator.getComments(response.data));
     });
   },
-  addComment: (commentData) => (dispatch, getState, api) => {
+  addComment: (id, commentData, onSuccess) => (dispatch, getState, api) => {
     return api
-      .post(`/comments/41`, {
+      .post(`/comments/${id}`, {
         rating: commentData.rating,
         comment: commentData.comment
       })
     .then(() => {
-      dispatch(Operation.getComments());
+      dispatch(ActionCreator.sendReview(SuccessPost.SUCSESS));
+      onSuccess();
     });
   },
-  // getFavoriteFilms: () => (dispatch, getState, api) => {
-  //   return api.get(`/favorite`)
-  //   .then((response) => {
-  //     dispatch(ActionCreator.getFilms(adapterData(response.data)));
-  //   });
-  // },
+  getFavoriteFilms: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+    .then((response) => {
+      dispatch(ActionCreator.getFavoriteFilms(adapterData(response.data)));
+    });
+  },
+  addFavoriteFilms: (id) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${id}/1`)
+      .then((response) => {
+        dispatch(ActionCreator.addFavoriteFilms(adapterFilm(response.data)));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
+  removeFavoriteFilms: (id) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${id}/0`)
+      .then((response) => {
+        dispatch(ActionCreator.removeFavoriteFilms(adapterFilm(response.data)));
+      })
+      .catch((err) => {
+        throw err;
+      });
+  },
+};
+
+const getFilmForMyList = (film, payload) => {
+  if (film.id === payload.id) {
+    return extend(film, {
+      isFavorite: !film.isFavorite
+    });
+  } else {
+    return film;
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -86,10 +139,26 @@ const reducer = (state = initialState, action) => {
       return extend(state, {
         comments: action.payload
       });
-    // case ActionType.GET_FAVORITE_FILMS:
-    //   return extend(state, {
-    //     favoriteFilms: action.payload
-    //   });
+    case ActionType.SEND_SUCCESS_COMMENT:
+      return extend(state, {
+        successComment: action.payload
+      });
+    case ActionType.ADD_FAVORITE_FILMS:
+      return extend(state, {
+        promoFilm: getFilmForMyList(state.promoFilm, action.payload),
+        films: state.films.map((film) => getFilmForMyList(film, action.payload)),
+        favoriteFilms: [...state.favoriteFilms, action.payload]
+      });
+    case ActionType.DELETE_FAVORITE_FILMS:
+      return extend(state, {
+        promoFilm: getFilmForMyList(state.promoFilm, action.payload),
+        films: state.films.map((film) => getFilmForMyList(film, action.payload)),
+        favoriteFilms: state.favoriteFilms.filter((film) => film.id !== action.payload.id),
+      });
+    case ActionType.GET_FAVORITE_FILMS:
+      return extend(state, {
+        favoriteFilms: action.payload
+      });
   }
   return state;
 };

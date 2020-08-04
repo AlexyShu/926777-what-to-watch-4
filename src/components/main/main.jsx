@@ -1,20 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
-import GenresList from "../genres-list/genres-list.jsx";
-import ShowMoreButton from "../show-more-button/show-more-button.jsx";
-import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../constants.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
+import GenresList from "../genres-list/genres-list.jsx";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
 
 const GenresWrapper = withActiveItem(GenresList);
 
 const Main = (props) => {
-  const {films, onPlayBtnClick, filmsCount, showMoreFilms, authorizationStatus, promoFilm} = props;
+  const {films, filmsCount, showMoreFilms, authorizationStatus, promoFilm, removeFavoriteFilms, addFavoriteFilms} = props;
   return <React.Fragment>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+        <img src={promoFilm.bigPosterUrl} alt={promoFilm.name} />
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -33,7 +32,7 @@ const Main = (props) => {
             <Link to={AppRoute.MY_LIST}>
               <div className="user-block__avatar">
                 <img
-                  src="img/avatar.jpg"
+                  src="/img/avatar.jpg"
                   alt="User avatar"
                   width="63"
                   height="63"
@@ -53,7 +52,7 @@ const Main = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src={promoFilm.posterUrl} alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={promoFilm.posterUrl} alt={promoFilm.name} width="218" height="327" />
           </div>
           <div className="movie-card__desc">
             <h2 className="movie-card__title"> {promoFilm.name} </h2>
@@ -64,7 +63,9 @@ const Main = (props) => {
 
             <div className="movie-card__buttons">
               <button
-                onClick={onPlayBtnClick}
+                onClick={() => {
+                  props.history.push(`/player/${promoFilm.id}`);
+                }}
                 className="btn btn--play movie-card__button"
                 type="button"
               >
@@ -75,14 +76,26 @@ const Main = (props) => {
               </button>
               <button
                 onClick={() => {
-                  props.history.push(`/film-page/${promoFilm.id}`);
+                  if (promoFilm.isFavorite) {
+                    removeFavoriteFilms(promoFilm.id);
+                  } else {
+                    addFavoriteFilms(promoFilm.id);
+                    // props.history.push(`/films/${promoFilm.id}`);
+                  }
                 }}
                 className="btn btn--list movie-card__button"
                 type="button"
               >
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
+                {promoFilm.isFavorite ? (
+                  <svg viewBox="0 0 18 14" width="18" height="14">
+                    <use xlinkHref="#in-list"></use>
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"></use>
+                  </svg>
+                )}
+
                 <span>My list</span>
               </button>
             </div>
@@ -98,12 +111,8 @@ const Main = (props) => {
         <GenresWrapper
           films = {films}
           filmsCount = {filmsCount}
+          showMoreFilms = {showMoreFilms}
         />
-        {filmsCount >= films.length ? null :
-          <ShowMoreButton
-            showMoreFilms = {showMoreFilms}
-          />
-        }
 
       </section>
 
@@ -168,10 +177,12 @@ Main.propTypes = {
   ).isRequired,
   filmsCount: PropTypes.number.isRequired,
   showMoreFilms: PropTypes.func.isRequired,
-  onPlayBtnClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   history: PropTypes.func,
+  addFavoriteFilms: PropTypes.func.isRequired,
+  removeFavoriteFilms: PropTypes.func.isRequired,
 };
+
 
 export default Main;
 

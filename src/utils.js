@@ -67,6 +67,7 @@ export const adapterFilm = (film) =>
     }
     : {};
 
+
 export const getCurentFilm = (movies, props) => {
   return movies.find((movie) => movie.id === Number(props.match.params.id));
 };
@@ -78,10 +79,32 @@ export const getTextRating = (value) => {
     return `Normal`;
   } else if (value >= 5 && value < 8) {
     return `Good`;
-  } else if (value >= 8 && value <= 10) {
+  } else if (value >= 8 && value < 10) {
     return `Very good`;
+  } else if (value === 10) {
+    return `Awesome`;
   }
-
   return ``;
 };
+
+export const formatDate = (date) => {
+  const MONTH_NAMES = [
+    `January`,
+    `February`,
+    `March`,
+    `April`,
+    `May`,
+    `June`,
+    `July`,
+    `August`,
+    `September`,
+    `October`,
+    `November`,
+    `December`,
+  ];
+  return `${MONTH_NAMES[date.getMonth()]}
+    ${date.getDate()},
+    ${date.getFullYear()}`;
+};
+
 

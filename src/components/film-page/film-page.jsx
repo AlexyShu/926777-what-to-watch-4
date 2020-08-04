@@ -1,14 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Tabs from "../tabs/tabs.jsx";
-import {AuthorizationStatus} from "../../reducer/user/user.js";
-import {getCurentFilm} from "../../utils.js";
 import {Link} from "react-router-dom";
+import {getCurentFilm} from "../../utils.js";
 import {AppRoute} from "../../constants.js";
+import {AuthorizationStatus} from "../../reducer/user/user.js";
+import Tabs from "../tabs/tabs.jsx";
+import SimilarFilmsList from "../similar-films-list/similar-films-list.jsx";
+import withActiveTab from "../../hocs/with-active-tab/with-active-tab.jsx";
+import withActiveItem from "../../hocs/with-active-item/with-active-item.jsx";
+
+const TabsWrapper = withActiveTab(Tabs);
+const SimilarFilmsWrapper = withActiveItem(SimilarFilmsList);
 
 
 const FilmPage = (props) => {
-  const {films, authorizationStatus} = props;
+  const {films, authorizationStatus, removeFavoriteFilms, addFavoriteFilms} = props;
   const film = getCurentFilm(films, props);
   return (film ? <React.Fragment>
     <section className="movie-card movie-card--full">
@@ -32,7 +38,7 @@ const FilmPage = (props) => {
             <Link to={AppRoute.MY_LIST}>
               <div className="user-block__avatar">
                 <img
-                  src="img/avatar.jpg"
+                  src="/img/avatar.jpg"
                   alt="User avatar"
                   width="63"
                   height="63"
@@ -52,6 +58,9 @@ const FilmPage = (props) => {
 
             <div className="movie-card__buttons">
               <button
+                onClick={() => {
+                  props.history.push(`/player/${film.id}`);
+                }}
                 className="btn btn--play movie-card__button"
                 type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
@@ -61,17 +70,29 @@ const FilmPage = (props) => {
               </button>
               <button
                 onClick={() => {
-                  props.history.push(`/`);
+                  if (film.isFavorite) {
+                    removeFavoriteFilms(film.id);
+                    // props.history.push(`/`);
+                  } else {
+                    addFavoriteFilms(film.id);
+                  }
                 }}
                 className="btn btn--list movie-card__button"
-                type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
+                type="button"
+              >
+                {film.isFavorite ? (
+                  <svg viewBox="0 0 18 14" width="18" height="14">
+                    <use xlinkHref="#in-list"></use>
+                  </svg>
+                ) : (
+                  <svg viewBox="0 0 19 20" width="19" height="20">
+                    <use xlinkHref="#add"></use>
+                  </svg>
+                )}
                 <span>My list</span>
               </button>
               {authorizationStatus === AuthorizationStatus.AUTH ? (
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link to={`/films/${film.id}/review`} className="btn movie-card__button">Add review</Link>
               ) : (null)}
 
             </div>
@@ -86,7 +107,7 @@ const FilmPage = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <Tabs
+            <TabsWrapper
               film={film}
             />
           </div>
@@ -97,19 +118,10 @@ const FilmPage = (props) => {
     <div className="page-content">
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
-        <div className="catalog__movies-list">
-          {films.filter((it) => it.genre === film.genre)
-          .map((it) => (
-            <article key={it.id} className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src={it.posterUrl} alt={it.name} width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="#">{it.name}</a>
-              </h3>
-            </article>)
-          )}
-        </div>
+        <SimilarFilmsWrapper
+          films = {films}
+          film = {film}
+        />
       </section>
 
       <footer className="page-footer">
@@ -154,6 +166,10 @@ FilmPage.propTypes = {
   ).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   history: PropTypes.func,
+  activeItem: PropTypes.number,
+  handleChange: PropTypes.func,
+  addFavoriteFilms: PropTypes.func.isRequired,
+  removeFavoriteFilms: PropTypes.func.isRequired,
 };
 
 
