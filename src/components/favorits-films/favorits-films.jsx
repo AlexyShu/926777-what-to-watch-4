@@ -6,21 +6,28 @@ import FilmCard from "../film-card/film-card.jsx";
 const FavoritsFilms = (props) => {
   const {favoriteFilms, handleChange, activeItem} = props;
   return <div className="catalog__movies-list">
-    {favoriteFilms.map((film) => (
-      <FilmCard
-        key = {film.id}
-        film = {film}
-        onMovieCardMouseOver={() => {
-          setTimeout(() => {
-            handleChange(film.id);
-          }, TIMEOUT);
-        }}
-        onMovieCardMouseOut={() => handleChange(null)}
-        isPlaying={film.id === activeItem}
-      />)
-    )}
+    {favoriteFilms.map((film) => {
+      let timeoutId;
+      return (
+        <FilmCard
+          key = {film.id}
+          film = {film}
+          onMovieCardMouseOver={() => {
+            timeoutId = setTimeout(() => {
+              handleChange(film.id);
+            }, TIMEOUT);
+          }}
+          onMovieCardMouseOut={() => {
+            clearTimeout(timeoutId);
+            handleChange(null);
+          }
+          }
+          isPlaying={film.id === activeItem}
+        />);
+    })}
   </div>;
 };
+
 
 FavoritsFilms.propTypes = {
   favoriteFilms: PropTypes.arrayOf(
