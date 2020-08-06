@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {ALL_GENRES} from "../../constants.js";
+import {ALL_GENRES, GENRES_COUNT, ARRAY_START} from "../../constants.js";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {getFilmsByGenre} from "../../reducer/data/selectors.js";
 import {getActiveFilter} from "../../reducer/state/selectors.js";
@@ -30,7 +30,7 @@ const GenresList = (props) => {
               {filter}
             </a>
           </li>)
-        ).slice(0, 9)}
+        ).slice(ARRAY_START, GENRES_COUNT)}
       </ul>
       <FilmsWrapper
         filteredFilms = {filteredFilms}

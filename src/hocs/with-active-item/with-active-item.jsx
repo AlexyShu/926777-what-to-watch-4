@@ -24,7 +24,6 @@ const withActiveItem = (Component) => {
         activeItem={activeItem}
         handleChange={this.setActiveItemHandler}
       />;
-
     }
   }
 

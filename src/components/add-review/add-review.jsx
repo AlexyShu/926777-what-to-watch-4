@@ -215,7 +215,7 @@ AddReview.propTypes = {
       })
   ).isRequired,
   onSubmit: PropTypes.func.isRequired,
-  history: PropTypes.func,
+  history: PropTypes.any,
   successComment: PropTypes.bool,
   handleChangeTextValidation: PropTypes.func,
   isFormInvalid: PropTypes.bool,

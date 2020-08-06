@@ -31,7 +31,7 @@ const FullScreenPlayer = (props) => {
       <button
         onClick={() => {
           onExitButtonClick();
-          props.history.push(`/`);
+          props.history.goBack();
         }}
         type="button"
         className="player__exit"
@@ -130,7 +130,7 @@ FullScreenPlayer.propTypes = {
     PropTypes.func,
     PropTypes.shape({current: PropTypes.instanceOf(Element)})
   ]),
-  history: PropTypes.func,
+  history: PropTypes.any,
 };
 
 export default FullScreenPlayer;

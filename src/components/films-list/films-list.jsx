@@ -1,25 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FilmCard from "../film-card/film-card.jsx";
-import {TIMEOUT} from "../../constants.js";
+import {TIMEOUT, ARRAY_START} from "../../constants.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
 const FilmsList = (props) => {
   const {filteredFilms, filmsCount, handleChange, activeItem, showMoreFilms} = props;
   return <React.Fragment>
     <div className="catalog__movies-list">
-      {filteredFilms.map((film) => (
-        <FilmCard
-          key = {film.id}
-          film = {film}
-          onMovieCardMouseOver={() => {
-            setTimeout(() => {
-              handleChange(film.id);
-            }, TIMEOUT);
-          }}
-          onMovieCardMouseOut={() => handleChange(null)}
-          isPlaying={film.id === activeItem}
-        />)).slice(0, filmsCount)}
+      {filteredFilms.map((film) => {
+        let timeoutId;
+        return (
+          <FilmCard
+            key = {film.id}
+            film = {film}
+            onMovieCardMouseOver={() => {
+              timeoutId = setTimeout(() => {
+                handleChange(film.id);
+              }, TIMEOUT);
+            }}
+            onMovieCardMouseOut={() => {
+              clearTimeout(timeoutId);
+              handleChange(null);
+            }
+            }
+            isPlaying={film.id === activeItem}
+          />);
+      }).slice(ARRAY_START, filmsCount)}
     </div>
     {filmsCount >= filteredFilms.length ? null :
       <ShowMoreButton

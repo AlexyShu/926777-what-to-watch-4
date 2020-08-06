@@ -1,6 +1,7 @@
 import React, {createRef, PureComponent} from "react";
 import PropTypes from "prop-types";
 import {formatTime} from "../../utils.js";
+import {TIMESTAMP} from "../../constants.js";
 
 const withPlayer = (Component) => {
   class WithPlayer extends PureComponent {
@@ -23,7 +24,7 @@ const withPlayer = (Component) => {
     }
 
     getToggleProgress() {
-      return String((this.state.currentTime / this.state.videoDuration) * 100);
+      return String((this.state.currentTime / this.state.videoDuration) * TIMESTAMP);
     }
 
     getTimeDuration() {

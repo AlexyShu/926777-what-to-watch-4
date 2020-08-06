@@ -106,8 +106,8 @@ const Tabs = (props) => {
           <>
             <div className="movie-card__reviews movie-card__row">
               <div className="movie-card__reviews-col">
-                {comments.map((comment) => (
-                  <div className="review" key={comment.user.id}>
+                {comments.map((comment, index) => (
+                  <div className="review" key={index + comment.user.id}>
                     <blockquote className="review__quote">
                       <p className="review__text">{comment.comment}</p>
                       <footer className="review__details">

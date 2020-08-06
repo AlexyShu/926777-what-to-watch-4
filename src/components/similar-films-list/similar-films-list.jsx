@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {TIMEOUT} from "../../constants.js";
+import {TIMEOUT, SIMILAR_CARDS_COUNT, ARRAY_START} from "../../constants.js";
 import FilmCard from "../film-card/film-card.jsx";
 
 
@@ -8,21 +8,28 @@ const SimilarFilmsList = (props) => {
   const {films, handleChange, activeItem, film} = props;
   return <div className="catalog__movies-list">
     {films.filter((movie) => movie.genre === film.genre)
-  .map((movie) => (
-    <FilmCard
-      key = {movie.id}
-      film = {movie}
-      onMovieCardMouseOver={() => {
-        setTimeout(() => {
-          handleChange(movie.id);
-        }, TIMEOUT);
-      }}
-      onMovieCardMouseOut={() => handleChange(null)}
-      isPlaying={movie.id === activeItem}
-    />)
-  ).slice(0, 4)}
+  .map((movie) => {
+    let timeoutId;
+    return (
+      <FilmCard
+        key = {movie.id}
+        film = {movie}
+        onMovieCardMouseOver={() => {
+          timeoutId = setTimeout(() => {
+            handleChange(movie.id);
+          }, TIMEOUT);
+        }}
+        onMovieCardMouseOut={() => {
+          clearTimeout(timeoutId);
+          handleChange(null);
+        }
+        }
+        isPlaying={movie.id === activeItem}
+      />);
+  }).slice(ARRAY_START, SIMILAR_CARDS_COUNT)}
   </div>;
 };
+
 
 SimilarFilmsList.propTypes = {
   films: PropTypes.arrayOf(

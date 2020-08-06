@@ -74,7 +74,6 @@ const Main = (props) => {
                     removeFavoriteFilms(promoFilm.id);
                   } else {
                     addFavoriteFilms(promoFilm.id);
-                    props.history.push(`/films/${promoFilm.id}`);
                   }
                 }}
                 className="btn btn--list movie-card__button"
@@ -165,7 +164,7 @@ Main.propTypes = {
   filmsCount: PropTypes.number.isRequired,
   showMoreFilms: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  history: PropTypes.func,
+  history: PropTypes.any,
   addFavoriteFilms: PropTypes.func.isRequired,
   removeFavoriteFilms: PropTypes.func.isRequired,
 };

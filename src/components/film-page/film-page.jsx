@@ -73,7 +73,6 @@ const FilmPage = (props) => {
                 onClick={() => {
                   if (film.isFavorite) {
                     removeFavoriteFilms(film.id);
-                    props.history.push(`/`);
                   } else {
                     addFavoriteFilms(film.id);
                   }
@@ -160,7 +159,7 @@ FilmPage.propTypes = {
       })
   ).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  history: PropTypes.func,
+  history: PropTypes.any,
   activeItem: PropTypes.number,
   handleChange: PropTypes.func,
   addFavoriteFilms: PropTypes.func.isRequired,

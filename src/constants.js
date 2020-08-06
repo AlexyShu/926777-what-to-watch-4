@@ -21,3 +21,11 @@ export const TIMEOUT = 1000;
 export const MIN_REVIEW_LENGTH = 50;
 
 export const MAX_REVIEW_LENGTH = 400;
+
+export const SIMILAR_CARDS_COUNT = 4;
+
+export const GENRES_COUNT = 9;
+
+export const TIMESTAMP = 100;
+
+export const ARRAY_START = 0;
