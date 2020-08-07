@@ -28,7 +28,6 @@ const FavoritsFilms = (props) => {
   </div>;
 };
 
-
 FavoritsFilms.propTypes = {
   favoriteFilms: PropTypes.arrayOf(
       PropTypes.shape({

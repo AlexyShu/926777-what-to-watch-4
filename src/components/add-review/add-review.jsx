@@ -12,17 +12,17 @@ class AddReview extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.submitFormRef = createRef();
-    this.commentRef = createRef();
-    this.sendCommentButtonRef = createRef();
+    this._submitFormRef = createRef();
+    this._commentRef = createRef();
+    this._sendCommentButtonRef = createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleFormDisability = this.toggleFormDisability.bind(this);
   }
 
   toggleFormDisability() {
-    this.commentRef.current.disabled = !this.commentRef.current.disabled;
-    this.sendCommentButtonRef.current.disabled = !this.sendCommentButtonRef
+    this._commentRef.current.disabled = !this._commentRef.current.disabled;
+    this._sendCommentButtonRef.current.disabled = !this._sendCommentButtonRef
       .current.disabled;
   }
 
@@ -34,8 +34,8 @@ class AddReview extends PureComponent {
 
     onSubmit(film.id,
         {
-          rating: this.submitFormRef.current.rating.value,
-          comment: this.commentRef.current.value
+          rating: this._submitFormRef.current.rating.value,
+          comment: this._commentRef.current.value
         },
         () => {
           this.toggleFormDisability();
@@ -84,7 +84,7 @@ class AddReview extends PureComponent {
               <div className="user-block">
                 <div className="user-block__avatar">
                   <img
-                    src="img/avatar.jpg"
+                    src="/img/avatar.jpg"
                     alt="User avatar"
                     width="63"
                     height="63"
@@ -106,7 +106,7 @@ class AddReview extends PureComponent {
               action="#"
               className="add-review__form"
               onSubmit={this.handleSubmit}
-              ref={this.submitFormRef}
+              ref={this._submitFormRef}
             >
               <div className="rating">
                 <div className="rating__stars">
@@ -169,7 +169,7 @@ class AddReview extends PureComponent {
                   name="review-text"
                   id="review-text"
                   placeholder="Review text"
-                  ref={this.commentRef}
+                  ref={this._commentRef}
                   minLength={MIN_REVIEW_LENGTH}
                   maxLength={MAX_REVIEW_LENGTH}
                   onChange={handleChangeTextValidation}
@@ -178,7 +178,7 @@ class AddReview extends PureComponent {
                   <button
                     className="add-review__btn"
                     type="submit"
-                    ref={this.sendCommentButtonRef}
+                    ref={this._sendCommentButtonRef}
                     disabled={isFormInvalid}
                   >
                     Post

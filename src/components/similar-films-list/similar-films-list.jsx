@@ -1,35 +1,53 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {TIMEOUT, SIMILAR_CARDS_COUNT, ARRAY_START} from "../../constants.js";
 import FilmCard from "../film-card/film-card.jsx";
 
+class SimilarFilmsList extends PureComponent {
+  constructor(props) {
+    super(props);
 
-const SimilarFilmsList = (props) => {
-  const {films, handleChange, activeItem, film} = props;
-  return <div className="catalog__movies-list">
-    {films.filter((movie) => movie.genre === film.genre)
-  .map((movie) => {
-    let timeoutId;
-    return (
-      <FilmCard
-        key = {movie.id}
-        film = {movie}
-        onMovieCardMouseOver={() => {
-          timeoutId = setTimeout(() => {
-            handleChange(movie.id);
-          }, TIMEOUT);
-        }}
-        onMovieCardMouseOut={() => {
-          clearTimeout(timeoutId);
-          handleChange(null);
-        }
-        }
-        isPlaying={movie.id === activeItem}
-      />);
-  }).slice(ARRAY_START, SIMILAR_CARDS_COUNT)}
-  </div>;
-};
+    this.timeoutId = null;
+  }
 
+  handleAddTimeout(id, cb) {
+    this.timeoutId = setTimeout(() => {
+      cb(id);
+    }, TIMEOUT);
+  }
+
+  handleClearTimeout() {
+    clearTimeout(this.timeoutId);
+  }
+
+  componentWillUnmount() {
+    this.handleClearTimeout();
+  }
+
+  render() {
+    const {films, handleChange, activeItem, film} = this.props;
+
+    return <div className="catalog__movies-list">
+      {films.filter((movie) => movie.genre === film.genre)
+       .map((movie) => {
+         return (
+           <FilmCard
+             key = {movie.id}
+             film = {movie}
+             onMovieCardMouseOver={() => {
+               this.handleAddTimeout(movie.id, handleChange);
+             }}
+             onMovieCardMouseOut={() => {
+               this.handleClearTimeout();
+               handleChange(null);
+             }
+             }
+             isPlaying={movie.id === activeItem}
+           />);
+       }).slice(ARRAY_START, SIMILAR_CARDS_COUNT)}
+    </div>;
+  }
+}
 
 SimilarFilmsList.propTypes = {
   films: PropTypes.arrayOf(

@@ -8,8 +8,8 @@ class SignIn extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.loginRef = createRef();
-    this.passwordRef = createRef();
+    this._loginRef = createRef();
+    this._passwordRef = createRef();
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -19,8 +19,8 @@ class SignIn extends PureComponent {
     evt.preventDefault();
 
     onSubmit({
-      login: this.loginRef.current.value,
-      password: this.passwordRef.current.value
+      login: this._loginRef.current.value,
+      password: this._passwordRef.current.value
     },
     () => {
       if (this.props.authorizationStatus === AuthorizationStatus.AUTH) {
@@ -58,7 +58,7 @@ class SignIn extends PureComponent {
                   placeholder="Email address"
                   name="user-email"
                   id="user-email"
-                  ref={this.loginRef}
+                  ref={this._loginRef}
                 />
                 <label
                   className="sign-in__label visually-hidden"
@@ -74,7 +74,7 @@ class SignIn extends PureComponent {
                   placeholder="Password"
                   name="user-password"
                   id="user-password"
-                  ref={this.passwordRef}
+                  ref={this._passwordRef}
                 />
                 <label
                   className="sign-in__label visually-hidden"
