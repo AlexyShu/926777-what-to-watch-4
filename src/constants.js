@@ -11,7 +11,7 @@ export const AppRoute = {
   LOGIN: `/login`,
   ADD_REVIEW: `/films/:id/review`,
   FILM_PAGE: `/films/:id`,
-  MY_LIST: `/my-list`,
+  MY_LIST: `/mylist`,
   FULL_SCREEN_PLAER: `/player/:id`,
   ERROR: `/loading-error`
 };
